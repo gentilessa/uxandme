@@ -1,0 +1,131 @@
+---
+const { items } = Astro.props;
+---
+
+<div class="experience-timeline">
+  {items.map((item, index) => (
+    <div class={`experience-row experience-row--${item.side} ${index === 0 ? 'experience-row--current' : ''}`}>
+      <div class="experience-card">
+        <div class="experience-card__meta">
+          <strong>{item.title}</strong>
+          <span>{item.dates}</span>
+        </div>
+        <p>{item.company}</p>
+      </div>
+    </div>
+  ))}
+  <div class="experience-cta">
+    <a class="experience-cta__button" href="https://www.linkedin.com/in/giaromano/details/experience/">
+      View all <span>→</span>
+    </a>
+  </div>
+</div>
+
+<style>
+  .experience-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .experience-timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 60px;
+    width: 2px;
+    background: var(--sl-color-gray-5);
+    transform: translateX(-50%);
+  }
+  
+  .experience-row {
+    display: flex;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  
+  .experience-row--left {
+    justify-content: flex-start;
+    padding-right: calc(50% + 32px);
+  }
+  
+  .experience-row--right {
+    justify-content: flex-end;
+    padding-left: calc(50% + 32px);
+  }
+  
+  .experience-card {
+    background: var(--sl-color-gray-6);
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 12px;
+    padding: 20px 24px;
+    position: relative;
+    flex: 1;
+    max-width: 380px;
+  }
+  
+  .experience-row--current .experience-card {
+    border-color: var(--sl-color-accent);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--sl-color-accent) 20%, transparent);
+  }
+  
+  .experience-card__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .experience-card__meta strong {
+    font-size: 1rem;
+    color: var(--sl-color-white);
+  }
+  
+  .experience-card__meta span {
+    font-size: 0.75rem;
+    color: var(--sl-color-accent);
+  }
+  
+  .experience-card p {
+    color: var(--sl-color-gray-2);
+    margin: 0;
+  }
+  
+  .experience-cta {
+    text-align: center;
+    padding-top: 16px;
+  }
+  
+  .experience-cta__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--sl-color-accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  .experience-cta__button:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .experience-timeline::before {
+      left: 20px;
+    }
+    
+    .experience-row--left,
+    .experience-row--right {
+      padding-left: 56px;
+      padding-right: 0;
+      justify-content: flex-start;
+    }
+    
+    .experience-card {
+      max-width: 100%;
+    }
+  }
+</style>

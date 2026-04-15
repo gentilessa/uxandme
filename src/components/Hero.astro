@@ -1,0 +1,137 @@
+---
+const { 
+  tagline = "Senior product designer",
+  title = "Designing complex SaaS",
+  titleAccent = "& AI-assisted workflows",
+  description = "Turning complex systems, dense workflows, and specialist tools into clearer, more usable products.",
+  avatar = "/images/portraits/gia.png",
+  ctaPrimary = { text: "View Case Studies", href: "/case-studies/" },
+  ctaSecondary = { text: "About", href: "/about/" }
+} = Astro.props;
+---
+
+<div class="home-hero">
+  <div class="status-pill">
+    <span class="status-dot"></span>
+    <span>Available for new opportunities</span>
+  </div>
+  
+  <div class="home-hero__intro">
+    <div class="home-hero__copy">
+      <h1>
+        {title}
+        <span class="light-text">{titleAccent}</span>
+      </h1>
+      <p class="home-hero__tagline">
+        {description}
+      </p>
+      <div class="home-hero__actions">
+        <a class="btn btn-primary" href={ctaPrimary.href}>{ctaPrimary.text}</a>
+        <a class="btn btn-outline-primary" href={ctaSecondary.href}>{ctaSecondary.text}</a>
+      </div>
+    </div>
+    <div class="home-hero__avatar">
+      <img src={avatar} alt="Gia Romano portrait" />
+    </div>
+  </div>
+</div>
+
+<style>
+  .home-hero {
+    padding: 80px 0 40px;
+    max-width: var(--sl-content-width);
+    margin: 0 auto;
+  }
+  
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: color-mix(in srgb, var(--sl-color-accent-low) 30%, transparent);
+    border: 1px solid var(--sl-color-accent);
+    border-radius: 100px;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    color: var(--sl-color-accent-high);
+    margin-bottom: 32px;
+  }
+  
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  
+  .home-hero__intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  
+  .home-hero__copy {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .home-hero__copy h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  
+  .light-text {
+    color: var(--sl-color-accent);
+  }
+  
+  .home-hero__tagline {
+    font-size: 1.25rem;
+    color: var(--sl-color-gray-2);
+    margin-bottom: 32px;
+    max-width: 540px;
+  }
+  
+  .home-hero__actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .home-hero__avatar {
+    flex-shrink: 0;
+  }
+  
+  .home-hero__avatar img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--sl-color-gray-6);
+  }
+  
+  @media (max-width: 768px) {
+    .home-hero__avatar img {
+      width: 150px;
+      height: 150px;
+    }
+    .home-hero__intro {
+      flex-direction: column-reverse;
+      text-align: center;
+    }
+    .home-hero__actions {
+      justify-content: center;
+    }
+    .home-hero__tagline {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+</style>

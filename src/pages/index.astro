@@ -1,0 +1,195 @@
+---
+import Grid from "@/components/user-components/Grid.astro";
+import NewCard from "@/components/user-components/NewCard.astro";
+import Section from "@/components/Section.astro";
+import Hero from "@/components/Hero.astro";
+import PortfolioCard from "@/components/PortfolioCard.astro";
+import ExperienceTimeline from "@/components/ExperienceTimeline.astro";
+import Testimonial from "@/components/Testimonial.astro";
+
+const featuredStudies = [
+  {
+    href: "/case-studies/exosphere/",
+    image: "/images/projects/fleet/hero.png",
+    alt: "Exosphere dashboard",
+    title: "Exosphere",
+    description: "Turning fragmented exploration data into actionable targeting workflows.",
+    meta: "Geoscience • AI targeting",
+  },
+  {
+    href: "/case-studies/breedlogic/",
+    image: "/images/projects/abri/hero.png",
+    alt: "BreedLogic project preview",
+    title: "BreedLogic",
+    description: "Bridging AI and genetics for breeders.",
+    meta: "Genetics • Decision support",
+  },
+];
+
+const strengths = [
+  { title: "AI-assisted workflows", icon: "brain", iconColor: "#ff8ea1", body: "Designing human-centred flows that make AI outputs more usable, explainable, and actionable." },
+  { title: "Complex workflows", icon: "git-branch", iconColor: "#8eb3ff", body: "Simplifying multi-step, technical processes into scannable, linear user journeys." },
+  { title: "Data visualisation", icon: "bar-chart", iconColor: "#8de1b2", body: "Clarifying dense information through interfaces built for insight and decision-making." },
+  { title: "3D and specialist platforms", icon: "box", iconColor: "#ffd27c", body: "Creating usable workflows for technically deep, data-rich, and spatial products." },
+  { title: "Enterprise SaaS systems", icon: "layers", iconColor: "#7cc6ff", body: "Designing structured, scalable experiences for complex business software." },
+  { title: "Design systems and delivery", icon: "layout", iconColor: "#c59cff", body: "Establishing the patterns, components, and collaboration needed for consistent execution." },
+];
+
+const experience = [
+  { title: "Lead Product Designer", dates: "FEB 25 - Present", company: "Fleet Space Technologies", side: "right" },
+  { title: "Lead UX Designer", dates: "JAN 24 - OCT 24", company: "ABRI", side: "left" },
+  { title: "Lead Product Designer", dates: "MAR 23 - JAN 24", company: "Tradewindow", side: "right" },
+  { title: "Manager, User Experience & Research", dates: "JAN 20 - MAR 24", company: "Bentley Systems", side: "left" },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product Design Documentation | UX & Me</title>
+    <meta name="description" content="Product design case studies for complex SaaS, AI-assisted workflows, and systems-led product work." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header has-sidebar">
+      <nav class="navbar container">
+        <div class="order-0">
+          <a href="/" class="navbar-brand inline-block">
+            <img src="/_astro/logo-light.B-OAwsTH_19DKCs.svg" alt="UX & Me" style="height:32px;width:127px" class="inline-block dark:hidden" />
+            <img src="/_astro/logo-dark.B7suPJoV_19DKCs.svg" alt="UX & Me" style="height:32px;width:127px" class="hidden dark:inline-block" />
+          </a>
+        </div>
+        
+        <input id="nav-toggle" type="checkbox" class="hidden" />
+        <label for="nav-toggle" class="order-3 cursor-pointer flex items-center lg:hidden dark:text-white lg:order-1 hamburger-menu">
+          <svg class="h-6 fill-current block" viewBox="0 0 20 20">
+            <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
+          </svg>
+        </label>
+        
+        <ul id="nav-menu" class="navbar-nav order-3 hidden w-full pb-6 lg:order-1 lg:flex lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8">
+          <li class="nav-item"><a href="/case-studies/" class="nav-link block">Work</a></li>
+          <li class="nav-item"><a href="/articles/" class="nav-link block">Articles</a></li>
+          <li class="nav-item"><a href="/about/" class="nav-link block">About</a></li>
+        </ul>
+        
+        <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0 navbar-actions">
+          <div class="theme-switcher lg:mx-6 mr-10">
+            <input id="theme-switcher" data-theme-switcher type="checkbox" />
+            <label for="theme-switcher"><span class="sr-only">theme switcher</span></label>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <Hero />
+
+      <!-- Featured Case Studies -->
+      <div class="content-panel">
+        <div class="sl-container">
+          <Section title="Featured Case Studies" description="Selected case studies demonstrating systems thinking and complex UI design.">
+            <Grid columns={2}>
+              {featuredStudies.map(study => (
+                <PortfolioCard {...study} />
+              ))}
+            </Grid>
+          </Section>
+        </div>
+      </div>
+
+      <!-- What I Design -->
+      <div class="content-panel">
+        <div class="sl-container">
+          <Section title="What I Design" description="Core competencies in complex product environments.">
+            <Grid columns={3}>
+              {strengths.map(skill => (
+                <NewCard icon={skill.icon} title={skill.title} iconColor={skill.iconColor}>
+                  <p>{skill.body}</p>
+                </NewCard>
+              ))}
+            </Grid>
+          </Section>
+        </div>
+      </div>
+
+      <!-- Experience -->
+      <div class="content-panel">
+        <div class="sl-container">
+          <Section title="Experience">
+            <ExperienceTimeline items={experience} />
+          </Section>
+        </div>
+      </div>
+
+      <!-- Testimonial -->
+      <div class="content-panel">
+        <div class="sl-container">
+          <Testimonial
+            quote="Gia has a rare ability to take incredibly dense technical requirements and translate them into interfaces that feel lightweight and obvious. Her work on our AI copilot didn't just improve usability; it defined our product strategy for the year."
+            author="Hemant Chaurasia"
+            role="CTPO at Fleet Space Technologies"
+            avatar="/images/portraits/hemant.jpg"
+          />
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p class="copyright">© 2026 Gia Romano. Designed with code.</p>
+      </div>
+    </footer>
+
+    <script>
+      const nav = document.querySelector(".navbar");
+      window.onscroll = function() {
+        if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+          nav?.parentElement?.classList.add("navbar-scrolled");
+        } else {
+          nav?.parentElement?.classList.remove("navbar-scrolled");
+        }
+      };
+
+      const e = document.querySelector("input[data-theme-switcher]");
+      e?.addEventListener("change", () => {
+        document.documentElement.dataset.theme = (e as HTMLInputElement).checked ? "dark" : "light";
+        localStorage.setItem("starlight-theme", (e as HTMLInputElement).checked ? "dark" : "light");
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  body {
+    margin: 0;
+    background: transparent;
+  }
+  
+  .content-panel {
+    padding: 48px 0;
+    border-top: 1px solid var(--sl-color-hairline);
+  }
+  
+  .sl-container {
+    max-width: var(--sl-content-width);
+    margin: 0 auto;
+    padding: 0 var(--sl-content-pad-x);
+  }
+  
+  .footer {
+    border-top: 1px solid var(--sl-color-hairline);
+    padding: 24px 0;
+    text-align: center;
+  }
+  
+  .footer .copyright {
+    color: var(--sl-color-gray-2);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+</style>
