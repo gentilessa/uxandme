@@ -1,0 +1,27 @@
+{
+  "site": {
+    "title": "UX & Me",
+    "logo": "/src/assets/logo-light.svg",
+    "logo_darkmode": "/src/assets/logo-dark.svg",
+    "logo_width": "127",
+    "logo_height": "32",
+    "logo_text": "UX & Me",
+    "description": "Portfolio of Gia Romano - Senior product designer turning complex systems, dense workflows, and specialist tools into clearer, more usable products."
+  },
+
+  "settings": {
+    "search": false,
+    "theme_switcher": true
+  },
+
+  "params": {
+    "footer_contact": {
+      "enable": false
+    },
+    "copyright": "© 2026 Gia Romano. Designed with code."
+  },
+
+  "navigation_button": {
+    "enable": false
+  }
+}

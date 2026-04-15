@@ -1,0 +1,17 @@
+{
+  "main": [
+    {
+      "name": "Travaux",
+      "url": "/fr/case-studies/"
+    },
+    {
+      "name": "Articles",
+      "url": "/fr/articles/"
+    },
+    {
+      "name": "À propos",
+      "url": "/fr/about/"
+    }
+  ],
+  "footer": {}
+}

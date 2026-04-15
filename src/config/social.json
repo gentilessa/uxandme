@@ -1,0 +1,14 @@
+{
+  "main": [
+    {
+      "icon": "github",
+      "label": "GitHub",
+      "href": "https://github.com/giaromano/uxandme"
+    },
+    {
+      "icon": "linkedin",
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/giaromano/"
+    }
+  ]
+}
