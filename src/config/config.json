@@ -22,6 +22,8 @@
   },
 
   "navigation_button": {
-    "enable": false
+    "enable": true,
+    "link": "/case-studies/",
+    "label": "View Case Studies"
   }
 }

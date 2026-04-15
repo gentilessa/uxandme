@@ -1,0 +1,107 @@
+---
+---
+
+<footer class="portfolio-footer">
+  <div class="container">
+    <div class="portfolio-footer__cta">
+      <div>
+        <h2>Let's build something complex, simply.</h2>
+        <p>Currently open for leadership roles in AI and SaaS.</p>
+      </div>
+      <a class="portfolio-footer__button" href="mailto:gia@uxandme.com">Get in touch</a>
+    </div>
+    <div class="portfolio-footer__meta">
+      <p>© 2026 Gia Romano. Designed with code.</p>
+      <a href="https://www.linkedin.com/in/giaromano/">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .portfolio-footer {
+    border-top: 1px solid var(--sl-color-hairline);
+    padding: 48px 0 32px;
+    margin-top: 48px;
+  }
+  
+  .portfolio-footer .container {
+    max-width: var(--sl-content-width);
+    margin: 0 auto;
+    padding: 0 var(--sl-content-pad-x);
+  }
+  
+  .portfolio-footer__cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--sl-color-gray-6);
+  }
+  
+  .portfolio-footer__cta h2 {
+    font-size: 1.75rem;
+    margin-bottom: 8px;
+  }
+  
+  .portfolio-footer__cta p {
+    color: var(--sl-color-gray-2);
+    margin: 0;
+  }
+  
+  .portfolio-footer__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--sl-color-accent);
+    color: var(--sl-color-white);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+  }
+  
+  .portfolio-footer__button:hover {
+    opacity: 0.9;
+  }
+  
+  .portfolio-footer__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .portfolio-footer__meta p {
+    color: var(--sl-color-gray-2);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+  
+  .portfolio-footer__meta a {
+    color: var(--sl-color-gray-2);
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+  
+  .portfolio-footer__meta a:hover {
+    color: var(--sl-color-accent);
+  }
+  
+  @media (max-width: 768px) {
+    .portfolio-footer__cta {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .portfolio-footer__meta {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

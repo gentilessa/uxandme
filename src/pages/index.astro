@@ -6,6 +6,7 @@ import Hero from "@/components/Hero.astro";
 import PortfolioCard from "@/components/PortfolioCard.astro";
 import ExperienceTimeline from "@/components/ExperienceTimeline.astro";
 import Testimonial from "@/components/Testimonial.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
 
 const featuredStudies = [
   {
@@ -52,6 +53,12 @@ const experience = [
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
+    <!-- Hero Background -->
+    <div class="hero-bg">
+      <img src="/images/hero-bg-light.png" alt="" class="dark:hidden w-full h-full object-cover" />
+      <img src="/images/hero-bg-dark.png" alt="" class="hidden dark:block w-full h-full object-cover" />
+    </div>
+    
     <!-- Header -->
     <header class="header has-sidebar">
       <nav class="navbar container">
@@ -139,11 +146,7 @@ const experience = [
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <p class="copyright">© 2026 Gia Romano. Designed with code.</p>
-      </div>
-    </footer>
+    <SiteFooter />
 
     <script>
       const nav = document.querySelector(".navbar");
@@ -170,6 +173,12 @@ const experience = [
     background: transparent;
   }
   
+  .hero-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+  }
+  
   .content-panel {
     padding: 48px 0;
     border-top: 1px solid var(--sl-color-hairline);
@@ -179,17 +188,5 @@ const experience = [
     max-width: var(--sl-content-width);
     margin: 0 auto;
     padding: 0 var(--sl-content-pad-x);
-  }
-  
-  .footer {
-    border-top: 1px solid var(--sl-color-hairline);
-    padding: 24px 0;
-    text-align: center;
-  }
-  
-  .footer .copyright {
-    color: var(--sl-color-gray-2);
-    font-size: 0.875rem;
-    margin: 0;
   }
 </style>
