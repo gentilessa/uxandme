@@ -1,19 +1,30 @@
 ---
-import { Icon } from "@astrojs/starlight/components";
+import { Brain, GitBranch, BarChart3, Box, Layers, Layout } from "lucide-astro";
 
 const { icon, title, iconColor, size = "large" } = Astro.props;
+
+const iconMap: Record<string, any> = {
+  brain: Brain,
+  "git-branch": GitBranch,
+  "bar-chart": BarChart3,
+  box: Box,
+  layers: Layers,
+  layout: Layout,
+};
+
+const IconComponent = iconMap[icon];
 ---
 
 <article
   class={`card bg-lightmode-dark dark:bg-dark group ${size === "sm" ? "p-6" : "py-12 px-10"}`}
 >
   {
-    icon && (
-      <Icon
-        name={icon}
+    IconComponent && (
+      <IconComponent
         class="icon"
-        size={`${size === "sm" ? "1.4rem" : "2rem"}`}
+        size={size === "sm" ? 24 : 32}
         color={iconColor}
+        strokeWidth={1.5}
       />
     )
   }

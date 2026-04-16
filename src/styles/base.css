@@ -1,60 +1,129 @@
-html {
-  @apply text-base-sm md:text-base;
-}
+@layer base {
+  :root {
+    /* Custom brand colors */
+    --color-primary: #D76D77;
+    --color-dark: #151515;
+    --color-light: #f6f6f6;
 
-body {
-  @apply bg-lightmode-body text-base dark:bg-body font-primary font-normal leading-relaxed text-lightmode-text dark:text-text;
-}
+    /* Starlight base variables */
+    --sl-color-white: var(--color-light);
+    --sl-color-black: var(--color-dark);
+    --sl-sidebar-width: 320px;
+    --sl-color-hairline: color-mix(in srgb, var(--sl-color-white) 10%, transparent);
+    --sl-color-hairline-light: #252525;
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply  font-bold leading-tight;
-  color: var(--sl-color-white);
-}
+    --sl-text-base: 1rem;
+    --sl-text-body: 1rem;
+    --sl-text-h1: 3rem;
+    --sl-text-h2: 2rem;
+    --sl-text-h3: 1.5rem;
+    --sl-text-h4: 1.25rem;
+    --sl-line-height: 1.75;
+    --sl-line-height-headings: 1.2;
+    --sl-content-width: 75rem;
+    --sl-content-pad-x: 1.5rem;
 
-h1,
-.h1 {
-  @apply text-h1-sm md:text-h1;
-}
+    /* Accent colors - using primary brand color */
+    --sl-color-accent-low: color-mix(in srgb, var(--color-primary), #000 90%);
+    --sl-color-accent: var(--color-primary);
+    --sl-color-accent-high: color-mix(in srgb, var(--color-primary), #fff 70%);
 
-h2,
-.h2 {
-  @apply text-h2-sm md:text-h2;
-}
+    /* Gray scale */
+    --sl-color-gray-1: color-mix(in srgb, var(--color-dark) 6%, var(--color-light) 94%);
+    --sl-color-gray-2: color-mix(in srgb, var(--color-dark) 24%, var(--color-light) 76%);
+    --sl-color-gray-3: color-mix(in srgb, var(--color-dark) 45%, var(--color-light) 55%);
+    --sl-color-gray-4: color-mix(in srgb, var(--color-dark) 65%, var(--color-light) 35%);
+    --sl-color-gray-5: color-mix(in srgb, var(--color-dark) 78%, var(--color-light) 22%);
+    --sl-color-gray-6: color-mix(in srgb, var(--color-dark) 85%, var(--color-light) 15%);
 
-h3,
-.h3 {
-  @apply text-h3-sm md:text-h3;
-}
+    /* Layout */
+    --sl-color-bg: var(--sl-color-black);
+    --sl-color-bg-nav: var(--sl-color-gray-6);
+    --sl-color-bg-sidebar: var(--sl-color-gray-6);
+    --sl-color-text: var(--sl-color-gray-2);
+    --sl-color-text-accent: var(--sl-color-accent-high);
+  }
 
-h4,
-.h4 {
-  @apply text-h4;
-}
+  :root[data-theme="light"] {
+    --sl-color-white: #181818;
+    --sl-color-black: #f7f7f7;
+    --sl-color-gray-1: #272727;
+    --sl-color-gray-2: #383838;
+    --sl-color-gray-3: #585858;
+    --sl-color-gray-4: #8b8b8b;
+    --sl-color-gray-5: #c2c2c2;
+    --sl-color-gray-6: #eeeeee;
+    --sl-color-gray-7: #f6f6f7;
+    --sl-color-hairline: color-mix(in srgb, var(--sl-color-gray-5) 10%, transparent);
 
-h5,
-.h5 {
-  @apply text-h5;
-}
+    --sl-color-accent-low: color-mix(in srgb, var(--color-primary), #fff 90%);
+    --sl-color-accent: var(--color-primary);
+    --sl-color-accent-high: color-mix(in srgb, var(--color-primary), #000 90%);
 
-h6,
-.h6 {
-  @apply text-h6;
-}
+    --sl-color-bg: var(--sl-color-white);
+    --sl-color-bg-nav: var(--sl-color-gray-6);
+    --sl-color-bg-sidebar: var(--sl-color-gray-6);
+    --sl-color-text: var(--sl-color-gray-2);
+  }
 
-b,
-strong {
-  @apply font-semibold;
-}
+  html {
+    @apply text-base-sm md:text-base;
+  }
 
-code {
-  @apply after:border-none;
-}
+  body {
+    @apply bg-lightmode-body text-base dark:bg-body font-primary font-normal leading-relaxed text-lightmode-text dark:text-text;
+  }
 
-blockquote > p {
-  @apply my-0!;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold leading-tight;
+    color: var(--sl-color-white);
+  }
+
+  h1,
+  .h1 {
+    @apply text-h1-sm md:text-h1;
+  }
+
+  h2,
+  .h2 {
+    @apply text-h2-sm md:text-h2;
+  }
+
+  h3,
+  .h3 {
+    @apply text-h3-sm md:text-h3;
+  }
+
+  h4,
+  .h4 {
+    @apply text-h4;
+  }
+
+  h5,
+  .h5 {
+    @apply text-h5;
+  }
+
+  h6,
+  .h6 {
+    @apply text-h6;
+  }
+
+  b,
+  strong {
+    @apply font-semibold;
+  }
+
+  code {
+    @apply after:border-none;
+  }
+
+  blockquote > p {
+    @apply my-0!;
+  }
 }

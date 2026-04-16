@@ -12,7 +12,7 @@ import sidebar from "./src/config/sidebar.json";
 import { fileURLToPath } from "url";
 
 const { site } = config;
-const { title, logo, logo_darkmode } = site;
+const { title } = site;
 
 export const locales = locals
 
@@ -25,11 +25,6 @@ export default defineConfig({
   integrations: [
     starlight({
       title,
-      logo: {
-        light: logo,
-        dark: logo_darkmode,
-        alt: "DocKit Logo",
-      },
       // @ts-ignore
       social: social.main || [],
       locales,
