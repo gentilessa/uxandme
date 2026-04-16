@@ -1,0 +1,52 @@
+:root {
+  --color-primary: #D76D77;
+  --color-dark: #151515;
+  --color-light: #f6f6f6;
+  --color-lightmode-primary: #D76D77;
+  --color-lightmode-dark: #181818;
+  --color-lightmode-light: #181818;
+  
+  --sl-color-accent-low: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  --sl-color-accent: var(--color-primary);
+  --sl-color-accent-high: color-mix(in srgb, var(--color-primary) 85%, white);
+  
+  --sl-color-white: var(--color-light);
+  --sl-color-gray-1: #eeeeee;
+  --sl-color-gray-2: #c2c2c2;
+  --sl-color-gray-3: #8b8b8b;
+  --sl-color-gray-4: #585858;
+  --sl-color-gray-5: #383838;
+  --sl-color-gray-6: #272727;
+  
+  --sl-color-black: var(--color-dark);
+  --sl-sidebar-width: 320px;
+  --sl-color-hairline: rgba(246, 246, 246, 0.1);
+  --sl-color-hairline-light: #252525;
+  
+  --sl-text-base: 1rem;
+  --sl-text-body: 1rem;
+  --sl-text-h1: 3rem;
+  --sl-text-h2: 2rem;
+  --sl-text-h3: 1.5rem;
+  --sl-text-h4: 1.25rem;
+  
+  --sl-line-height: 1.75;
+  --sl-line-height-headings: 1.2;
+  --sl-content-width: 75rem;
+  --sl-content-pad-x: 1.5rem;
+}
+
+:root[data-theme="light"] {
+  --sl-color-white: #181818;
+  --sl-color-gray-1: #272727;
+  --sl-color-gray-2: #383838;
+  --sl-color-gray-3: #585858;
+  --sl-color-gray-4: #8b8b8b;
+  --sl-color-gray-5: #c2c2c2;
+  --sl-color-gray-6: #eeeeee;
+  --sl-color-gray-7: #f6f6f7;
+  --sl-color-black: #f7f7f7;
+  
+  --sl-color-accent-low: color-mix(in srgb, var(--color-primary) 15%, white);
+  --sl-color-accent-high: color-mix(in srgb, var(--color-primary) 85%, black);
+}
