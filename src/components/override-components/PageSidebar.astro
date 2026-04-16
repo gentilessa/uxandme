@@ -1,17 +1,17 @@
 ---
-import MobileTableOfContents from "./MobileTableOfContents.astro";
-import TableOfContents from "./TableOfContents.astro";
+import StarlightTOC from "@astrojs/starlight/components/TableOfContents.astro";
+import StarlightMobileTOC from "@astrojs/starlight/components/MobileTableOfContents.astro";
 ---
 
 {
   Astro.locals.starlightRoute.toc && (
     <>
       <div class="lg:sl-hidden">
-        <MobileTableOfContents />
+        <StarlightMobileTOC />
       </div>
       <div class="right-sidebar-panel sl-hidden lg:sl-block">
         <div class="sl-container">
-          <TableOfContents />
+          <StarlightTOC />
         </div>
       </div>
     </>
@@ -21,17 +21,37 @@ import TableOfContents from "./TableOfContents.astro";
 <style>
   @layer starlight.core {
     .right-sidebar-panel {
-      /* padding-top: 1rem ; */
+      position: sticky;
+      top: calc(var(--sl-nav-height) + 2rem);
+      max-height: calc(100vh - var(--sl-nav-height) - 4rem);
+      overflow-y: auto;
+      scrollbar-width: none;
+    }
+    .right-sidebar-panel::-webkit-scrollbar {
+      display: none;
+    }
+    .right-sidebar-panel :global(h2) {
+      font-size: 12px !important;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      padding-left: 12px;
+    }
+    .right-sidebar-panel :global(h2)::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      margin-right: 0.5rem;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.375 6H10.625M1.375 2.875H10.625M1.375 9.125H5.75' stroke='%23A3A3A3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      flex-shrink: 0;
     }
     .sl-container {
       width: calc(var(--sl-sidebar-width) - 2 * var(--sl-sidebar-pad-x));
-    }
-    .right-sidebar-panel :global(h2) {
-      color: var(--sl-color-white);
-      font-size: var(--sl-text-h5);
-      font-weight: 600;
-      line-height: var(--sl-line-height-headings);
-      margin-bottom: 0.5rem;
     }
     .right-sidebar-panel :global(:where(a)) {
       display: block;
@@ -42,6 +62,11 @@ import TableOfContents from "./TableOfContents.astro";
     }
     .right-sidebar-panel :global(:where(a):hover) {
       color: var(--sl-color-white);
+    }
+    .right-sidebar-panel :global(a[aria-current="true"]) {
+      color: var(--sl-color-text-accent);
+      border-left: 2px solid var(--color-primary) !important;
+      border-radius: 0px;
     }
     @media (min-width: 72rem) {
       .sl-container {

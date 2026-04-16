@@ -19,40 +19,21 @@
   padding-right: var(--sl-content-pad-x);
 }
 .hero-bg {
-  @apply absolute top-0 left-0 w-full -z-10 object-cover;
+  @apply absolute top-0 left-0 w-full -z-10 object-cover overflow-hidden;
 }
 .doc-bg {
-  @apply  h-screen bg-no-repeat absolute top-0 left-0 w-full -z-10 object-cover;
+  @apply h-screen bg-no-repeat absolute top-0 left-0 w-full -z-10 object-cover overflow-hidden;
+}
+
+/* Ensure page content doesn't overflow */
+.page {
+  overflow-x: hidden;
 }
 
 .light-text {
   @apply text-lightmode-text/50 dark:text-text/50 block;
 }
-.section-title {
-  font-size: 4.8rem;
-  line-height: 4.7rem;
-  letter-spacing: -3px;
-}
 
-.section-description {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  letter-spacing: -0.2px;
-}
-@media (max-width: 1040px) {
-  .section-title {
-    font-size: 3.8rem;
-    line-height: 3.7rem;
-    letter-spacing: -2px;
-  }
-}
-@media (max-width: 548px) {
-  .section-title {
-    font-size: 2.8rem;
-    line-height: 2.7rem;
-    letter-spacing: -1px;
-  }
-}
 /* hero tabs */
 .list-body {
   padding: 0 1rem;

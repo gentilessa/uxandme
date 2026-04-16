@@ -1,31 +1,12 @@
 {
   "main": [
     {
-      "label": "Work",
-      "items": [
-        {
-          "label": "Case Studies",
-          "autogenerate": { "directory": "case-studies" }
-        }
-      ]
+      "label": "Case Studies",
+      "autogenerate": { "directory": "case-studies" }
     },
     {
       "label": "Articles",
-      "items": [
-        {
-          "label": "Writing",
-          "autogenerate": { "directory": "articles" }
-        }
-      ]
-    },
-    {
-      "label": "About",
-      "items": [
-        {
-          "label": "About Gia",
-          "slug": "about"
-        }
-      ]
+      "autogenerate": { "directory": "articles" }
     }
   ]
 }

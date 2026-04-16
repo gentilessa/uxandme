@@ -85,7 +85,7 @@
 }
 
 /* navbar toggler */
-.no-sidebar.hamburger-menu {
+.hamburger-menu {
   @apply lg:hidden;
 }
 .has-sidebar .hamburger-menu {
@@ -101,6 +101,19 @@ input#nav-toggle:checked + label #hide-button {
 
 input#nav-toggle:checked ~ #nav-menu {
   @apply block;
+}
+
+@media (max-width: 1023px) {
+  #nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: var(--sl-color-black);
+    padding: 1rem var(--sl-content-pad-x);
+    border-top: 1px solid var(--sl-color-hairline);
+  }
 }
 /* theme-switcher */
 .theme-switcher {
@@ -123,6 +136,11 @@ input#nav-toggle:checked ~ #nav-menu {
       @apply lg:left-7;
     }
   }
+}
+
+/* Sidebar always expanded, no collapse - hide group headers */
+#starlight__sidebar .top-level > li > details > summary {
+  display: none;
 }
 
 

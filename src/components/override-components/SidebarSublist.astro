@@ -170,7 +170,6 @@ const { sublist, nested } = Astro.props;
     a {
       display: flex;
       align-items: center;
-      border-radius: 8px;
       text-decoration: none;
       color: var(--sl-color-gray-2);
       /* padding: 0.3em var(--sl-sidebar-item-padding-inline); */
@@ -187,11 +186,8 @@ const { sublist, nested } = Astro.props;
     [aria-current="page"]:hover,
     [aria-current="page"]:focus {
       color: var(--color-primary) !important;
-      background-color: color-mix(
-        in srgb,
-        var(--sl-color-white) 6%,
-        transparent
-      );
+      background-color: color-mix(in srgb,var(--color-primary) 6%,transparent);
+      border-left: solid 2px var(--color-primary) !important;
     }
     [aria-current="page"] span {
       color: var(--sl-color-white);

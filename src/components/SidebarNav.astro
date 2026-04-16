@@ -36,25 +36,15 @@ function hasActiveEntry(item: any, currentPath: string): boolean {
   <div class="container h-full">
     <div class="sidebar-content-top">
       <ul>
-        {
-          sidebar.map((item: any) => {
-            // Use helper functions to handle nested entries properly
-            const href = getFirstHref(item);
-            const isActive = hasActiveEntry(item, currentPath);
-
-            return (
-              <li>
-                <a
-                  aria-label={plainLabel(item.label)}
-                  href={href}
-                  class={isActive ? "active" : ""}
-                >
-                  {plainLabel(item.label)} 
-                </a>
-              </li>
-            );
-          })
-        }
+        <li>
+          <a aria-label="Case Studies" href="/case-studies/" class={currentPath.startsWith('/case-studies') ? 'active' : ''}>Case Studies</a>
+        </li>
+        <li>
+          <a aria-label="Design Systems" href="/design-systems/" class={currentPath.startsWith('/design-systems') || currentPath.startsWith('/design-systems') ? 'active' : ''}>Design Systems</a>
+        </li>
+        <li>
+          <a aria-label="Articles" href="/articles/" class={currentPath.startsWith('/articles') ? 'active' : ''}>Articles</a>
+        </li>
       </ul>
       <div>
         <LanguageSelect />
@@ -73,7 +63,7 @@ function hasActiveEntry(item: any, currentPath: string): boolean {
       width: 100%;
       top: 75px;
       border-bottom: 1px solid
-        color-mix(in srgb, var(--sl-color-white) 10%, transparent);
+        color-mix(in srgb, var(--sl-color-white) 10%, transparent) !important;
       padding-top: 20px;
       padding-bottom: 0px;
     }
@@ -101,7 +91,7 @@ function hasActiveEntry(item: any, currentPath: string): boolean {
       display: inline-block;
     }
     .sidebar-content-top ul li a.active {
-      border-bottom: 1px solid var(--sl-color-white);
+      border-bottom: 1px solid var(--sl-color-white) !important;
       color: var(--sl-color-white);
       font-weight: 600;
     }

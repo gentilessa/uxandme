@@ -6,27 +6,26 @@ const { navigation_button } = config;
 const pathname = Astro.url.pathname;
 ---
 
-<header class="header has-sidebar">
-  <nav class="navbar container">
-    <div class="order-0">
-      <a href="/" class="navbar-brand inline-block site-logo">
-        <img src="/uxandme-mark.svg" alt="UX & Me" style="height:40px;width:40px" loading="lazy" decoding="async" />
-      </a>
-    </div>
-    
-    <input id="nav-toggle" type="checkbox" class="hidden" />
-    <label for="nav-toggle" class="order-3 cursor-pointer flex items-center lg:hidden dark:text-white lg:order-1 hamburger-menu">
-      <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
-        <title>Menu Open</title>
-        <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
-      </svg>
-      <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
-        <title>Menu Close</title>
-        <polygon points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2" transform="rotate(45 10 10)"></polygon>
-      </svg>
-    </label>
-    
-    <ul id="nav-menu" class="navbar-nav order-3 hidden w-full pb-6 lg:order-1 lg:flex lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8">
+<nav class="navbar container">
+  <div class="order-0">
+    <a href="/" class="navbar-brand inline-block site-logo">
+      <img src="/uxandme-mark.svg" alt="UX & Me" style="height:40px;width:40px" loading="lazy" decoding="async" />
+    </a>
+  </div>
+  
+  <input id="nav-toggle" type="checkbox" class="hidden" />
+  <label for="nav-toggle" class="order-3 cursor-pointer flex items-center lg:hidden dark:text-white lg:order-1 hamburger-menu">
+    <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
+      <title>Menu Open</title>
+      <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
+    </svg>
+    <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
+      <title>Menu Close</title>
+      <polygon points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2" transform="rotate(45 10 10)"></polygon>
+    </svg>
+  </label>
+  
+<ul id="nav-menu" class="navbar-nav order-3 hidden w-full pb-6 lg:order-1 lg:flex lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8">
       <li class="nav-item">
         <a href="/case-studies/" class={`nav-link block ${pathname.startsWith('/case-studies') ? 'active' : ''}`}>Work</a>
       </li>
@@ -44,17 +43,16 @@ const pathname = Astro.url.pathname;
         </li>
       )}
     </ul>
-    
-    <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0 navbar-actions">
-      <ThemeSwitch className="lg:mx-6 mr-10" />
-      {navigation_button.enable && (
-        <a class="btn btn-outline-primary hidden! lg:inline-block!" href={navigation_button.link}>
-          {navigation_button.label}
-        </a>
-      )}
-    </div>
-  </nav>
-</header>
+  
+  <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0 navbar-actions">
+    <ThemeSwitch className="lg:mx-6 mr-10" />
+    {navigation_button.enable && (
+      <a class="btn btn-outline-primary hidden! lg:inline-block!" href={navigation_button.link}>
+        {navigation_button.label}
+      </a>
+    )}
+  </div>
+</nav>
 
 <script>
   const nav = document.querySelector(".navbar");

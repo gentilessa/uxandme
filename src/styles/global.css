@@ -1,4 +1,10 @@
-@layer base, starlight, theme, components, utilities;
+@layer starlight.reset {
+  *, ::before, ::after {
+    box-sizing: border-box;
+  }
+}
+
+@layer base, theme, components, utilities, starlight.reset, starlight, starlight.core, starlight.components;
 
 @import "@astrojs/starlight-tailwind";
 @import "tailwindcss/theme.css" layer(theme);
@@ -9,7 +15,9 @@
 
 :root {
   /* Custom brand colors */
-  --color-primary: #D76D77;
+  --color-primary: #6a67f5;
+  --color-body: #0f1117;
+  --color-text: #9aa3b7;
   --color-dark: #151515;
   --color-light: #f6f6f6;
   
@@ -39,13 +47,15 @@
   --sl-text-h4: 1.25rem;
   --sl-line-height: 1.75;
   --sl-line-height-headings: 1.2;
-  --sl-content-width: 75rem;
+  --sl-content-width: 85rem;
   --sl-content-pad-x: 1.5rem;
 }
 
 /* Light mode colors. */
 :root[data-theme="light"] {
-  --color-primary: #D76D77;
+  --color-primary: #6a67f5;
+  --color-lightmode-body: #fff;
+  --color-lightmode-text: #1a2236;
   --sl-color-accent-low: color-mix(in srgb, var(--color-primary), #fff 70%);
   --sl-color-accent: var(--color-lightmode-primary);
   --sl-color-accent-high: color-mix(in srgb, var(--color-lightmode-primary), #000 90%);
@@ -62,10 +72,10 @@
 
 @theme {
   --color-primary-gradient: linear-gradient(
-    35.65deg,
-    #3a1c71 -10.94%,
-    var(--color-primary) 61.04%,
-    #ffca7b 133.01%
+    135deg,
+    #4a48c9 0%,
+    var(--color-primary) 50%,
+    #9089f8 100%
   );
 }
 

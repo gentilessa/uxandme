@@ -1,0 +1,122 @@
+---
+title: Overview
+description: Product design case studies for complex SaaS, AI-assisted workflows, and systems-led product work.
+tableOfContents: false
+---
+
+import { Image } from 'astro:assets';
+
+export const caseStudyMeta = [
+  { label: "Role", value: "Product Design Lead" },
+  { label: "Scope", value: "Seequent cloud design system" },
+  { label: "Platforms", value: "Cloud web products and shared UI kit" },
+  { label: "Products Supported", value: "Central, Web Viz, MySeequent" },
+  { label: "Contribution Focus", value: "Foundations, components, layouts, implementation patterns" },
+];
+
+<div class="case-study-meta not-content" role="list">
+  {caseStudyMeta.map(item => (
+    <div class="case-study-meta__item" role="listitem">
+      <span class="case-study-meta__label">{item.label}</span>
+      <strong class="case-study-meta__value">{item.value}</strong>
+    </div>
+  ))}
+</div>
+
+<Image 
+  src="/images/design-systems/seequent-hero.png" 
+  alt="Hero banner from the Seequent design system UI kit" 
+  class="case-study-image case-study-image--full"
+  width={1200}
+  height={600}
+/>
+
+## Introduction
+
+This page documents the Seequent design system as a working product asset rather than a visual style guide in isolation. The value of the system is not only in its color, typography, or components, but in how it creates consistency across multiple data-heavy products while still supporting the needs of different layouts, technical contexts, and implementation targets.
+
+:::note
+This is intentionally a breadth-first showcase. The goal is to make the size and structure of the Seequent system clear, then spotlight a few representative slices that show how it supports real products.
+:::
+
+## System At A Glance
+
+The UI kit already shows the system operating at multiple levels:
+
+- **Design foundations** covering color, dark mode, typography, icons, layout, imagery, and other core standards.
+- **Component inventory** spanning navigation, messaging, inputs, tables, selection controls, tabs, tooltips, and more.
+- **Themes, layouts, and implementation targets** that connect the kit to real Seequent product surfaces.
+- **Templates and responsiveness** that help the system scale beyond a single screen or product.
+
+## How The Kit Is Organized
+
+The current Seequent UI kit is structured into a set of major areas that make the system navigable and scalable:
+
+- **Design**
+- **Components**
+- **Data Visualization**
+- **Templates**
+- **Responsiveness**
+- **Layouts**
+- **Symbols**
+
+This matters because it shows the system is not only a library of buttons and inputs. It is organized to support everything from low-level foundations through to higher-order product structures and implementation contexts.
+
+<section class="system-snapshot">
+  <div class="system-snapshot__media">
+    <img src="/images/design-systems/seequent-components-showcase.png" alt="Curated showcase of Seequent design system components" class="system-snapshot__image" />
+  </div>
+  <div class="system-snapshot__content">
+    <p class="system-snapshot__eyebrow">Component inventory</p>
+    <h3 class="system-snapshot__title">A broad reusable component surface</h3>
+    <p class="system-snapshot__description">This curated component showcase is much closer to how the system is experienced in practice, highlighting representative patterns like notifications, data tables, and modal dialogs instead of only listing categories.</p>
+  </div>
+</section>
+
+## Deep Dives
+
+### Foundations
+
+At the foundations level, the kit already establishes the visual and structural rules that keep the system coherent across products. The main page calls out color, dark mode, typography, icons, layout, imagery, and supporting design assets as first-class parts of the system.
+
+What makes this important is that the system is not framed as a thin skin on top of product work. Foundations are treated as the rules that make later component and layout decisions easier to scale and easier to maintain.
+
+:::tip
+The system is being treated as a layered product asset: foundations first, then components, then layouts and implementation contexts.
+:::
+
+### Components
+
+The component inventory shows the operational depth of the system. It covers the kinds of patterns that technical users rely on repeatedly: accordions, buttons, chips, data tables, date pickers, dividers, lists, menus, messaging and alerts, modal dialogs, notifications, navigation, pagination, process indicators, scrollbars, selection controls, sliders, text inputs, tabs, and tooltips.
+
+This is a strong signal of system maturity. The breadth of the inventory suggests the system is intended to support real application work, not just marketing pages or a narrow UI surface.
+
+### Layouts And Templates
+
+The kit also separates themes, layouts, and implementations, which is one of the clearest signs that it is designed to scale across a product family rather than a single application. In the implementation mapping, the system already points toward product contexts like **User Portal - Central**, **Web Viz**, and **MySeequent**.
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid>
+  <Card title="Themes">
+    The system structure leaves room for theming as its own concern, which helps visual consistency scale without collapsing everything into one monolithic layout pattern.
+  </Card>
+  <Card title="Implementations">
+    The kit explicitly connects the system to real product surfaces, which makes the design system legible as infrastructure for products, not only as a design artifact.
+  </Card>
+</CardGrid>
+
+<section class="system-snapshot">
+  <div class="system-snapshot__media">
+    <img src="/images/design-systems/seequent-implementations-showcase.png" alt="Showcase of Seequent product implementations supported by the design system" class="system-snapshot__image" />
+  </div>
+  <div class="system-snapshot__content">
+    <p class="system-snapshot__eyebrow">Implementation mapping</p>
+    <h3 class="system-snapshot__title">The system connects directly to product surfaces</h3>
+    <p class="system-snapshot__description">The implementation showcase ties the system back to real Seequent product surfaces, making it clear that the kit supports operational interfaces rather than existing only as an internal library.</p>
+  </div>
+</section>
+
+## What This System Enabled
+
+Having a shared design system created the conditions for better product consistency, faster design-to-development handoffs, and a common vocabulary between design and engineering teams. It also made it possible to onboard new team members more quickly and reduce the decision fatigue that comes from rebuilding the same patterns across multiple products.

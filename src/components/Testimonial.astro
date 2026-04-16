@@ -3,7 +3,7 @@ const { quote, author, role, avatar } = Astro.props;
 ---
 
 <blockquote class="testimonial-card">
-  <p>{quote}</p>
+  <p set:html={quote}></p>
   <footer>
     <img src={avatar} alt={author} />
     <div>
@@ -15,27 +15,30 @@ const { quote, author, role, avatar } = Astro.props;
 
 <style>
   .testimonial-card {
-    background: var(--sl-color-gray-6);
-    border: 1px solid var(--sl-color-gray-5);
-    border-left: 4px solid var(--sl-color-accent);
-    border-radius: 12px;
-    padding: 32px;
-    max-width: 800px;
-    margin: 0 auto;
+    background: color-mix(in srgb, var(--sl-color-accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sl-color-accent) 25%, transparent);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 48px auto;
   }
   
   .testimonial-card p {
     font-size: 1.125rem;
     line-height: 1.7;
     color: var(--sl-color-gray-1);
-    font-style: italic;
-    margin-bottom: 24px;
+    font: italic 400 20px/28px 'Playfair Display', serif;
+    margin: 0 !important;
+  }
+
+  .testimonial-card p:empty {
+    display: none;
   }
   
   .testimonial-card footer {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 1rem;
+    margin-top: 2rem;
   }
   
   .testimonial-card footer img {
@@ -53,6 +56,7 @@ const { quote, author, role, avatar } = Astro.props;
   .testimonial-card footer strong {
     color: var(--sl-color-white);
     font-size: 1rem;
+    font-weight: 600;
   }
   
   .testimonial-card footer span {

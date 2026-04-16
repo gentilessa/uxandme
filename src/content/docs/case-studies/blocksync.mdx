@@ -1,6 +1,205 @@
 ---
 title: "BlockSync"
-description: "Making blockchain-based land title records legible for non-technical users."
+sidebar:
+  label: "BlockSync"
 ---
 
-<Fragment set:html={``} />
+Mining teams cannot make strong short-term decisions if the underlying block model process is fragmented, slow, or hard to trust.
+
+Before BlockSync, a lot of grade control work still depended on oversized spreadsheets, local files, manual reconciliation, and knowledge that lived more in people than in systems. That might work for a while. It does not scale well, it does not collaborate well, and it does not create much confidence when multiple teams need to update, review, publish, and report from the same model base.
+
+BlockSync was designed to change that.
+
+The project focused on turning block model management from a fragile desktop-and-spreadsheet workflow into a cloud-native product on Seequent Evo: one that could centralise model data, support parallel work, track change over time, and provide a more auditable foundation for grade control and downstream mining decisions. Publicly, Seequent describes BlockSync as a native Seequent Evo application and an open, auditable system of record for block model data. Seequent
+
+  Role **Lead UX/UI Designer**  Platform **Cloud-native web application**  Domain **Mining, grade control, block model management, SaaS**  
+
+![image](/images/projects/blocksync/hero.png)
+
+
+This was not simply a “put the spreadsheet in the cloud” project.
+
+The deeper challenge was that grade control workflows often sat inside a messy operational middle ground: too critical to remain informal, too complex to be handled by generic tooling, and too dependent on human workarounds for anyone to feel fully comfortable with the process. Teams were using different files, different local conventions, and different handoff patterns to manage data that directly affected reporting, reconciliation, and production decisions.
+
+The opportunity was to create a product that acted as a proper system of record for block model management. Seequent positions BlockSync in exactly that direction: centralising block models and metadata, tracking uploads and updates, resolving version confusion, supporting parallel editing with conflict resolution, versioning every commit, and enabling integration through APIs and cloud compute. Seequent
+
+:::note
+
+:::
+
+## 1. Discovery & Framing
+
+The obvious issue was manual effort. The more important issue was trust.
+
+Grade control teams were not just entering data. They were managing model updates, aligning versions, checking what changed, coordinating work across contributors, and trying to maintain confidence in outputs that would feed reporting and operational decisions. When that process depends on spreadsheets and disconnected files, the burden quietly shifts onto people. They become the glue between systems, the interpreters of state, and the safeguard against version confusion.
+
+That is not a great operating model.
+
+### The real problem was fragmented authority
+
+One of the strongest ways to frame this project is that the workflow had no reliable centre.
+
+The data existed. The expertise existed. The business need definitely existed. But the process lacked a strong product structure to hold it together. Different files, revisions, and working copies created ambiguity around what was current, what was published, what was being edited, and what could be trusted for reporting or reconciliation.
+
+That meant the design challenge was not just about efficiency. It was about authority.
+
+:::note
+
+:::
+
+**What should count as the current model state?**
+**Who can update it?**
+**How do changes get tracked, reviewed, and merged?**
+**How do teams work in parallel without creating chaos?**
+
+Those are product questions, not just data questions.
+
+### Understanding the mining context
+
+A good part of the early work was not interface design at all. It was domain grounding.
+
+To design BlockSync properly, I needed to better understand the mining environment around grade control: the workflows, terminology, users, handoffs, decision points, and where the process became operationally fragile. That meant looking beyond the software itself and into the industry context — how mining teams work, what roles exist, where data originates, how it moves, and what pressures exist around time, production, and accuracy.
+
+![image](/images/projects/blocksync/pg-indust.jpg)
+
+This kind of domain immersion mattered because it prevented the product from becoming a generic data management tool dressed up for mining. The workflow had to reflect how people actually worked, what information they needed to trust, and where the consequences of ambiguity were highest.
+
+### Users were not all the same
+
+Another important discovery was that “the user” was too blunt a category.
+
+There were different relationships to the model, different responsibilities, and different pressures around the work. Some users were deeply involved in updating and validating model data. Others needed to review outputs, reconcile changes, or understand what had shifted over time. That meant the product had to support both direct manipulation and broader visibility.
+
+The challenge was not just building features. It was designing for uneven levels of technical depth and different kinds of accountability.
+
+![image](/images/projects/blocksync/pg-abtuser.jpg)
+
+### Looking at the landscape
+
+Competitor and adjacent-product analysis helped expose where existing approaches were strong, weak, or simply solving a different problem. Some tools offered technical capability without much workflow clarity. Others supported data management but not the specific realities of short-term mining or grade control. Some carried powerful modelling features but weak collaborative or audit experiences.
+
+That benchmarking helped sharpen the product position. BlockSync did not need to be every mining tool. It needed to be a stronger centre for managing, versioning, and connecting block model work in a way that reduced local chaos and improved confidence across teams.
+
+![image](/images/projects/blocksync/pg-comptn.jpg)
+
+## 2. Design & Validation
+
+Once the problem was framed properly, the design work became much more concrete.
+
+The product needed to support a workflow that felt operationally credible: one where model data could be centralised, updates could be understood, changes could be tracked, and multiple users could work without creating hidden risk. Seequent’s public positioning reflects that product direction: a single source of truth, parallel editing with conflict resolution, live auditable reporting, open ecosystem connectivity, powerful cloud compute, and enterprise security. Seequent
+
+### Designing a system of record, not just a storage layer
+
+A lot of cloud products mistake centralisation for clarity. Putting files in one place is not enough if users still cannot tell what is current, what changed, or what should be trusted.
+
+That is why the BlockSync experience had to do more than aggregate models. It needed to make state legible.
+
+The design work centred around questions like:
+
+- what is the current working version?
+
+- what is published versus in progress?
+
+- how are changes represented?
+
+- what can be checked out, edited, merged, or promoted?
+
+- how can users understand change history without drowning in detail?
+
+- how do multiple contributors move quickly without losing control?
+
+That led to a product structure focused on visibility, traceability, and controlled collaboration rather than simple file handling.
+
+### Mapping the workflow properly
+
+Workflow design became one of the core pieces of the project.
+
+The grade control process was not a single screen problem. It stretched across data preparation, model updates, review, reconciliation, publication, and downstream consumption. The more clearly those stages were mapped, the easier it became to identify where the product needed to provide structure, guardrails, or visibility.
+
+![image](/images/projects/blocksync/pg-wrkflw.jpg)
+
+What mattered here was not making the workflow look neat. It was exposing where uncertainty, duplication, or manual intervention were happening, then deciding what the product should make easier, safer, or more transparent.
+
+### Supporting parallel work without creating conflict chaos
+
+One of the most interesting product tensions was collaboration.
+
+Mining teams often need to move quickly, but quick work can create messy overlaps if multiple people are touching related model areas or attributes at the same time. Seequent publicly describes BlockSync as supporting parallel editing with conflict resolution, where short-term modelling teams can check out benches or attributes, work offline, and merge changes with conflict detection. Seequent
+
+From a UX perspective, that means the system has to carry more than technical merge capability. It has to help users understand what they are working on, what others may also be affecting, and what happens when change meets change. The interface has to reduce ambiguity around ownership, state, and merge outcomes.
+
+That is not glamour work, but it is exactly the sort of design work that makes a specialist product feel dependable.
+
+### Making auditability usable
+
+Audit and history are easy things to say and hard things to make genuinely useful.
+
+If every commit is versioned, as Seequent states publicly, the product still has to answer the practical question: **what does a user do with that information?** Seequent
+
+History should not become a graveyard of technical entries. It needs to support real operational questions:
+
+- what changed?
+
+- who changed it?
+
+- when?
+
+- what report or reconciliation should reference which model state?
+
+- what is the right dataset to use now?
+
+This is where good UX turns a compliance-style feature into a decision-support feature. The goal is not only record-keeping. It is helping users act with more confidence.
+
+### Prototyping the product direction
+
+A lot of the value in this project came from prototyping the workflow rather than debating it abstractly. Prototypes made it possible to explore how centralised model management, version handling, dashboards, and future-state collaboration might work as a coherent product rather than as disconnected requirements.
+
+![image](/images/projects/blocksync/pg-prototyping.jpg)
+
+This also helped communicate the shape of the product internally: what was needed now, what could come next, and how the system might evolve from immediate workflow improvements into a stronger long-term platform capability.
+
+### Journey and user-task understanding
+
+The broader journey work also helped keep the product grounded in real production context. Rather than designing purely from a system point of view, it was useful to see where BlockSync sat inside a working day, what pressures users were under, what interruptions existed, and how grade control activity connected to broader mine operations.
+
+![image](/images/projects/blocksync/pg-journey.jpg)
+
+That context helped resist a common trap in specialist tools: building for the dataset while forgetting the person working under time, responsibility, and operational consequence.
+
+## 3. Outcomes & Reflection
+
+BlockSync created a much stronger product story than the original workflow allowed.
+
+Instead of mining teams depending on spreadsheets, local file structures, and loosely coordinated handoffs, the product direction shifted toward a cloud-native, auditable system of record for block model management. Publicly, Seequent positions BlockSync as exactly that kind of product: centralised, auditable, collaborative, API-connected, and built to support faster, more data-driven mining decisions. Seequent
+
+### What this enabled
+
+- A clearer operational centre for block model data and metadata
+
+- Better visibility into version history and model state
+
+- Support for multi-user workflows with conflict-aware parallel editing
+
+- Stronger foundations for reporting, reconciliation, and downstream integration
+
+- A product direction aligned to modern cloud collaboration rather than spreadsheet survival
+
+### Why this mattered
+
+What made this project interesting was not only the interface. It was the shift in product maturity.
+
+The old workflow relied too heavily on human discipline to prevent error. The new direction asked the product to take on more responsibility: to become the place where changes were tracked, collaboration was structured, and the latest trustworthy state could be understood.
+
+That is a much bigger move than “digitising a process.” It is a move from informal operational resilience to a designed system of record.
+
+### Reflection
+
+This project reinforced a pattern I care about a lot: some of the most important UX work sits inside systems that do not look glamorous at first glance.
+
+No one sees “block model management” and assumes there is a rich product design problem hiding there. But there is. Because when the workflow underneath critical decisions is fragmented, UX is not about making it prettier. It is about making it more legible, more trustworthy, and less dependent on people quietly fixing the process through effort.
+
+BlockSync mattered because it treated grade control as a product problem worth designing properly.
+
+Not just a spreadsheet problem to endure.
+
+            Previous page  Central Viewer      Next page  Assure+
