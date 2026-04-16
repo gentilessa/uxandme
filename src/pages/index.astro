@@ -1,4 +1,5 @@
 ---
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import Grid from "@/components/user-components/Grid.astro";
 import NewCard from "@/components/user-components/NewCard.astro";
 import Section from "@/components/Section.astro";
@@ -6,7 +7,6 @@ import Hero from "@/components/Hero.astro";
 import PortfolioCard from "@/components/PortfolioCard.astro";
 import ExperienceTimeline from "@/components/ExperienceTimeline.astro";
 import Testimonial from "@/components/Testimonial.astro";
-import SiteFooter from "@/components/SiteFooter.astro";
 
 const featuredStudies = [
   {
@@ -44,141 +44,75 @@ const experience = [
 ];
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Product Design Documentation | UX & Me</title>
-    <meta name="description" content="Product design case studies for complex SaaS, AI-assisted workflows, and systems-led product work." />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  </head>
-  <body>
-    <!-- Hero Background -->
-    <div class="hero-bg">
-      <img src="/images/hero-bg-light.png" alt="" class="dark:hidden w-full h-full object-cover" />
-      <img src="/images/hero-bg-dark.png" alt="" class="hidden dark:block w-full h-full object-cover" />
+<BaseLayout
+  title="Product Design Documentation"
+  description="Product design case studies for complex SaaS, AI-assisted workflows, and systems-led product work."
+  hasHeroBg
+>
+  <div class="main-frame">
+    <div class="container flex relative">
+      <div class="content-container">
+        <div class="main-pane">
+          <main data-pagefind-body lang="en" dir="ltr">
+            <!-- Hero -->
+            <Hero />
+
+            <!-- Featured Case Studies -->
+            <div class="content-panel">
+              <div class="sl-container">
+                <Section title="Featured Case Studies" description="Selected case studies demonstrating systems thinking and complex UI design.">
+                  <Grid columns={2}>
+                    {featuredStudies.map(study => (
+                      <PortfolioCard {...study} />
+                    ))}
+                  </Grid>
+                </Section>
+              </div>
+            </div>
+
+            <!-- What I Design -->
+            <div class="content-panel">
+              <div class="sl-container">
+                <Section title="What I Design" description="Core competencies in complex product environments.">
+                  <Grid columns={3}>
+                    {strengths.map(skill => (
+                      <NewCard icon={skill.icon} title={skill.title} iconColor={skill.iconColor}>
+                        <p>{skill.body}</p>
+                      </NewCard>
+                    ))}
+                  </Grid>
+                </Section>
+              </div>
+            </div>
+
+            <!-- Experience -->
+            <div class="content-panel">
+              <div class="sl-container">
+                <Section title="Experience">
+                  <ExperienceTimeline items={experience} />
+                </Section>
+              </div>
+            </div>
+
+            <!-- Testimonial -->
+            <div class="content-panel">
+              <div class="sl-container">
+                <Testimonial
+                  quote="Gia has a rare ability to take incredibly dense technical requirements and translate them into interfaces that feel lightweight and obvious. Her work on our AI copilot didn't just improve usability; it defined our product strategy for the year."
+                  author="Hemant Chaurasia"
+                  role="CTPO at Fleet Space Technologies"
+                  avatar="/images/portraits/hemant.jpg"
+                />
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
     </div>
-    
-    <!-- Header -->
-    <header class="header has-sidebar">
-      <nav class="navbar container">
-        <div class="order-0">
-          <a href="/" class="navbar-brand inline-block">
-            <img src="/_astro/logo-light.B-OAwsTH_19DKCs.svg" alt="UX & Me" style="height:32px;width:127px" class="inline-block dark:hidden" />
-            <img src="/_astro/logo-dark.B7suPJoV_19DKCs.svg" alt="UX & Me" style="height:32px;width:127px" class="hidden dark:inline-block" />
-          </a>
-        </div>
-        
-        <input id="nav-toggle" type="checkbox" class="hidden" />
-        <label for="nav-toggle" class="order-3 cursor-pointer flex items-center lg:hidden dark:text-white lg:order-1 hamburger-menu">
-          <svg class="h-6 fill-current block" viewBox="0 0 20 20">
-            <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
-          </svg>
-        </label>
-        
-        <ul id="nav-menu" class="navbar-nav order-3 hidden w-full pb-6 lg:order-1 lg:flex lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8">
-          <li class="nav-item"><a href="/case-studies/" class="nav-link block">Work</a></li>
-          <li class="nav-item"><a href="/articles/" class="nav-link block">Articles</a></li>
-          <li class="nav-item"><a href="/about/" class="nav-link block">About</a></li>
-        </ul>
-        
-        <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0 navbar-actions">
-          <div class="theme-switcher lg:mx-6 mr-10">
-            <input id="theme-switcher" data-theme-switcher type="checkbox" />
-            <label for="theme-switcher"><span class="sr-only">theme switcher</span></label>
-          </div>
-        </div>
-      </nav>
-    </header>
-
-    <main>
-      <!-- Hero -->
-      <Hero />
-
-      <!-- Featured Case Studies -->
-      <div class="content-panel">
-        <div class="sl-container">
-          <Section title="Featured Case Studies" description="Selected case studies demonstrating systems thinking and complex UI design.">
-            <Grid columns={2}>
-              {featuredStudies.map(study => (
-                <PortfolioCard {...study} />
-              ))}
-            </Grid>
-          </Section>
-        </div>
-      </div>
-
-      <!-- What I Design -->
-      <div class="content-panel">
-        <div class="sl-container">
-          <Section title="What I Design" description="Core competencies in complex product environments.">
-            <Grid columns={3}>
-              {strengths.map(skill => (
-                <NewCard icon={skill.icon} title={skill.title} iconColor={skill.iconColor}>
-                  <p>{skill.body}</p>
-                </NewCard>
-              ))}
-            </Grid>
-          </Section>
-        </div>
-      </div>
-
-      <!-- Experience -->
-      <div class="content-panel">
-        <div class="sl-container">
-          <Section title="Experience">
-            <ExperienceTimeline items={experience} />
-          </Section>
-        </div>
-      </div>
-
-      <!-- Testimonial -->
-      <div class="content-panel">
-        <div class="sl-container">
-          <Testimonial
-            quote="Gia has a rare ability to take incredibly dense technical requirements and translate them into interfaces that feel lightweight and obvious. Her work on our AI copilot didn't just improve usability; it defined our product strategy for the year."
-            author="Hemant Chaurasia"
-            role="CTPO at Fleet Space Technologies"
-            avatar="/images/portraits/hemant.jpg"
-          />
-        </div>
-      </div>
-    </main>
-
-    <!-- Footer -->
-    <SiteFooter />
-
-    <script>
-      const nav = document.querySelector(".navbar");
-      window.onscroll = function() {
-        if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-          nav?.parentElement?.classList.add("navbar-scrolled");
-        } else {
-          nav?.parentElement?.classList.remove("navbar-scrolled");
-        }
-      };
-
-      const e = document.querySelector("input[data-theme-switcher]");
-      e?.addEventListener("change", () => {
-        document.documentElement.dataset.theme = (e as HTMLInputElement).checked ? "dark" : "light";
-        localStorage.setItem("starlight-theme", (e as HTMLInputElement).checked ? "dark" : "light");
-      });
-    </script>
-  </body>
-</html>
+  </div>
+</BaseLayout>
 
 <style is:global>
-  body {
-    margin: 0;
-    background: transparent;
-  }
-  
-  .hero-bg {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-  }
-  
   .content-panel {
     padding: 48px 0;
     border-top: 1px solid var(--sl-color-hairline);

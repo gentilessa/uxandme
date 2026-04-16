@@ -1,27 +1,20 @@
 ---
-import "../styles/global.css";
-import "../styles/custom.css";
-import SiteHeader from "@/components/SiteHeader.astro";
 import SiteFooter from "@/components/SiteFooter.astro";
-import HireGiaLauncher from "@/components/HireGiaLauncher.astro";
 
 interface Props {
   title: string;
   description: string;
-  activeNav?: "work" | "articles" | "about" | "hire";
-  bodyClass?: string;
-  pageClass?: string;
+  activeNav?: "work" | "articles" | "about";
   hasHeroBg?: boolean;
 }
 
 const {
   title,
   description,
-  activeNav,
-  bodyClass = "astro-bguv2lll",
-  pageClass = "page sl-flex page--no-section-nav astro-cqnilpoy",
   hasHeroBg = false,
 } = Astro.props;
+
+const siteUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -30,12 +23,12 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{`${title} | UX & Me`}</title>
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="canonical" href={siteUrl} />
     <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+    <meta property="og:url" content={siteUrl} />
     <meta property="og:locale" content="en" />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="UX & Me" />
@@ -62,8 +55,8 @@ const {
     <link rel="stylesheet" href="/_astro/Code.CkWzL61B.css" />
     <link rel="stylesheet" href="/_astro/ec.v4551.css" />
   </head>
-  <body class={bodyClass}>
-    <div class={pageClass}>
+  <body class="astro-bguv2lll">
+    <div class="page sl-flex page--no-section-nav astro-cqnilpoy">
       {
         hasHeroBg && (
           <div class="hero-bg">
@@ -90,20 +83,8 @@ const {
           </div>
         )
       }
-      <SiteHeader activeNav={activeNav} />
-      <div class="main-frame">
-        <div class="container flex relative">
-          <div class="content-container">
-            <div class="main-pane">
-              <main data-pagefind-body class="astro-bguv2lll" lang="en" dir="ltr">
-                <slot />
-              </main>
-            </div>
-          </div>
-        </div>
-      </div>
+      <slot />
       <SiteFooter />
-      <HireGiaLauncher />
     </div>
     <script type="module" src="/_astro/page.BIhdncjw.js"></script>
   </body>
