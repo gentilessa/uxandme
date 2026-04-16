@@ -1,11 +1,11 @@
 ---
 import SiteHeader from "@/components/SiteHeader.astro";
 import SiteFooter from "@/components/SiteFooter.astro";
+import "../styles/global.css";
 
 interface Props {
   title: string;
   description: string;
-  activeNav?: "work" | "articles" | "about";
   hasHeroBg?: boolean;
 }
 
@@ -51,10 +51,6 @@ const siteUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astr
         } catch {}
       })();
     </script>
-    <link rel="stylesheet" href="/_astro/print.DNXP8c50.css" media="print" />
-    <link rel="stylesheet" href="/_astro/common.CrIw9rsU.css" />
-    <link rel="stylesheet" href="/_astro/Code.CkWzL61B.css" />
-    <link rel="stylesheet" href="/_astro/ec.v4551.css" />
   </head>
   <body class="astro-bguv2lll">
     <div class="page sl-flex page--no-section-nav astro-cqnilpoy">
@@ -88,6 +84,5 @@ const siteUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astr
       <slot />
       <SiteFooter />
     </div>
-    <script type="module" src="/_astro/page.BIhdncjw.js"></script>
   </body>
 </html>

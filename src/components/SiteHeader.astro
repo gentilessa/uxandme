@@ -1,5 +1,4 @@
 ---
-import SiteTitle from "./override-components/SiteTitle.astro";
 import ThemeSwitch from "./override-components/ThemeSwitch.astro";
 import config from "@/config/config.json" assert { type: "json" };
 
@@ -11,8 +10,8 @@ const pathname = Astro.url.pathname;
   <nav class="navbar container">
     <div class="order-0">
       <a href="/" class="navbar-brand inline-block">
-        <img src="/_astro/logo-light.B-OAwsTH_19DKCs.svg" alt="UX & Me" style="height:32px;width:127px" class="inline-block dark:hidden" />
-        <img src="/_astro/logo-dark.B7suPJoV_19DKCs.svg" alt="UX & Me" style="height:32px;width:127px" class="hidden dark:inline-block" />
+        <span class="logo-text dark:hidden">UX & Me</span>
+        <span class="logo-text hidden dark:inline">UX & Me</span>
       </a>
     </div>
     
@@ -68,3 +67,16 @@ const pathname = Astro.url.pathname;
     }
   };
 </script>
+
+<style>
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--sl-color-white);
+    letter-spacing: -0.02em;
+  }
+  
+  :global([data-theme="light"]) .logo-text {
+    color: var(--sl-color-black);
+  }
+</style>
