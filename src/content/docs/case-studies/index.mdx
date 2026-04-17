@@ -1,7 +1,24 @@
 ---
 title: Case Studies
 description: Product design case studies for complex SaaS, AI-assisted workflows, and systems-led product work.
+tableOfContents: false
+prev: false
+next: false
 ---
 
-<Fragment set:html={`<p>A selection of product design case studies across AI-assisted workflows, specialist platforms, enterprise SaaS, and systems-led product work.</p>
-<div class="portfolio-grid"><a class="portfolio-card" href="/case-studies/exosphere/"><img src="/images/projects/fleet/hero.png" alt="Exosphere dashboard preview"/><div class="portfolio-card__body"><h3>Exosphere</h3><p>Turning fragmented exploration data into actionable targeting workflows.</p><span>Geoscience • AI targeting</span></div></a><a class="portfolio-card" href="/case-studies/central-viewer/"><img src="/images/projects/webviz/hero.png" alt="Central Viewer product preview"/><div class="portfolio-card__body"><h3>Central Viewer</h3><p>A cloud-first 3D viewer that made geological collaboration easier and faster.</p><span>Geoscience • 3D collaboration</span></div></a><a class="portfolio-card" href="/case-studies/blocksync/"><img src="/images/projects/blocksync/hero.png" alt="BlockSync product preview"/><div class="portfolio-card__body"><h3>BlockSync</h3><p>Turning spreadsheet-heavy grade control into a cloud-native system of record.</p><span>Mining • Grade control</span></div></a><a class="portfolio-card" href="/case-studies/assure-plus/"><img src="/images/projects/assure/hero.png" alt="Assure+ product preview"/><div class="portfolio-card__body"><h3>Assure+</h3><p>A unified design system across field, admin, and public-facing experiences.</p><span>Cross-platform • Design systems</span></div></a><a class="portfolio-card" href="/case-studies/tradewindow/"><img src="/images/projects/tradewindow/hero.png" alt="Cube product preview"/><div class="portfolio-card__body"><h3>Cube</h3><p>Designing for the messy handoffs, dependencies, and onboarding paths of global trade.</p><span>Trade compliance • SaaS</span></div></a><a class="portfolio-card" href="/case-studies/breedlogic/"><img src="/images/projects/abri/hero.png" alt="BreedLogic product preview"/><div class="portfolio-card__body"><h3>BreedLogic</h3><p>Bridging AI and genetics for breeders.</p><span>Genetics • Decision support</span></div></a><a class="portfolio-card" href="/case-studies/evo/"><img src="/images/projects/evo/hero.png" alt="EVO platform preview"/><div class="portfolio-card__body"><h3>EVO</h3><p>Foundational platform strategy for a next-generation geoscience ecosystem.</p><span>Geoscience • Platform strategy</span></div></a></div> </div>`} />
+import Grid from "../../../components/user-components/Grid.astro";
+import PortfolioCard from "../../../components/user-components/PortfolioCard.astro";
+
+A selection of product design case studies across AI-assisted workflows, specialist platforms, enterprise SaaS, and systems-led product work.
+
+<Grid columns={2} maxWidth="1600px">
+  <PortfolioCard href="/case-studies/exosphere/" image="/images/projects/fleet/hero.png" alt="Exosphere dashboard preview" title="Exosphere" description="Turning fragmented exploration data into actionable targeting workflows." meta="Geoscience • AI targeting" />
+  <PortfolioCard href="/case-studies/central-viewer/" image="/images/projects/webviz/hero.png" alt="Central Viewer product preview" title="Central Viewer" description="A cloud-first 3D viewer that made geological collaboration easier and faster." meta="Geoscience • 3D collaboration" />
+  <PortfolioCard href="/case-studies/blocksync/" image="/images/projects/blocksync/hero.png" alt="BlockSync product preview" title="BlockSync" description="Turning spreadsheet-heavy grade control into a cloud-native system of record." meta="Mining • Grade control" />
+  <PortfolioCard href="/case-studies/assure-plus/" image="/images/projects/assure/hero.png" alt="Assure+ product preview" title="Assure+" description="A unified design system across field, admin, and public-facing experiences." meta="Cross-platform • Design systems" />
+  <PortfolioCard href="/case-studies/tradewindow/" image="/images/projects/tradewindow/tw-dash.png" alt="Cube product preview" title="Cube" description="Designing for the messy handoffs, dependencies, and onboarding paths of global trade." meta="Trade compliance • SaaS" />
+  <PortfolioCard href="/case-studies/breedlogic/" image="/images/projects/abri/hero.png" alt="BreedLogic product preview" title="BreedLogic" description="Bridging AI and genetics for breeders." meta="Genetics • Decision support" />
+  <PortfolioCard href="/case-studies/evo/" image="/images/projects/evo/evo-research.jpg" alt="EVO product preview" title="EVO" description="Shaping platform strategy for the future of geoscience software." meta="Platform strategy • SaaS" />
+  <PortfolioCard href="/case-studies/crm-lead-management/" image="/images/projects/seequent/Lead-journey.png" alt="CRM Lead Management product preview" title="CRM Lead Management" description="Redesigning lead management after a major merger." meta="CRM • Service design" />
+  <PortfolioCard href="/case-studies/north-star/" image="/images/projects/north-star/North-Star-Bow-Tie.png" alt="North Star product preview" title="North Star" description="Connecting customer experience to measurement." meta="CX strategy • Analytics" />
+</Grid>

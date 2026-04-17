@@ -1,0 +1,107 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  date: string;
+  readTime: string;
+}
+
+const { href, title, description, date, readTime } = Astro.props;
+---
+
+<a href={href} class="article-row">
+  <div class="article-row__main">
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <div class="article-row__meta">
+      <span>{date}</span>
+      <span>{readTime} min read</span>
+    </div>
+  </div>
+  <span class="article-row__cue" aria-hidden="true">Read article</span>
+</a>
+
+<style>
+  @layer starlight.components {
+    .article-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1rem;
+      align-items: start;
+      padding: 1rem 0;
+      border-bottom: 1px solid color-mix(in srgb, var(--sl-color-white) 8%, transparent) !important;
+      text-decoration: none;
+      transition: border-color 0.16s ease, color 0.16s ease;
+    }
+
+    .article-row:hover {
+      border-color: color-mix(in srgb, var(--sl-color-white) 14%, transparent);
+    }
+
+    .article-row__main h3 {
+      margin: 0;
+      color: var(--sl-color-white);
+      font-size: 1rem;
+      line-height: 1.35;
+      font-weight: 550;
+    }
+
+    .article-row__main p {
+      margin: 0.32rem 0 0;
+      color: var(--sl-color-gray-3);
+      font-size: 0.93rem;
+      line-height: 1.55;
+      max-width: 44rem;
+    }
+
+    .article-row__meta {
+      display: flex;
+      gap: 0.65rem;
+      align-items: center;
+      margin-top: 0.38rem;
+      color: var(--sl-color-gray-4);
+      font-size: 0.79rem;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .article-row__meta span + span::before {
+      content: "•";
+      margin-right: 0.7rem;
+      color: var(--sl-color-gray-5);
+    }
+
+    .article-row__cue {
+      color: var(--sl-color-gray-4);
+      font-size: 0.78rem;
+      line-height: 1.2;
+      padding-top: 0.15rem;
+      opacity: 0;
+      transform: translate(-0.2rem);
+      transition: opacity 0.16s ease, transform 0.16s ease, color 0.16s ease;
+      white-space: nowrap;
+    }
+
+    .article-row:hover .article-row__cue {
+      opacity: 1;
+      transform: translate(0);
+      color: var(--sl-color-white);
+    }
+
+    @media (max-width: 42rem) {
+      .article-row {
+        grid-template-columns: 1fr;
+        gap: 0.35rem;
+      }
+
+      .article-row__meta {
+        font-size: 0.76rem;
+      }
+
+      .article-row__cue {
+        display: none;
+      }
+    }
+  }
+</style>

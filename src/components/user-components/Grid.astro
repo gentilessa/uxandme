@@ -1,19 +1,20 @@
 ---
 interface Props {
 	columns?: number;
+	maxWidth?: string;
 }
 
-const { columns = 2 } = Astro.props;
+const { columns = 2, maxWidth = "1400px" } = Astro.props;
 ---
 
-<div class="card-grid" style={`--columns: ${columns}`}><slot /></div>
+<div class="card-grid" style={`--columns: ${columns}; --max-width: ${maxWidth}`}><slot /></div>
 
 <style>
 	@layer starlight.components {
 		.card-grid {
 			display: grid;
 			gap: 1rem;
-			grid-template-columns: 1fr; /* Default: Single column */
+			grid-template-columns: 1fr;
 			margin-top: 1.4rem !important;
 		}
 
@@ -29,32 +30,24 @@ const { columns = 2 } = Astro.props;
 			}
 		}
 
-		/* Tablet - 2-3 columns max */
+		/* Tablet - Max 2 columns */
 		@media (min-width: 768px) and (max-width: 1023px) {
 			.card-grid {
 				grid-template-columns: repeat(min(var(--columns), 2), 1fr);
 				gap: 1.5rem;
+				max-width: var(--max-width);
+				margin: 0 auto;
 			}
 		}
 
 		/* Desktop - Full column count */
 		@media (min-width: 1024px) {
 			.card-grid {
-				grid-template-columns: repeat(var(--columns), 1fr);
+				grid-template-columns: repeat(min(var(--columns), 3), 1fr);
 				gap: 1.7rem;
-			}
-		}
-
-		/* Large Desktop - Max 4 columns for readability */
-		@media (min-width: 1440px) {
-			.card-grid {
-				grid-template-columns: repeat(min(var(--columns), 4), 1fr);
-				gap: 1.8rem;
-				max-width: 1400px;
+				max-width: var(--max-width);
 				margin: 0 auto;
 			}
 		}
-
-	
 	}
 </style>
