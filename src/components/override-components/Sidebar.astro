@@ -3,15 +3,58 @@ import MobileMenuFooter from "@astrojs/starlight/components/MobileMenuFooter.ast
 import SidebarPersister from "@astrojs/starlight/components/SidebarPersister.astro";
 import SidebarSublist from "./SidebarSublist.astro";
 
-let sidebar = Astro.locals.starlightRoute.sidebar;
+const sidebar = Astro.locals.starlightRoute.sidebar;
+const pathname = Astro.url.pathname;
 
+function getCurrentSectionSlug(path: string): string | null {
+  const segments = path.split('/').filter(Boolean);
+  if (segments.length >= 1) {
+    return segments[0];
+  }
+  return null;
+}
 
+function isEntryInCurrentSection(entry: any, currentSection: string | null): boolean {
+  if (!currentSection) return true;
+  
+  if (entry.type === 'link') {
+    const entryPath = entry.href;
+    const entrySection = getCurrentSectionSlug(entryPath);
+    return entrySection === currentSection;
+  }
+  
+  if (entry.type === 'group') {
+    const firstChild = entry.entries?.[0];
+    if (firstChild) {
+      return isEntryInCurrentSection(firstChild, currentSection);
+    }
+  }
+  
+  return false;
+}
 
+function filterSidebarToCurrentSection(sidebar: any[], currentSection: string | null): any[] {
+  if (!currentSection) return sidebar;
+  
+  const relevantGroups = sidebar.filter((group: any) => {
+    if (group.type === 'group') {
+      return isEntryInCurrentSection(group, currentSection);
+    }
+    if (group.type === 'link') {
+      return isEntryInCurrentSection(group, currentSection);
+    }
+    return true;
+  });
+  
+  return relevantGroups;
+}
 
+const currentSection = getCurrentSectionSlug(pathname);
+const filteredSidebar = filterSidebarToCurrentSection(sidebar, currentSection);
 ---
 
 <SidebarPersister>
-  <SidebarSublist sublist={sidebar}  />
+  <SidebarSublist sublist={filteredSidebar} />
 </SidebarPersister>
 
 <div class="md:sl-hidden">
