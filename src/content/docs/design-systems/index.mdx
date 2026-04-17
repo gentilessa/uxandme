@@ -4,21 +4,27 @@ description: Product design case studies for complex SaaS, AI-assisted workflows
 tableOfContents: false
 prev: false
 next: false
-template: splash
 ---
 
 import { Image } from 'astro:assets';
 import CaseStudyMeta from "../../../components/user-components/CaseStudyMeta.astro";
+import { Card, CardGrid } from '@astrojs/starlight/components';
 
-<CaseStudyMeta 
-  role="Product Design Lead" 
-  platform="Cloud web products and shared UI kit" 
+<style>
+  .sidebar {
+    display: none !important;
+  }
+</style>
+
+<CaseStudyMeta
+  role="Product Design Lead"
+  platform="Cloud web products and shared UI kit"
   domain="Seequent design system • Central, Web Viz, MySeequent • Foundations, components, layouts"
 />
 
-<Image 
-  src="/images/design-systems/seequent-hero.png" 
-  alt="Hero banner from the Seequent design system UI kit" 
+<Image
+  src="/images/design-systems/seequent-hero.png"
+  alt="Hero banner from the Seequent design system UI kit"
   class="case-study-image case-study-image--full"
   width={1200}
   height={600}
@@ -87,8 +93,6 @@ This is a strong signal of system maturity. The breadth of the inventory suggest
 ### Layouts And Templates
 
 The kit also separates themes, layouts, and implementations, which is one of the clearest signs that it is designed to scale across a product family rather than a single application. In the implementation mapping, the system already points toward product contexts like **User Portal - Central**, **Web Viz**, and **MySeequent**.
-
-import { Card, CardGrid } from '@astrojs/starlight/components';
 
 <CardGrid>
   <Card title="Themes">
