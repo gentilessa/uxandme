@@ -3,7 +3,7 @@ const { quote, author, role, avatar } = Astro.props;
 ---
 
 <blockquote class="testimonial-card">
-  <p set:html={quote}></p>
+  <p>{quote}</p>
   <footer>
     <img src={avatar} alt={author} />
     <div>
