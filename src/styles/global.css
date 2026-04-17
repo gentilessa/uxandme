@@ -6,10 +6,6 @@
 
 @layer base, theme, components, utilities, starlight.reset, starlight, starlight.core, starlight.components;
 
-@import "@astrojs/starlight-tailwind";
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/utilities.css" layer(utilities);
-
 @plugin "../tailwind-plugin/tw-theme";
 @plugin "../tailwind-plugin/tw-bs-grid";
 
@@ -83,4 +79,9 @@
 @import "./navigation.css";
 @import "./components.css";
 @import "./button.css";
+
+/* Starlight-tailwind MUST come AFTER our component styles so borders cascade properly */
+@import "@astrojs/starlight-tailwind";
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
 

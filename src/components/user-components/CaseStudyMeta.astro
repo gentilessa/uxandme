@@ -1,0 +1,59 @@
+---
+interface Props {
+  role: string;
+  platform: string;
+  domain: string;
+}
+
+const { role, platform, domain } = Astro.props;
+---
+
+<div class="case-study-meta not-content" role="list">
+  <div class="case-study-meta__item" role="listitem">
+    <span class="case-study-meta__label">Role</span>
+    <strong class="case-study-meta__value">{role}</strong>
+  </div>
+  <div class="case-study-meta__item" role="listitem">
+    <span class="case-study-meta__label">Platform</span>
+    <strong class="case-study-meta__value">{platform}</strong>
+  </div>
+  <div class="case-study-meta__item" role="listitem">
+    <span class="case-study-meta__label">Domain</span>
+    <strong class="case-study-meta__value">{domain}</strong>
+  </div>
+</div>
+
+<style>
+  .case-study-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 1.25rem;
+    margin: 2rem 0 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--sl-color-hairline);
+  }
+
+  .case-study-meta__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+    justify-content: flex-start;
+    align-self: start;
+  }
+
+  .case-study-meta__label {
+    color: var(--sl-color-gray-3);
+    font-size: var(--sl-text-xs);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .case-study-meta__value {
+    color: var(--sl-color-white);
+    font-size: var(--sl-text-sm);
+    line-height: 1.45;
+    font-weight: 600;
+    margin: 0;
+  }
+</style>

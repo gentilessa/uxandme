@@ -4,15 +4,17 @@ sidebar:
   label: "BlockSync"
 ---
 
+import CaseStudyMeta from "../../../components/user-components/CaseStudyMeta.astro";
+
 Mining teams cannot make strong short-term decisions if the underlying block model process is fragmented, slow, or hard to trust.
 
 Before BlockSync, a lot of grade control work still depended on oversized spreadsheets, local files, manual reconciliation, and knowledge that lived more in people than in systems. That might work for a while. It does not scale well, it does not collaborate well, and it does not create much confidence when multiple teams need to update, review, publish, and report from the same model base.
 
 BlockSync was designed to change that.
 
-The project focused on turning block model management from a fragile desktop-and-spreadsheet workflow into a cloud-native product on Seequent Evo: one that could centralise model data, support parallel work, track change over time, and provide a more auditable foundation for grade control and downstream mining decisions. Publicly, Seequent describes BlockSync as a native Seequent Evo application and an open, auditable system of record for block model data. Seequent
+The project focused on turning block model management from a fragile desktop-and-spreadsheet workflow into a cloud-native product on Seequent Evo: one that could centralise model data, support parallel work, track change over time, and provide a more auditable foundation for grade control and downstream mining decisions. Publicly, Seequent describes BlockSync as a native Seequent Evo application and an open, auditable system of record for block model data.
 
-  Role **Lead UX/UI Designer**  Platform **Cloud-native web application**  Domain **Mining, grade control, block model management, SaaS**  
+<CaseStudyMeta role="Lead UX/UI Designer" platform="Cloud-native web application" domain="Mining, grade control, block model management, SaaS" />
 
 ![image](/images/projects/blocksync/hero.png)
 
@@ -21,11 +23,9 @@ This was not simply a “put the spreadsheet in the cloud” project.
 
 The deeper challenge was that grade control workflows often sat inside a messy operational middle ground: too critical to remain informal, too complex to be handled by generic tooling, and too dependent on human workarounds for anyone to feel fully comfortable with the process. Teams were using different files, different local conventions, and different handoff patterns to manage data that directly affected reporting, reconciliation, and production decisions.
 
-The opportunity was to create a product that acted as a proper system of record for block model management. Seequent positions BlockSync in exactly that direction: centralising block models and metadata, tracking uploads and updates, resolving version confusion, supporting parallel editing with conflict resolution, versioning every commit, and enabling integration through APIs and cloud compute. Seequent
+The opportunity was to create a product that acted as a proper system of record for block model management. Seequent positions BlockSync in exactly that direction: centralising block models and metadata, tracking uploads and updates, resolving version confusion, supporting parallel editing with conflict resolution, versioning every commit, and enabling integration through APIs and cloud compute.
 
-:::note
-
-:::
+<aside aria-label="What this project demonstrates" class="starlight-aside starlight-aside--note"> <p class="starlight-aside__title" aria-hidden="true"> <svg aria-hidden="true" class="starlight-aside__icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 11a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0v-4a1 1 0 0 0-1-1Zm.38-3.92a1 1 0 0 0-.76 0 1 1 0 0 0-.33.21 1.15 1.15 0 0 0-.21.33 1 1 0 0 0 .21 1.09c.097.088.209.16.33.21A1 1 0 0 0 13 8a1.05 1.05 0 0 0-.29-.71 1 1 0 0 0-.33-.21ZM12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 18a8 8 0 1 1 0-16.001A8 8 0 0 1 12 20Z"></path></svg>What this project demonstrates </p> <div class="starlight-aside__content"> <ul><li>Reframing a spreadsheet-dependent operational workflow as a product problem.</li><li>Designing for specialist users in a high-consequence mining context.</li><li>Structuring cloud-native collaboration around trust, auditability, and change management.</li><li>Balancing technical capability with usability for real production teams.</li></ul> </div> </aside>
 
 ## 1. Discovery & Framing
 
@@ -43,9 +43,7 @@ The data existed. The expertise existed. The business need definitely existed. B
 
 That meant the design challenge was not just about efficiency. It was about authority.
 
-:::note
-
-:::
+<aside aria-label="Core product question" class="starlight-aside starlight-aside--tip"> <p class="starlight-aside__title" aria-hidden="true"> <svg aria-hidden="true" class="starlight-aside__icon astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M1.44 8.855v-.001l3.527-3.516c.34-.344.802-.541 1.285-.548h6.649l.947-.947c3.07-3.07 6.207-3.072 7.62-2.868a1.821 1.821 0 0 1 1.557 1.557c.204 1.413.203 4.55-2.868 7.62l-.946.946v6.649a1.845 1.845 0 0 1-.549 1.286l-3.516 3.528a1.844 1.844 0 0 1-3.11-.944l-.858-4.275-4.52-4.52-2.31-.463-1.964-.394A1.847 1.847 0 0 1 .98 10.693a1.843 1.843 0 0 1 .46-1.838Zm5.379 2.017-3.873-.776L6.32 6.733h4.638l-4.14 4.14Zm8.403-5.655c2.459-2.46 4.856-2.463 5.89-2.33.134 1.035.13 3.432-2.329 5.891l-6.71 6.71-3.561-3.56 6.71-6.711Zm-1.318 15.837-.776-3.873 4.14-4.14v4.639l-3.364 3.374Z" clip-rule="evenodd"></path><path d="M9.318 18.345a.972.972 0 0 0-1.86-.561c-.482 1.435-1.687 2.204-2.934 2.619a8.22 8.22 0 0 1-1.23.302c.062-.365.157-.79.303-1.229.415-1.247 1.184-2.452 2.62-2.935a.971.971 0 1 0-.62-1.842c-.12.04-.236.084-.35.13-2.02.828-3.012 2.588-3.493 4.033a10.383 10.383 0 0 0-.51 2.845l-.001.016v.063c0 .536.434.972.97.972H2.24a7.21 7.21 0 0 0 .878-.065c.527-.063 1.248-.19 2.02-.447 1.445-.48 3.205-1.472 4.033-3.494a5.828 5.828 0 0 0 .147-.407Z"></path></svg>Core product question </p> <div class="starlight-aside__content"> <p>How might we create a reliable operational centre for block model work, one that makes state, ownership, and change legible enough that mining teams can move quickly without losing confidence?</p> </div> </aside>
 
 **What should count as the current model state?**
 **Who can update it?**
@@ -86,7 +84,7 @@ That benchmarking helped sharpen the product position. BlockSync did not need to
 
 Once the problem was framed properly, the design work became much more concrete.
 
-The product needed to support a workflow that felt operationally credible: one where model data could be centralised, updates could be understood, changes could be tracked, and multiple users could work without creating hidden risk. Seequent’s public positioning reflects that product direction: a single source of truth, parallel editing with conflict resolution, live auditable reporting, open ecosystem connectivity, powerful cloud compute, and enterprise security. Seequent
+The product needed to support a workflow that felt operationally credible: one where model data could be centralised, updates could be understood, changes could be tracked, and multiple users could work without creating hidden risk. Seequent’s public positioning reflects that product direction: a single source of truth, parallel editing with conflict resolution, live auditable reporting, open ecosystem connectivity, powerful cloud compute, and enterprise security.
 
 ### Designing a system of record, not just a storage layer
 
@@ -124,7 +122,7 @@ What mattered here was not making the workflow look neat. It was exposing where 
 
 One of the most interesting product tensions was collaboration.
 
-Mining teams often need to move quickly, but quick work can create messy overlaps if multiple people are touching related model areas or attributes at the same time. Seequent publicly describes BlockSync as supporting parallel editing with conflict resolution, where short-term modelling teams can check out benches or attributes, work offline, and merge changes with conflict detection. Seequent
+Mining teams often need to move quickly, but quick work can create messy overlaps if multiple people are touching related model areas or attributes at the same time. Seequent publicly describes BlockSync as supporting parallel editing with conflict resolution, where short-term modelling teams can check out benches or attributes, work offline, and merge changes with conflict detection.
 
 From a UX perspective, that means the system has to carry more than technical merge capability. It has to help users understand what they are working on, what others may also be affecting, and what happens when change meets change. The interface has to reduce ambiguity around ownership, state, and merge outcomes.
 
@@ -170,7 +168,7 @@ That context helped resist a common trap in specialist tools: building for the d
 
 BlockSync created a much stronger product story than the original workflow allowed.
 
-Instead of mining teams depending on spreadsheets, local file structures, and loosely coordinated handoffs, the product direction shifted toward a cloud-native, auditable system of record for block model management. Publicly, Seequent positions BlockSync as exactly that kind of product: centralised, auditable, collaborative, API-connected, and built to support faster, more data-driven mining decisions. Seequent
+Instead of mining teams depending on spreadsheets, local file structures, and loosely coordinated handoffs, the product direction shifted toward a cloud-native, auditable system of record for block model management. Publicly, Seequent positions BlockSync as exactly that kind of product: centralised, auditable, collaborative, API-connected, and built to support faster, more data-driven mining decisions.
 
 ### What this enabled
 
