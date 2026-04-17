@@ -6,7 +6,6 @@ import { viewTransitions } from "astro-vtbot/starlight-view-transitions";
 import tailwindcss from "@tailwindcss/vite";
 import config from "./src/config/config.json";
 import social from "./src/config/social.json";
-import locals from "./src/config/locals.json";
 import sidebar from "./src/config/sidebar.json";
 
 import { fileURLToPath } from "url";
@@ -14,11 +13,9 @@ import { fileURLToPath } from "url";
 const { site } = config;
 const { title } = site;
 
-export const locales = locals
-
-
 // https://astro.build/config
 export default defineConfig({
+  site: "https://uxandme.com",
   image: {
     service: { entrypoint: "astro/assets/services/noop" },
   },
@@ -27,7 +24,6 @@ export default defineConfig({
       title,
       // @ts-ignore
       social: social.main || [],
-      locales,
       sidebar: sidebar.main || [],
       customCss: ["./src/styles/global.css"],
       components: {

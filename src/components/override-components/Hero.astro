@@ -101,7 +101,11 @@ const is404 = Astro.locals.starlightRoute?.id === "404";
   }
 </style>
 <script>
+  const iconElements = document.querySelector("[data-icon-path]");
+  const heroSection = document.querySelector(".hero");
+  const header = document.querySelector(".header");
   const heroBG = document.querySelector(".hero-bg") as HTMLElement;
+
   heroBG.style.height = "100vh";
 
   // make image element and add the path to src

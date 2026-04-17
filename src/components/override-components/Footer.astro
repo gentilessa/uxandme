@@ -2,7 +2,6 @@
 import config from "@/config/config.json";
 import social from "@/config/social.json";
 import { Icon } from "@astrojs/starlight/components";
-import { markdownify } from "@/lib/utils/textConverter";
 import { getTranslations } from "@/lib/utils/languagePerser";
 
 const locale = Astro.currentLocale;
@@ -110,7 +109,7 @@ const currentLocal = Astro.currentLocale || "en";
       }
     </div>
     <div class="bottom-footer">
-      <p set:html={markdownify(config?.params?.copyright)} />
+      <p>{config?.params?.copyright}</p>
       <a href={currentLocal + "/privacy-policy"}
         >{Astro.locals.t("footer.privacy", "Privacy Policy")}</a
       >
