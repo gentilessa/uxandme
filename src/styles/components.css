@@ -94,3 +94,67 @@
   padding: 1rem;
   border-inline-start: 0.25rem solid var(--sl-color-asides-border) !important;
 }
+
+/* Case study image */
+.case-study-image {
+  display: block;
+  width: 100%;
+  margin-top: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+.case-study-image--full {
+  width: 100%;
+  max-width: none;
+}
+
+/* System snapshot sections */
+.system-snapshot {
+  display: block;
+  width: 100%;
+  margin: 1.75rem 0 0;
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: 1rem;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--sl-color-white) 2%, transparent);
+}
+
+.system-snapshot__media {
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid var(--sl-color-hairline);
+}
+
+.system-snapshot__image {
+  display: block;
+  width: 100%;
+  min-width: 100%;
+  max-width: none;
+}
+
+.system-snapshot__content {
+  padding: 1.25rem 1.25rem 1.35rem;
+}
+
+.system-snapshot__eyebrow {
+  margin: 0 0 0.4rem;
+  color: var(--sl-color-gray-3);
+  font-size: var(--sl-text-xs);
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.system-snapshot__title {
+  margin: 0;
+  color: var(--sl-color-white);
+  font-size: var(--sl-text-h4);
+  line-height: var(--sl-line-height-headings);
+}
+
+.system-snapshot__description {
+  margin: 0.65rem 0 0;
+  color: var(--sl-color-gray-3);
+  font-size: var(--sl-text-sm);
+  line-height: 1.6;
+}

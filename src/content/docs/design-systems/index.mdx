@@ -2,26 +2,18 @@
 title: Overview
 description: Product design case studies for complex SaaS, AI-assisted workflows, and systems-led product work.
 tableOfContents: false
+prev: false
+next: false
 ---
 
 import { Image } from 'astro:assets';
+import CaseStudyMeta from "../../../components/user-components/CaseStudyMeta.astro";
 
-export const caseStudyMeta = [
-  { label: "Role", value: "Product Design Lead" },
-  { label: "Scope", value: "Seequent cloud design system" },
-  { label: "Platforms", value: "Cloud web products and shared UI kit" },
-  { label: "Products Supported", value: "Central, Web Viz, MySeequent" },
-  { label: "Contribution Focus", value: "Foundations, components, layouts, implementation patterns" },
-];
-
-<div class="case-study-meta not-content" role="list">
-  {caseStudyMeta.map(item => (
-    <div class="case-study-meta__item" role="listitem">
-      <span class="case-study-meta__label">{item.label}</span>
-      <strong class="case-study-meta__value">{item.value}</strong>
-    </div>
-  ))}
-</div>
+<CaseStudyMeta 
+  role="Product Design Lead" 
+  platform="Cloud web products and shared UI kit" 
+  domain="Seequent design system • Central, Web Viz, MySeequent • Foundations, components, layouts"
+/>
 
 <Image 
   src="/images/design-systems/seequent-hero.png" 
