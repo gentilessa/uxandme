@@ -1,0 +1,89 @@
+---
+import type { HireGiaMode } from "@/lib/ai/hireGiaTypes";
+
+interface Props {
+  mode?: HireGiaMode;
+}
+
+const { mode = "guide" } = Astro.props;
+---
+
+<div class="hire-gia-tabs" role="tablist" aria-label="Portfolio assistant mode">
+  <button
+    type="button"
+    class:list={["hire-gia-tabs__tab", mode === "guide" && "is-active"]}
+    role="tab"
+    aria-selected={mode === "guide" ? "true" : "false"}
+    data-mode="guide"
+  >
+    Ask about Gia’s work
+  </button>
+  <button
+    type="button"
+    class:list={["hire-gia-tabs__tab", mode === "role" && "is-active"]}
+    role="tab"
+    aria-selected={mode === "role" ? "true" : "false"}
+    data-mode="role"
+  >
+    Match a job description
+  </button>
+</div>
+
+<style>
+  .hire-gia-tabs {
+    --hire-gia-tab-surface: color-mix(in srgb, var(--color-body) 78%, transparent);
+    --hire-gia-tab-text: var(--color-text);
+    --hire-gia-tab-active-bg: var(--color-light);
+    --hire-gia-tab-active-text: var(--color-body);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.375rem;
+    padding: 0.25rem;
+    align-items: center;
+    border: 1px solid var(--sl-color-hairline);
+    border-radius: 0.9rem;
+    background: var(--hire-gia-tab-surface);
+    height: 58px;
+  }
+
+  :global([data-theme="light"]) .hire-gia-tabs {
+    --hire-gia-tab-surface: color-mix(in srgb, var(--color-lightmode-body) 94%, var(--color-lightmode-text) 6%);
+    --hire-gia-tab-text: color-mix(in srgb, var(--color-lightmode-text) 72%, transparent);
+    --hire-gia-tab-active-bg: var(--color-lightmode-text);
+    --hire-gia-tab-active-text: var(--color-lightmode-body);
+  }
+
+  .hire-gia-tabs__tab {
+    height: 3rem;
+    border: 0;
+    border-radius: 0.7rem;
+    background: transparent;
+    color: var(--hire-gia-tab-text);
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.2;
+    padding: 0.55rem 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hire-gia-tabs__tab:hover {
+    color: var(--hire-gia-tab-active-text);
+  }
+
+  .hire-gia-tabs__tab.is-active {
+    color: var(--hire-gia-tab-active-text);
+    background: var(--hire-gia-tab-active-bg);
+  }
+
+  @media (max-width: 520px) {
+    .hire-gia-tabs {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

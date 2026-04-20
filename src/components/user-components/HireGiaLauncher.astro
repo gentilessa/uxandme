@@ -1,0 +1,169 @@
+---
+import HireGiaSheet from "./HireGiaSheet.astro";
+---
+
+<div class="hire-gia-launcher" data-hire-gia-launcher>
+  <button
+    type="button"
+    class="hire-gia-launcher__fab"
+    data-hire-gia-open
+    aria-haspopup="dialog"
+    aria-label="Open portfolio assistant"
+  >
+    <span class="hire-gia-launcher__pulse" aria-hidden="true">
+      <span class="hire-gia-launcher__ring hire-gia-launcher__ring--one"></span>
+      <span class="hire-gia-launcher__ring hire-gia-launcher__ring--two"></span>
+      <span class="hire-gia-launcher__ring hire-gia-launcher__ring--three"></span>
+    </span>
+    <span class="hire-gia-launcher__core" aria-hidden="true">
+      <svg viewBox="0 0 40 40" fill="none">
+        <path
+          d="M1 20C1 9.50659 9.50659 1 20 1C30.4934 1 39 9.50659 39 20C39 30.4934 30.4934 39 20 39C9.50659 39 1 30.4934 1 20Z"
+          fill="var(--hire-gia-fab-fill)"
+          stroke="url(#fabStroke)"
+          stroke-width="2"
+        />
+        <path
+          d="M13.1176 12.2922L14.2095 9.01653H16.1068L17.1987 12.2922L20.4744 13.3841V15.2814L17.1987 16.3733L16.1068 19.649H14.2095L13.1176 16.3733L9.84192 15.2814V13.3841L13.1176 12.2922Z"
+          fill="url(#fabGradient)"
+        />
+        <path
+          d="M19.9338 20.1084L20.5889 18.143H21.7274L22.3825 20.1084L24.3479 20.7635V21.902L22.3825 22.5571L21.7274 24.5225H20.5889L19.9338 22.5571L17.9684 21.902V20.7635L19.9338 20.1084Z"
+          fill="url(#fabGradient)"
+        />
+        <path
+          d="M24.3581 13.3328H23.1581V15.3328H24.3581C25.2147 15.3328 25.797 15.3335 26.2471 15.3703C26.6855 15.4061 26.9097 15.4711 27.0661 15.5507C27.4424 15.7425 27.7484 16.0485 27.9401 16.4248C28.0198 16.5812 28.0848 16.8054 28.1206 17.2438C28.1574 17.6939 28.1581 18.2762 28.1581 19.1328V22.5322C28.1581 23.3888 28.1574 23.9711 28.1206 24.4212C28.0848 24.8596 28.0198 25.0838 27.9401 25.2402C27.7484 25.6165 27.4424 25.9225 27.0661 26.1142C26.9097 26.1939 26.6855 26.2588 26.2471 26.2946C25.797 26.3314 25.2147 26.3322 24.3581 26.3322H23.2696L21.1581 28.796L19.0467 26.3322H17.9581C17.1016 26.3322 16.5193 26.3314 16.0692 26.2946C15.6308 26.2588 15.4066 26.1939 15.2502 26.1142C14.8738 25.9225 14.5679 25.6165 14.3761 25.2402C14.2964 25.0838 14.2315 24.8596 14.1957 24.4212C14.1589 23.9711 14.1581 23.3888 14.1581 22.5322V21.8325H12.1581V22.5735C12.1581 23.3785 12.1581 24.0428 12.2023 24.584C12.2483 25.1461 12.3468 25.6628 12.5941 26.1482C12.9776 26.9008 13.5895 27.5127 14.3422 27.8962C14.8275 28.1435 15.3442 28.2421 15.9063 28.288C16.4475 28.3322 17.1118 28.3322 17.9168 28.3322H18.1267L20.3988 30.9835H21.9174L24.1896 28.3322H24.3995C25.2044 28.3322 25.8688 28.3322 26.41 28.288C26.9721 28.2421 27.4888 28.1435 27.9741 27.8962C28.7267 27.5127 29.3387 26.9008 29.7222 26.1482C29.9694 25.6628 30.068 25.1461 30.1139 24.584C30.1582 24.0428 30.1581 23.3785 30.1581 22.5735V19.0914C30.1581 18.2865 30.1582 17.6221 30.1139 17.0809C30.068 16.5188 29.9694 16.0021 29.7222 15.5168C29.3387 14.7642 28.7267 14.1522 27.9741 13.7687C27.4888 13.5214 26.9721 13.4229 26.41 13.377C25.8688 13.3327 25.2044 13.3327 24.3994 13.3328H24.3581Z"
+          fill="url(#fabGradient)"
+        />
+        <defs>
+          <linearGradient id="fabGradient" x1="9.84192" y1="20" x2="30.1581" y2="20" gradientUnits="userSpaceOnUse">
+            <stop stop-color="var(--sl-color-accent)" />
+            <stop offset="1" stop-color="var(--sl-color-accent-high)" />
+          </linearGradient>
+          <linearGradient id="fabStroke" x1="0" y1="0" x2="20" y2="80" gradientUnits="userSpaceOnUse">
+            <stop stop-color="var(--sl-color-accent)" />
+            <stop offset="0.55" stop-color="var(--sl-color-accent-high)" />
+            <stop offset="1" stop-color="var(--sl-color-accent-low)" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </span>
+  </button>
+
+  <div class="hire-gia-launcher__overlay" data-hire-gia-overlay hidden></div>
+  <HireGiaSheet />
+</div>
+
+<style>
+  .hire-gia-launcher {
+    position: fixed;
+    right: 1.25rem;
+    top: 6rem;
+    z-index: 69;
+  }
+
+  .hire-gia-launcher__fab {
+    position: relative;
+    width: 3.5rem;
+    height: 3.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    cursor: pointer;
+    isolation: isolate;
+    transition: transform 1s ease;
+  }
+
+  .hire-gia-launcher__fab:hover {
+    transform: translateY(-1px);
+  }
+
+  .hire-gia-launcher__pulse {
+    position: absolute;
+    inset: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hire-gia-launcher__ring {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--sl-color-accent) 78%, transparent);
+    opacity: 0;
+    animation: hire-gia-pulse 2.4s infinite cubic-bezier(0.36, 0.11, 0.89, 0.32);
+  }
+
+  .hire-gia-launcher__ring--one {
+    animation-delay: -1.8s;
+  }
+
+  .hire-gia-launcher__ring--two {
+    animation-delay: -1.2s;
+  }
+
+  .hire-gia-launcher__ring--three {
+    animation-delay: -0.6s;
+  }
+
+  .hire-gia-launcher__core {
+    --hire-gia-fab-fill: color-mix(in srgb, var(--sl-color-white) 10%, transparent);
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    backdrop-filter: blur(10px);
+  }
+
+  .hire-gia-launcher__core svg {
+    width: 2.75rem;
+    height: 2.75rem;
+    background: var(--sl-color-black);
+    border-radius: 9999px;
+  }
+
+  :global([data-theme="light"]) .hire-gia-launcher__core {
+    --hire-gia-fab-fill: color-mix(in srgb, var(--sl-color-black) 8%, transparent);
+  }
+
+  .hire-gia-launcher__overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 68;
+    backdrop-filter: blur(2px);
+  }
+
+  @media (max-width: 640px) {
+    .hire-gia-launcher {
+      right: 1rem;
+      top: 5.5rem;
+    }
+  }
+
+  @keyframes hire-gia-pulse {
+    from {
+      transform: scale(1);
+      opacity: 0.42;
+    }
+    to {
+      transform: scale(1.45);
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  import { initHireGiaLauncher } from "../../lib/ai/hireGiaLauncherClient";
+
+  initHireGiaLauncher();
+</script>

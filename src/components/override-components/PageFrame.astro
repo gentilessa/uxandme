@@ -4,6 +4,7 @@ import Footer from "./Footer.astro";
 import CTA from "../CTA.astro";
 import SidebarNav from "../SidebarNav.astro";
 import ImageMod from "../ImageMod.astro";
+import HireGiaLauncher from "../user-components/HireGiaLauncher.astro";
 
 const { hasSidebar } = Astro.locals.starlightRoute;
 ---
@@ -72,6 +73,7 @@ const { hasSidebar } = Astro.locals.starlightRoute;
   </div>
   {!hasSidebar && <CTA />}
   {!hasSidebar && <Footer />}
+  <HireGiaLauncher />
 </div>
 
 <style>

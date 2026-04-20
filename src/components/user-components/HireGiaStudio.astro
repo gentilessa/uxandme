@@ -1,0 +1,305 @@
+---
+import HireGiaTabs from "./HireGiaTabs.astro";
+import HireGiaResponse from "./HireGiaResponse.astro";
+import { hireGiaIntroCopy } from "@/lib/ai/hireGiaPrompts";
+
+const apiUrl = import.meta.env.PUBLIC_HIRE_GIA_API_URL || "";
+const bootstrap = { apiUrl };
+const guidePrompts = [
+  "Design system experience",
+  "User research methods",
+  "Accessibility work",
+  "Cross-functional collaboration",
+];
+---
+
+<section class="hire-gia-studio" data-hire-gia-studio data-bootstrap={JSON.stringify(bootstrap)}>
+  <p class="hire-gia-studio__intro">{hireGiaIntroCopy}</p>
+
+  <HireGiaTabs mode="guide" />
+
+  <div class="hire-gia-studio__field">
+    <label for="hire-gia-question">Your Question</label>
+    <div class="hire-gia-studio__field-card">
+      <textarea
+        id="hire-gia-question"
+        name="hire-gia-question"
+        rows="4"
+        placeholder="e.g., What experience does Gia have with design systems? Has she worked on accessibility improvements?"
+        data-hire-gia-input
+      ></textarea>
+
+      <div class="hire-gia-studio__chips" data-hire-gia-prompts>
+        {
+          guidePrompts.map((prompt) => (
+            <button
+              type="button"
+              class="hire-gia-studio__chip"
+              data-prompt={prompt}
+              aria-pressed="false"
+            >
+              {prompt}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <p class="hire-gia-studio__helper">
+    Ask specific questions about projects, skills, or experience you would like to learn more about or see evidenced in her portfolio.
+  </p>
+
+  <div class="hire-gia-studio__error" data-hire-gia-error hidden></div>
+
+  <HireGiaResponse />
+
+  <div class="hire-gia-studio__actions">
+    <button type="button" class="btn btn-primary hire-gia-studio__submit" data-hire-gia-submit>
+      Generate answer
+    </button>
+    <button type="button" class="hire-gia-studio__clear" data-hire-gia-clear>
+      Clear
+    </button>
+  </div>
+</section>
+
+<style>
+  .hire-gia-studio {
+    --hire-gia-label: var(--color-light);
+    --hire-gia-text: var(--color-text);
+    --hire-gia-muted: color-mix(in srgb, var(--color-text) 78%, transparent);
+    --hire-gia-card-bg: color-mix(in srgb, var(--color-light) 5%, transparent);
+    --hire-gia-card-border: color-mix(in srgb, var(--color-light) 10%, transparent);
+    --hire-gia-chip-bg: color-mix(in srgb, var(--color-light) 5%, transparent);
+    --hire-gia-chip-border: color-mix(in srgb, var(--color-light) 10%, transparent);
+    --hire-gia-footer-gradient: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--color-body) 94%, transparent) 74%,
+      transparent 100%
+    );
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    min-height: 100%;
+  }
+
+  :global([data-theme="light"]) .hire-gia-studio {
+    --hire-gia-label: var(--color-lightmode-text);
+    --hire-gia-text: var(--color-lightmode-text);
+    --hire-gia-muted: color-mix(in srgb, var(--color-lightmode-text) 72%, transparent);
+    --hire-gia-card-bg: color-mix(in srgb, var(--color-lightmode-body) 97%, var(--color-lightmode-text) 3%);
+    --hire-gia-card-border: color-mix(in srgb, var(--color-lightmode-text) 10%, transparent);
+    --hire-gia-chip-bg: color-mix(in srgb, var(--color-lightmode-body) 94%, var(--color-lightmode-text) 6%);
+    --hire-gia-chip-border: color-mix(in srgb, var(--color-lightmode-text) 10%, transparent);
+    --hire-gia-footer-gradient: linear-gradient(
+      to top,
+      color-mix(in srgb, var(--color-lightmode-body) 99%, transparent) 74%,
+      transparent 100%
+    );
+  }
+
+  .hire-gia-studio__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .hire-gia-studio__field label,
+  .hire-gia-studio__prompts h4 {
+    margin: 0;
+    color: var(--hire-gia-label);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .hire-gia-studio__field-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 1rem;
+    border: 1px solid var(--hire-gia-card-border);
+    border-radius: 0.75rem;
+    background: var(--hire-gia-card-bg);
+    overflow: hidden;
+  }
+
+  .hire-gia-studio textarea {
+    width: 100%;
+    display: block;
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    resize: none;
+    border: 0;
+    background: transparent;
+    color: var(--hire-gia-text);
+    font: inherit;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    padding: 0;
+  }
+
+  .hire-gia-studio textarea::placeholder {
+    color: var(--hire-gia-muted);
+    font-style: italic;
+  }
+
+  .hire-gia-studio textarea:focus {
+    outline: none;
+  }
+
+  .hire-gia-studio__intro {
+    margin: 0;
+    color: var(--hire-gia-muted);
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+
+  .hire-gia-studio__helper {
+    margin: 0;
+    color: var(--hire-gia-muted);
+    font-size: 0.75rem;
+    line-height: 1.35;
+    padding-left: 1.75rem;
+    position: relative;
+  }
+
+  .hire-gia-studio__helper::before {
+    content: "i";
+    position: absolute;
+    left: 0;
+    top: 0.05rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--sl-color-accent);
+    color: var(--sl-color-accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .hire-gia-studio__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  :global(.hire-gia-studio__chip) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 1.875rem;
+    padding: 0.35rem 0.8rem;
+    border: 1px solid var(--hire-gia-chip-border);
+    border-radius: 999px;
+    background: var(--hire-gia-chip-bg);
+    color: var(--hire-gia-text);
+    font: inherit;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    cursor: pointer;
+    pointer-events: auto;
+    user-select: none;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+
+  :global(.hire-gia-studio__chip[aria-pressed="true"]),
+  :global(.hire-gia-studio__chip.is-selected) {
+    color: #fff !important;
+    border-color: var(--color-primary) !important;
+    background: var(--color-primary-gradient) !important;
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-primary) 24%, transparent);
+  }
+
+  .hire-gia-studio__error {
+    border: 1px solid color-mix(in srgb, #ff7b7b 35%, transparent);
+    border-radius: 0.9rem;
+    padding: 0.8rem 0.9rem;
+    color: #ffb6b6;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    background: color-mix(in srgb, #ff7b7b 10%, transparent);
+  }
+
+  .hire-gia-studio__actions {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 1rem;
+    padding-bottom: 0.1rem;
+    background: var(--hire-gia-footer-gradient);
+  }
+
+  .hire-gia-studio__submit {
+    flex: 1;
+    justify-content: center;
+    min-height: 2.875rem;
+    border-radius: 0.5rem;
+  }
+
+  .hire-gia-studio__clear {
+    min-height: 2.875rem;
+    padding: 0.7rem 1.1rem;
+    border-radius: 0.75rem;
+    border: 1px solid color-mix(in srgb, var(--hire-gia-label) 18%, transparent);
+    background: transparent;
+    color: var(--hire-gia-label);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  :global([data-theme="light"]) .hire-gia-studio__clear {
+    border-color: color-mix(in srgb, var(--color-lightmode-text) 14%, transparent);
+    color: var(--color-lightmode-text);
+    background: color-mix(in srgb, var(--color-lightmode-body) 92%, var(--color-lightmode-text) 8%);
+  }
+
+  @media (max-width: 640px) {
+    .hire-gia-studio {
+      gap: 0.85rem;
+    }
+
+    .hire-gia-studio__field {
+      flex: 0 0 auto;
+    }
+
+    .hire-gia-studio__field-card {
+      min-height: 20rem;
+    }
+
+    .hire-gia-studio textarea {
+      min-height: 10rem;
+      height: auto;
+      resize: vertical;
+    }
+
+    .hire-gia-studio__actions {
+      padding-top: 0.6rem;
+    }
+  }
+</style>
+
+<script>
+  import { initHireGiaStudios } from "../../lib/ai/hireGiaStudioClient";
+
+  initHireGiaStudios();
+</script>

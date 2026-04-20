@@ -1,0 +1,156 @@
+---
+import HireGiaGuideResponse from "./HireGiaGuideResponse.astro";
+import HireGiaRoleResponse from "./HireGiaRoleResponse.astro";
+---
+
+<section class="hire-gia-response" data-hire-gia-response hidden>
+  <div class="hire-gia-response__header">
+    <p class="hire-gia-response__eyebrow">Analysis results</p>
+    <h3 data-response-title></h3>
+  </div>
+
+  <HireGiaGuideResponse />
+  <HireGiaRoleResponse />
+</section>
+
+<style>
+  .hire-gia-response {
+    --hire-gia-response-surface: color-mix(in srgb, var(--color-light) 3%, transparent);
+    --hire-gia-response-title: var(--color-light);
+    --hire-gia-response-text: var(--color-text);
+    --hire-gia-response-muted: color-mix(in srgb, var(--color-text) 76%, transparent);
+    border: 1px solid var(--sl-color-hairline);
+    border-radius: 1rem;
+    padding: 1rem;
+    background: var(--hire-gia-response-surface);
+  }
+
+  :global([data-theme="light"]) .hire-gia-response {
+    --hire-gia-response-surface: color-mix(in srgb, var(--color-lightmode-body) 98%, var(--color-lightmode-text) 2%);
+    --hire-gia-response-title: var(--color-lightmode-text);
+    --hire-gia-response-text: var(--color-lightmode-text);
+    --hire-gia-response-muted: color-mix(in srgb, var(--color-lightmode-text) 72%, transparent);
+  }
+
+  .hire-gia-response__header {
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--sl-color-hairline);
+    margin-bottom: 0.9rem;
+  }
+
+  .hire-gia-response__eyebrow {
+    margin: 0 0 0.2rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--hire-gia-response-muted);
+  }
+
+  .hire-gia-response__header h3 {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.35;
+    color: var(--hire-gia-response-title);
+  }
+
+  .hire-gia-response__section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .hire-gia-response__lead p,
+  .hire-gia-response__fit-row p,
+  .hire-gia-response__group p,
+  .hire-gia-response__group li {
+    margin: 0;
+    color: var(--hire-gia-response-text);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .hire-gia-response__group {
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .hire-gia-response__group h4 {
+    margin: 0;
+    color: var(--hire-gia-response-muted);
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .hire-gia-response__fit-row {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .hire-gia-response__fit-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-width: 3.5rem;
+    padding: 0.45rem 0.65rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--sl-color-accent-low) 60%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sl-color-accent) 36%, transparent);
+    color: var(--sl-color-accent-high);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .hire-gia-response__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .hire-gia-response__chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.9rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
+    color: var(--color-light);
+    font-size: 0.8rem;
+  }
+
+  :global([data-theme="light"]) .hire-gia-response__chip {
+    color: var(--color-lightmode-text);
+    background: color-mix(in srgb, var(--sl-color-accent-low) 75%, white 25%);
+    border-color: color-mix(in srgb, var(--sl-color-accent) 22%, transparent);
+  }
+
+  .hire-gia-response__list {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .hire-gia-response__item {
+    display: grid;
+    gap: 0.25rem;
+    padding-left: 0.9rem;
+    border-left: 2px solid color-mix(in srgb, var(--color-primary) 40%, transparent);
+  }
+
+  .hire-gia-response__item a {
+    color: var(--hire-gia-response-title);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .hire-gia-response__item a:hover {
+    color: var(--sl-color-accent-high);
+  }
+
+  .hire-gia-response__group ul {
+    margin: 0;
+    padding-left: 1rem;
+  }
+</style>
