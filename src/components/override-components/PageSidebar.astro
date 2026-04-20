@@ -1,12 +1,12 @@
 ---
 import StarlightTOC from "@astrojs/starlight/components/TableOfContents.astro";
-import StarlightMobileTOC from "@astrojs/starlight/components/MobileTableOfContents.astro";
+import StarlightMobileTOC from "./MobileTableOfContents.astro";
 ---
 
 {
   Astro.locals.starlightRoute.toc && (
     <>
-      <div class="lg:sl-hidden">
+      <div class="md:sl-hidden lg:sl-hidden">
         <StarlightMobileTOC />
       </div>
       <div class="right-sidebar-panel sl-hidden lg:sl-block">

@@ -1,5 +1,4 @@
 ---
-import MobileMenuToggle from "./MobileMenuToggle.astro";
 import Footer from "./Footer.astro";
 import CTA from "../CTA.astro";
 import SidebarNav from "../SidebarNav.astro";
@@ -58,8 +57,6 @@ const { hasSidebar } = Astro.locals.starlightRoute;
             class="sidebar print:hidden"
             aria-label={Astro.locals.t("sidebarNav.accessibleLabel")}
           >
-            <MobileMenuToggle />
-
             <div id="starlight__sidebar" class="sidebar-pane">
               <div class="sidebar-content sl-flex">
                 <slot name="sidebar" />

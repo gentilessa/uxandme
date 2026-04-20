@@ -88,9 +88,6 @@
 .hamburger-menu {
   @apply lg:hidden;
 }
-.has-sidebar .hamburger-menu {
-  @apply hidden;
-}
 input#nav-toggle:checked + label #show-button {
   @apply hidden;
 }
@@ -142,5 +139,4 @@ input#nav-toggle:checked ~ #nav-menu {
 #starlight__sidebar .top-level > li > details > summary {
   display: none;
 }
-
 

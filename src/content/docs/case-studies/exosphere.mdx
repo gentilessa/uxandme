@@ -2,22 +2,38 @@
 title: "Exosphere"
 sidebar:
   label: "Exosphere"
----
 
-import CaseStudyMeta from "../../../components/user-components/CaseStudyMeta.astro";
+meta:
+  role: "Lead Product Designer"
+  domain:
+    - subsurface-and-infrastructure
+    - data-platforms
+  problem:
+    - decision-support
+    - data-quality-and-trust
+    - system-integration
+  capability:
+    - data-visualisation
+    - ai-workflows
+    - complex-workflows
+    - product-strategy
+  system:
+    - data-platform
+    - ai-assisted-system
+    - 3d-visualisation
+  impact:
+    - improved-decision-making
+    - reduced-risk
+    - improved-data-trust
+---
 
 Exploration companies sit on large volumes of geological, drilling, and geophysical data, but much of it arrives in inconsistent formats, with missing context, uneven quality, and customer-specific schemas. Before teams can use that information to model mineralisation, predict targets, or plan drilling, they need a reliable way to interpret, validate, and standardise it.
 
-<CaseStudyMeta role="Lead Product Designer" platform="Web / Desktop App" domain="Geoscience, SAAS, AI, ML, B2B" />
 
 ![image](/images/projects/exosphere/overview.png)
 
 
 This project defined an AI-assisted workflow that combined schema interpretation, quality scoring, human review, and predictive targeting to help exploration teams move from fragmented raw data to trusted, decision-ready target recommendations. Rather than treating ingestion as a purely technical ETL problem, the work reframed the challenge as a product experience problem: how might we help experts review AI output confidently, resolve ambiguity efficiently, and turn historical and live data into a more actionable basis for the next drilling campaign?
-
-:::note
-
-:::
 
 ## 1. Discovery & Framing
 
@@ -26,10 +42,6 @@ Geological exploration is inherently risky and expensive. Before designing the s
 ### The Problem Space
 
 Incoming exploration datasets are rarely clean. Files vary by customer, program, and vendor. Column names differ, units are inconsistent, coordinate systems may be missing, and file types are not always obvious. At the same time, exploration teams need to combine this information with historical and live geophysics to build a clearer picture of where to drill next. Engineering had already begun defining architecture patterns for ingestion, but the broader product challenge was still unresolved:
-
-:::note
-
-:::
 
 ### Jobs To Be Done
 
@@ -50,8 +62,6 @@ What I was solving for across the workflow:
      Safe downstream consumption 
 
  Once data entered a catalogue or visualisation workflow, users needed to know whether it was safe to use. That meant clear confidence, provenance, and verification cues without overwhelming the interface.
-
-  
 
 ![image](/images/projects/exosphere/discovery-collage.png)
 
@@ -94,11 +104,6 @@ At a product level, the prototype established a stronger story for Exosphere: AI
 ### What this enabled
 
 - A clearer path from fragmented incoming data to target-ready workflows
-
 - Stronger trust signals around verification, provenance, and confidence
-
 - More credible AI-assisted targeting for copper-focused exploration scenarios
-
 - A product direction that connected review, enrichment, and campaign planning
-
-            Next page  Central Viewer
