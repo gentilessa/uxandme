@@ -1,25 +1,58 @@
 ---
+import {
+  getTaxonomyLabels,
+  type CaseStudyTaxonomyMeta,
+} from "@/lib/taxonomy";
+
 interface Props {
-  role: string;
-  platform: string;
-  domain: string;
+  meta?: CaseStudyTaxonomyMeta;
+  role?: string;
+  capability?: string;
+  system?: string;
+  platform?: string;
+  domain?: string;
 }
 
-const { role, platform, domain } = Astro.props;
+const entryMeta = Astro.locals.starlightRoute.entry?.data?.meta as
+  | CaseStudyTaxonomyMeta
+  | undefined;
+
+const {
+  meta = entryMeta,
+  role: roleProp,
+  capability: capabilityProp,
+  system: systemProp,
+  platform,
+  domain,
+} = Astro.props as Props;
+
+const taxonomyMode = Boolean(meta);
+
+if (!taxonomyMode && !roleProp) {
+  throw new Error("CaseStudyMeta requires taxonomy metadata or explicit props.");
+}
+
+const roleValue = taxonomyMode ? meta!.role : roleProp!;
+const capabilityValue = taxonomyMode
+  ? getTaxonomyLabels("capability", meta!.capability).join(", ")
+  : capabilityProp || platform || "—";
+const systemValue = taxonomyMode
+  ? getTaxonomyLabels("system", meta!.system).join(", ")
+  : systemProp || domain || "—";
 ---
 
 <div class="case-study-meta not-content" role="list">
   <div class="case-study-meta__item" role="listitem">
     <span class="case-study-meta__label">Role</span>
-    <strong class="case-study-meta__value">{role}</strong>
+    <strong class="case-study-meta__value">{roleValue}</strong>
   </div>
   <div class="case-study-meta__item" role="listitem">
-    <span class="case-study-meta__label">Platform</span>
-    <strong class="case-study-meta__value">{platform}</strong>
+    <span class="case-study-meta__label">Capability</span>
+    <strong class="case-study-meta__value">{capabilityValue}</strong>
   </div>
   <div class="case-study-meta__item" role="listitem">
-    <span class="case-study-meta__label">Domain</span>
-    <strong class="case-study-meta__value">{domain}</strong>
+    <span class="case-study-meta__label">System</span>
+    <strong class="case-study-meta__value">{systemValue}</strong>
   </div>
 </div>
 
@@ -47,11 +80,12 @@ const { role, platform, domain } = Astro.props;
     font-size: var(--sl-text-xs);
     line-height: 1.2;
     margin: 0;
+    text-transform: uppercase;
   }
 
   .case-study-meta__value {
     color: var(--sl-color-white);
-    font-size: var(--sl-text-sm);
+    font-size: var(--sl-text-xs);
     line-height: 1.45;
     font-weight: 600;
     margin: 0;

@@ -18,7 +18,20 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     url: "/case-studies/exosphere/",
     summary:
       "Turning fragmented exploration data into actionable targeting workflows.",
-    tags: ["ai targeting", "workflow", "geoscience", "decision support"],
+    tags: [
+      "subsurface-and-infrastructure",
+      "data-platforms",
+      "decision-support",
+      "data-quality-and-trust",
+      "system-integration",
+      "data-visualisation",
+      "ai-workflows",
+      "complex-workflows",
+      "product-strategy",
+      "data-platform",
+      "ai-assisted-system",
+      "3d-visualisation",
+    ],
     themes: ["ai", "workflow", "data-visualization", "specialist-users", "strategy"],
   },
   {
@@ -28,7 +41,18 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     url: "/case-studies/central-viewer/",
     summary:
       "A cloud-first 3D viewer that made geological collaboration easier and faster.",
-    tags: ["3d", "viewer", "collaboration", "geoscience"],
+    tags: [
+      "subsurface-and-infrastructure",
+      "data-platforms",
+      "decision-support",
+      "data-quality-and-trust",
+      "workflow-fragmentation",
+      "data-visualisation",
+      "information-architecture",
+      "complex-workflows",
+      "data-platform",
+      "3d-visualisation",
+    ],
     themes: ["3d", "specialist-users", "workflow", "enterprise"],
   },
   {
@@ -38,7 +62,19 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     url: "/case-studies/blocksync/",
     summary:
       "Turning spreadsheet-heavy grade control into a cloud-native system of record.",
-    tags: ["enterprise", "workflow", "operations", "mining"],
+    tags: [
+      "subsurface-and-infrastructure",
+      "data-platforms",
+      "data-quality-and-trust",
+      "workflow-fragmentation",
+      "system-integration",
+      "data-visualisation",
+      "complex-workflows",
+      "information-architecture",
+      "data-platform",
+      "enterprise-saas",
+      "3d-visualisation",
+    ],
     themes: ["enterprise", "workflow", "systems", "service-design", "specialist-users"],
   },
   {
@@ -48,7 +84,17 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     url: "/case-studies/assure-plus/",
     summary:
       "A unified design system across field, admin, and public-facing experiences.",
-    tags: ["design systems", "cross-platform", "components", "consistency"],
+    tags: [
+      "logistics-and-trade",
+      "system-integration",
+      "workflow-fragmentation",
+      "data-quality-and-trust",
+      "design-systems",
+      "complex-workflows",
+      "service-design",
+      "enterprise-saas",
+      "operational-tooling",
+    ],
     themes: ["design-systems", "enterprise", "systems", "workflow"],
   },
   {
@@ -58,7 +104,18 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     url: "/case-studies/tradewindow/",
     summary:
       "Designing for the messy handoffs, dependencies, and onboarding paths of global trade.",
-    tags: ["trade", "saas", "onboarding", "workflow", "operations"],
+    tags: [
+      "logistics-and-trade",
+      "workflow-fragmentation",
+      "system-integration",
+      "operational-efficiency",
+      "complex-workflows",
+      "service-design",
+      "information-architecture",
+      "design-systems",
+      "enterprise-saas",
+      "operational-tooling",
+    ],
     themes: ["workflow", "enterprise", "service-design", "systems", "research"],
   },
   {
@@ -68,7 +125,17 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     url: "/case-studies/breedlogic/",
     summary:
       "Designing AI-assisted mate selection for cattle breeders and decision support.",
-    tags: ["ai", "decision support", "genetics", "comparison"],
+    tags: [
+      "data-platforms",
+      "decision-support",
+      "planning-and-forecasting",
+      "data-quality-and-trust",
+      "ai-workflows",
+      "data-visualisation",
+      "product-strategy",
+      "ai-assisted-system",
+      "enterprise-saas",
+    ],
     themes: ["ai", "specialist-users", "data-visualization", "workflow"],
   },
   {
@@ -78,7 +145,18 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     url: "/case-studies/evo/",
     summary:
       "Foundational platform strategy for a next-generation geoscience ecosystem.",
-    tags: ["platform strategy", "research", "ecosystem", "geoscience"],
+    tags: [
+      "subsurface-and-infrastructure",
+      "data-platforms",
+      "system-integration",
+      "workflow-fragmentation",
+      "planning-and-forecasting",
+      "product-strategy",
+      "service-design",
+      "information-architecture",
+      "data-platform",
+      "enterprise-saas",
+    ],
     themes: ["strategy", "research", "systems", "enterprise"],
   },
   {
@@ -88,7 +166,18 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     url: "/case-studies/crm-lead-management/",
     summary:
       "Using UX research and service design to reshape how leads were captured, qualified, and measured globally.",
-    tags: ["crm", "service design", "workflow", "salesforce", "global"],
+    tags: [
+      "telecommunications",
+      "data-platforms",
+      "system-integration",
+      "workflow-fragmentation",
+      "data-quality-and-trust",
+      "service-design",
+      "information-architecture",
+      "product-strategy",
+      "enterprise-saas",
+      "operational-tooling",
+    ],
     themes: ["service-design", "research", "workflow", "enterprise", "strategy"],
   },
   {
@@ -98,7 +187,18 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     url: "/case-studies/north-star/",
     summary:
       "Aligning product, marketing, sales, and customer success around more meaningful customer journey metrics.",
-    tags: ["cx strategy", "metrics", "journey", "alignment"],
+    tags: [
+      "data-platforms",
+      "telecommunications",
+      "decision-support",
+      "planning-and-forecasting",
+      "workflow-fragmentation",
+      "product-strategy",
+      "service-design",
+      "information-architecture",
+      "operational-tooling",
+      "data-platform",
+    ],
     themes: ["strategy", "service-design", "research", "enterprise"],
   },
   {

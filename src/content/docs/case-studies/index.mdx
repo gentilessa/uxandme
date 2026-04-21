@@ -6,19 +6,8 @@ prev: false
 next: false
 ---
 
-import Grid from "../../../components/user-components/Grid.astro";
-import PortfolioCard from "../../../components/user-components/PortfolioCard.astro";
+import CaseStudyCards from "../../../components/user-components/CaseStudyCards.astro";
 
 A selection of product design case studies across AI-assisted workflows, specialist platforms, enterprise SaaS, and systems-led product work.
 
-<Grid columns={2} maxWidth="1600px">
-  <PortfolioCard href="/case-studies/exosphere/" image="/images/projects/fleet/hero.png" alt="Exosphere dashboard preview" title="Exosphere" description="Turning fragmented exploration data into actionable targeting workflows." meta="Geoscience • AI targeting" />
-  <PortfolioCard href="/case-studies/central-viewer/" image="/images/projects/webviz/hero.png" alt="Central Viewer product preview" title="Central Viewer" description="A cloud-first 3D viewer that made geological collaboration easier and faster." meta="Geoscience • 3D collaboration" />
-  <PortfolioCard href="/case-studies/blocksync/" image="/images/projects/blocksync/hero.png" alt="BlockSync product preview" title="BlockSync" description="Turning spreadsheet-heavy grade control into a cloud-native system of record." meta="Mining • Grade control" />
-  <PortfolioCard href="/case-studies/assure-plus/" image="/images/projects/assure/hero.png" alt="Assure+ product preview" title="Assure+" description="A unified design system across field, admin, and public-facing experiences." meta="Cross-platform • Design systems" />
-  <PortfolioCard href="/case-studies/tradewindow/" image="/images/projects/tradewindow/tw-dash.png" alt="Cube product preview" title="Cube" description="Designing for the messy handoffs, dependencies, and onboarding paths of global trade." meta="Trade compliance • SaaS" />
-  <PortfolioCard href="/case-studies/breedlogic/" image="/images/projects/abri/hero.png" alt="BreedLogic product preview" title="BreedLogic" description="Bridging AI and genetics for breeders." meta="Genetics • Decision support" />
-  <PortfolioCard href="/case-studies/evo/" image="/images/projects/evo/evo-research.jpg" alt="EVO product preview" title="EVO" description="Shaping platform strategy for the future of geoscience software." meta="Platform strategy • SaaS" />
-  <PortfolioCard href="/case-studies/crm-lead-management/" image="/images/projects/seequent/Lead-journey.png" alt="CRM Lead Management product preview" title="CRM Lead Management" description="Redesigning lead management after a major merger." meta="CRM • Service design" />
-  <PortfolioCard href="/case-studies/north-star/" image="/images/projects/north-star/North-Star-Bow-Tie.png" alt="North Star product preview" title="North Star" description="Connecting customer experience to measurement." meta="CX strategy • Analytics" />
-</Grid>
+<CaseStudyCards />

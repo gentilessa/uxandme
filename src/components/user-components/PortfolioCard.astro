@@ -1,5 +1,18 @@
 ---
-const { href, image, alt, title, description, meta } = Astro.props;
+import { Badge } from "@astrojs/starlight/components";
+
+interface Props {
+  href: string;
+  image: string;
+  alt: string;
+  title: string;
+  description: string;
+  meta?: string;
+  metaItems?: string[];
+}
+
+const { href, image, alt, title, description, meta, metaItems = [] } =
+  Astro.props as Props;
 ---
 
 <a href={href} class="portfolio-card">
@@ -7,19 +20,29 @@ const { href, image, alt, title, description, meta } = Astro.props;
   <div class="portfolio-card__body">
     <h3>{title}</h3>
     <p>{description}</p>
-    <span>{meta}</span>
+    {
+      metaItems.length ? (
+        <div class="portfolio-card__meta-list" aria-label="Case study problems">
+          {metaItems.map((item) => (
+            <Badge text={item} variant="note" size="small" />
+          ))}
+        </div>
+      ) : meta ? (
+        <span class="portfolio-card__meta-text">{meta}</span>
+      ) : null
+    }
   </div>
 </a>
 
 <style>
   .portfolio-card {
     display: block;
-    background: var(--sl-color-gray-6);
-    border-radius: 12px;
+    background: var(--sl-color-bg-inline-code);
+    border-radius: 4px;
     overflow: hidden;
     text-decoration: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid var(--sl-color-gray-5);
+    border: none;
   }
   
   .portfolio-card:hover {
@@ -35,7 +58,7 @@ const { href, image, alt, title, description, meta } = Astro.props;
   }
   
   .portfolio-card__body {
-    padding: 20px;
+    padding: 0 20px 20px;
   }
   
   .portfolio-card__body h3 {
@@ -51,10 +74,17 @@ const { href, image, alt, title, description, meta } = Astro.props;
     line-height: 1.5;
   }
   
-  .portfolio-card__body span {
+  .portfolio-card__meta-text {
     font-size: 0.75rem;
     color: var(--sl-color-accent);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+  }
+
+  .portfolio-card__meta-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.25rem;
   }
 </style>

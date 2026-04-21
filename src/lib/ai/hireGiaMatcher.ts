@@ -1,4 +1,5 @@
 import { hireGiaKnowledge } from "./hireGiaKnowledge";
+import { getTaxonomyEntry } from "@/lib/taxonomy";
 import type {
   EvidenceItem,
   ExploreItem,
@@ -48,7 +49,14 @@ function scoreItem(input: string, item: KnowledgeItem) {
   let score = 0;
 
   item.tags.forEach((tag) => {
-    if (value.includes(tag.toLowerCase())) score += 4;
+    const taxonomyEntry = getTaxonomyEntry(tag);
+    const tagVariants = taxonomyEntry
+      ? [tag.toLowerCase(), taxonomyEntry.label.toLowerCase()]
+      : [tag.toLowerCase()];
+
+    tagVariants.forEach((variant) => {
+      if (value.includes(variant)) score += 4;
+    });
   });
 
   item.themes.forEach((theme) => {

@@ -1,4 +1,5 @@
 import { matchPrompt } from "./hireGiaMatcher";
+import { getAssistantPromptLabels } from "@/lib/taxonomy";
 
 type HireGiaMode = "guide" | "role";
 
@@ -30,18 +31,8 @@ type StudioElements = {
 };
 
 const promptMap: Record<HireGiaMode, string[]> = {
-  guide: [
-    "Design system experience",
-    "User research methods",
-    "Accessibility work",
-    "Cross-functional collaboration",
-  ],
-  role: [
-    "Senior product designer for enterprise SaaS",
-    "AI product design role",
-    "Systems-focused design leadership",
-    "Research-heavy product role",
-  ],
+  guide: getAssistantPromptLabels(["capability"]),
+  role: getAssistantPromptLabels(["problem"]),
 };
 
 function createEvidenceList(items: Array<{ title: string; url: string; description?: string }>) {
