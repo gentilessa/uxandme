@@ -41,7 +41,17 @@ function createEvidenceList(items: Array<{ title: string; url: string; descripti
   items.forEach((item) => {
     const row = document.createElement("div");
     row.className = "hire-gia-response__item";
-    row.innerHTML = `<a href="${item.url}">${item.title}</a>${item.description ? `<p>${item.description}</p>` : ""}`;
+    const link = document.createElement("a");
+    link.href = item.url;
+    link.textContent = item.title;
+    row.appendChild(link);
+
+    if (item.description) {
+      const description = document.createElement("p");
+      description.textContent = item.description;
+      row.appendChild(description);
+    }
+
     wrap.appendChild(row);
   });
   return wrap;
@@ -53,7 +63,10 @@ function createExploreList(items: Array<{ title: string; url: string }>) {
   items.forEach((item) => {
     const row = document.createElement("div");
     row.className = "hire-gia-response__item";
-    row.innerHTML = `<a href="${item.url}">${item.title}</a>`;
+    const link = document.createElement("a");
+    link.href = item.url;
+    link.textContent = item.title;
+    row.appendChild(link);
     wrap.appendChild(row);
   });
   return wrap;

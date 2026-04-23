@@ -2,15 +2,11 @@
 import HireGiaTabs from "./HireGiaTabs.astro";
 import HireGiaResponse from "./HireGiaResponse.astro";
 import { hireGiaIntroCopy } from "@/lib/ai/hireGiaPrompts";
+import { getAssistantPromptLabels } from "@/lib/taxonomy";
 
 const apiUrl = import.meta.env.PUBLIC_HIRE_GIA_API_URL || "";
 const bootstrap = { apiUrl };
-const guidePrompts = [
-  "Design system experience",
-  "User research methods",
-  "Accessibility work",
-  "Cross-functional collaboration",
-];
+const guidePrompts = getAssistantPromptLabels(["capability"]);
 ---
 
 <section class="hire-gia-studio" data-hire-gia-studio data-bootstrap={JSON.stringify(bootstrap)}>

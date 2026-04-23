@@ -32,8 +32,8 @@ const { items } = Astro.props;
     content: "";
     position: absolute;
     left: 50%;
-    top: 0;
-    bottom: 60px;
+    top: 10%;
+    bottom: 10%;
     width: 2px;
     background: var(--sl-color-gray-5);
     transform: translateX(-50%);
@@ -73,7 +73,7 @@ const { items } = Astro.props;
   .experience-row::after {
     content: "";
     border: 2px solid var(--sl-color-gray-4);
-    background: var(--sl-color-bg);
+    background: var(--sl-color-black);
     z-index: 1;
     border-radius: 999px;
     width: 14px;
@@ -135,6 +135,8 @@ const { items } = Astro.props;
   @media (max-width: 768px) {
     .experience-timeline::before {
       left: 20px;
+      top: 0;
+      bottom: 5rem;
     }
     
     .experience-row--left,
@@ -142,6 +144,14 @@ const { items } = Astro.props;
       padding-left: 56px;
       padding-right: 0;
       justify-content: flex-start;
+    }
+
+    .experience-row::after {
+      left: 20px;
+    }
+
+    .experience-row--current::after {
+      display: none;
     }
     
     .experience-card {

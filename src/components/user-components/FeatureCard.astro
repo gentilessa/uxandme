@@ -1,0 +1,99 @@
+---
+import {
+  Activity,
+  CircleHelp,
+  Compass,
+  Cpu,
+  GitBranch,
+  Lightbulb,
+  Plug,
+  ShieldCheck,
+  Sparkles,
+  Table2,
+  Users,
+  Workflow,
+} from "lucide-astro";
+
+interface Props {
+  title: string;
+  icon?: string;
+}
+
+const { title, icon = "circle-help" } = Astro.props as Props;
+
+const iconMap = {
+  activity: Activity,
+  compass: Compass,
+  cpu: Cpu,
+  "circle-help": CircleHelp,
+  "git-branch": GitBranch,
+  lightbulb: Lightbulb,
+  plug: Plug,
+  shield: ShieldCheck,
+  "shield-check": ShieldCheck,
+  sparkles: Sparkles,
+  table: Table2,
+  users: Users,
+  workflow: Workflow,
+};
+
+const Icon = iconMap[icon as keyof typeof iconMap] || CircleHelp;
+---
+
+<article class="feature-card">
+  <div class="feature-card__icon" aria-hidden="true">
+    <Icon size={22} strokeWidth={1.6} />
+  </div>
+  <div class="feature-card__content">
+    <h3>{title}</h3>
+    <div class="feature-card__body">
+      <slot />
+    </div>
+  </div>
+</article>
+
+<style>
+  .feature-card {
+    display: block;
+    min-height: 100%;
+    padding: 1.1rem;
+    border: 1px solid var(--sl-color-hairline);
+    border-radius: 0.9rem;
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--sl-color-accent-low) 34%, transparent), transparent 58%),
+      var(--sl-color-gray-6);
+  }
+
+  .feature-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 0.75rem;
+    color: var(--sl-color-accent-high);
+  }
+
+  .feature-card__content {
+    margin-top: 0.85rem;
+    min-width: 0;
+  }
+
+  .feature-card h3 {
+    margin: 0;
+    color: var(--sl-color-white);
+    font-size: var(--sl-text-base);
+    line-height: var(--sl-line-height-headings);
+  }
+
+  .feature-card__body {
+    margin-top: 0.45rem;
+    color: var(--sl-color-gray-2);
+    font-size: var(--sl-text-sm);
+    line-height: 1.55;
+  }
+
+  .feature-card__body :global(p) {
+    margin: 0;
+  }
+</style>

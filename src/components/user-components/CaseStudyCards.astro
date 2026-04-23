@@ -7,110 +7,116 @@ import {
   type CaseStudyTaxonomyMeta,
 } from "@/lib/taxonomy";
 
-type CardConfig = {
-  slug: string;
-  image: string;
-  alt: string;
-  description: string;
-  title?: string;
-};
+const groups = [
+  { id: "fleet", title: "Fleet", description: "AI-assisted mineral exploration and space-enabled data products." },
+  { id: "tradewindow", title: "Tradewindow", description: "Trade, traceability, and complex operational workflow products." },
+  { id: "abri", title: "ABRI", description: "AI-assisted decision support for breeding and specialist users." },
+  { id: "seequent", title: "Seequent", description: "Geoscience, data platforms, 3D workflows, and product strategy." },
+] as const;
 
-const cardConfigs: CardConfig[] = [
-  {
-    slug: "exosphere",
-    image: "/images/projects/fleet/hero.png",
-    alt: "Exosphere dashboard preview",
-    description: "Turning fragmented exploration data into actionable targeting workflows.",
-  },
-  {
-    slug: "central-viewer",
-    image: "/images/projects/webviz/hero.png",
-    alt: "Central Viewer product preview",
-    description: "A cloud-first 3D viewer that made geological collaboration easier and faster.",
-  },
-  {
-    slug: "blocksync",
-    image: "/images/projects/blocksync/hero.png",
-    alt: "BlockSync product preview",
-    description: "Turning spreadsheet-heavy grade control into a cloud-native system of record.",
-  },
-  {
-    slug: "assure-plus",
-    image: "/images/projects/assure/hero.png",
-    alt: "Assure+ product preview",
-    description: "A unified design system across field, admin, and public-facing experiences.",
-  },
-  {
-    slug: "tradewindow",
-    image: "/images/projects/tradewindow/tw-dash.png",
-    alt: "Cube product preview",
-    description: "Designing for the messy handoffs, dependencies, and onboarding paths of global trade.",
-    title: "Cube",
-  },
-  {
-    slug: "breedlogic",
-    image: "/images/projects/abri/hero.png",
-    alt: "BreedLogic product preview",
-    description: "Bridging AI and genetics for breeders.",
-  },
-  {
-    slug: "evo",
-    image: "/images/projects/evo/evo-research.jpg",
-    alt: "Evo product preview",
-    description: "Shaping platform strategy for the future of geoscience software.",
-  },
-  {
-    slug: "crm-lead-management",
-    image: "/images/projects/seequent/Lead-journey.png",
-    alt: "CRM Lead Management product preview",
-    description: "Redesigning lead management after a major merger.",
-  },
-  {
-    slug: "north-star",
-    image: "/images/projects/north-star/North-Star-Bow-Tie.png",
-    alt: "North Star product preview",
-    description: "Connecting customer experience to measurement.",
-  },
-];
+type CompanyId = (typeof groups)[number]["id"];
 
 const docs = await getCollection("docs");
-const caseStudies = new Map(
-  docs
-    .filter((entry) => entry.id.startsWith("case-studies/") && entry.id !== "case-studies/index")
-    .map((entry) => [entry.id.split("/").at(-1), entry] as const)
+const caseStudyEntries = docs
+  .filter((entry) => entry.id.startsWith("case-studies/"))
+  .filter((entry) => entry.id !== "case-studies/index")
+  .filter((entry) => !entry.id.endsWith("/index"))
+  .filter((entry) => entry.data.card);
+
+function hrefForEntry(id: string) {
+  return `/${id}/`;
+}
+
+function cardForEntry(entry: (typeof caseStudyEntries)[number]) {
+  const card = entry.data.card!;
+  const meta = entry.data.meta as CaseStudyTaxonomyMeta | undefined;
+  const problemLabels = meta ? getTaxonomyLabels("problem", meta.problem) : [];
+
+  return {
+    company: card.company as CompanyId,
+    href: hrefForEntry(entry.id),
+    image: card.image,
+    alt: card.alt,
+    title: entry.data.sidebar?.label || entry.data.title,
+    description: card.description,
+    metaItems: problemLabels,
+  };
+}
+
+const cardsByCompany = caseStudyEntries.reduce(
+  (acc, entry) => {
+    const card = cardForEntry(entry);
+    acc[card.company].push(card);
+    return acc;
+  },
+  {
+    fleet: [],
+    tradewindow: [],
+    abri: [],
+    seequent: [],
+  } as Record<CompanyId, ReturnType<typeof cardForEntry>[]>
 );
-
-const cards = cardConfigs
-  .map((config) => {
-    const entry = caseStudies.get(config.slug);
-    if (!entry?.data.meta) return null;
-
-    const meta = entry.data.meta as CaseStudyTaxonomyMeta;
-    const problemLabels = getTaxonomyLabels("problem", meta.problem);
-
-    return {
-      href: `/case-studies/${config.slug}/`,
-      image: config.image,
-      alt: config.alt,
-      title: config.title || entry.data.title,
-      description: config.description,
-      metaItems: problemLabels,
-    };
-  })
-  .filter(Boolean);
 ---
 
-<Grid columns={2} maxWidth="1600px">
+<div class="case-study-groups">
   {
-    cards.map((card) => (
-      <PortfolioCard
-        href={card!.href}
-        image={card!.image}
-        alt={card!.alt}
-        title={card!.title}
-        description={card!.description}
-        metaItems={card!.metaItems}
-      />
-    ))
+    groups.map((group) => {
+      const cards = cardsByCompany[group.id];
+      if (!cards.length) return null;
+
+      return (
+        <section class="case-study-group">
+          <div class="case-study-group__heading">
+            <p>{group.title}</p>
+            <span>{group.description}</span>
+          </div>
+
+          <Grid columns={2} maxWidth="1600px">
+            {cards.map((card) => (
+              <PortfolioCard
+                href={card.href}
+                image={card.image}
+                alt={card.alt}
+                title={card.title}
+                description={card.description}
+                metaItems={card.metaItems}
+              />
+            ))}
+          </Grid>
+        </section>
+      );
+    })
   }
-</Grid>
+</div>
+
+<style>
+  .case-study-groups {
+    display: grid;
+    gap: clamp(3rem, 6vw, 5rem);
+  }
+
+  .case-study-group {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .case-study-group__heading {
+    max-width: 52rem;
+  }
+
+  .case-study-group__heading p {
+    margin: 0;
+    color: var(--sl-color-white);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: var(--sl-line-height-headings);
+    font-weight: 700;
+  }
+
+  .case-study-group__heading span {
+    display: block;
+    margin-top: 0.45rem;
+    color: var(--sl-color-gray-2);
+    font-size: var(--sl-text-base);
+    line-height: 1.6;
+  }
+</style>

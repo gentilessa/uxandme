@@ -1,6 +1,6 @@
 import { z } from "astro/zod";
-import { docsLoader, i18nLoader } from "@astrojs/starlight/loaders";
-import { docsSchema, i18nSchema } from "@astrojs/starlight/schema";
+import { docsLoader } from "@astrojs/starlight/loaders";
+import { docsSchema } from "@astrojs/starlight/schema";
 import { glob } from "astro/loaders";
 import { defineCollection } from "astro:content";
 import { getTaxonomyIds } from "./lib/taxonomy";
@@ -18,6 +18,15 @@ const caseStudyMetaSchema = z.object({
   capability: z.array(z.enum(capabilityIds)),
   system: z.array(z.enum(systemIds)),
   impact: z.array(z.enum(impactIds)),
+});
+
+const caseStudyCardSchema = z.object({
+  company: z.enum(["fleet", "tradewindow", "abri", "seequent"]),
+  image: z.string(),
+  alt: z.string(),
+  description: z.string(),
+  featured: z.boolean().optional(),
+  featuredOrder: z.number().optional(),
 });
 
 const ctaSection = defineCollection({
@@ -48,9 +57,9 @@ export const collections = {
     schema: docsSchema({
       extend: z.object({
         meta: caseStudyMetaSchema.optional(),
+        card: caseStudyCardSchema.optional(),
       }),
     }),
   }),
-  i18n: defineCollection({ loader: i18nLoader(), schema: i18nSchema() }),
   ctaSection,
 };

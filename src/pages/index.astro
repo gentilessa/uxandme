@@ -7,25 +7,28 @@ import Hero from "@/components/Hero.astro";
 import PortfolioCard from "@/components/user-components/PortfolioCard.astro";
 import ExperienceTimeline from "@/components/ExperienceTimeline.astro";
 import Testimonial from "@/components/Testimonial.astro";
+import { getCollection } from "astro:content";
+import {
+  getTaxonomyLabels,
+  type CaseStudyTaxonomyMeta,
+} from "@/lib/taxonomy";
 
-const featuredStudies = [
-  {
-    href: "/case-studies/exosphere/",
-    image: "/images/projects/fleet/hero.png",
-    alt: "Exosphere dashboard",
-    title: "Exosphere",
-    description: "Turning fragmented exploration data into actionable targeting workflows.",
-    meta: "Geoscience • AI targeting",
-  },
-  {
-    href: "/case-studies/breedlogic/",
-    image: "/images/projects/abri/hero.png",
-    alt: "BreedLogic project preview",
-    title: "BreedLogic",
-    description: "Bridging AI and genetics for breeders.",
-    meta: "Genetics • Decision support",
-  },
-];
+const docs = await getCollection("docs");
+const featuredStudies = docs
+  .filter((entry) => entry.id.startsWith("case-studies/"))
+  .filter((entry) => entry.data.card?.featured)
+  .sort((a, b) => (a.data.card?.featuredOrder || 99) - (b.data.card?.featuredOrder || 99))
+  .map((entry) => {
+    const meta = entry.data.meta as CaseStudyTaxonomyMeta | undefined;
+    return {
+      href: `/${entry.id}/`,
+      image: entry.data.card!.image,
+      alt: entry.data.card!.alt,
+      title: entry.data.sidebar?.label || entry.data.title,
+      description: entry.data.card!.description,
+      metaItems: meta ? getTaxonomyLabels("problem", meta.problem) : [],
+    };
+  });
 
 const strengths = [
   { title: "AI-assisted workflows", icon: "brain", iconColor: "#ff8ea1", body: "Designing human-centred flows that make AI outputs more usable, explainable, and actionable." },

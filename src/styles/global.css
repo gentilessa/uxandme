@@ -80,10 +80,14 @@
 @import "./components.css";
 @import "./button.css";
 
+/* Keep media embedded in MDX content feeling intentional without affecting UI chrome. */
+.sl-markdown-content :is(img, picture, video, canvas, svg, iframe):not(:where(.not-content *)) {
+  border-radius: 12px;
+}
+
 /* Starlight-tailwind MUST come AFTER our component styles so borders cascade properly */
 @import "@astrojs/starlight-tailwind";
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
-
 
 

@@ -25,10 +25,13 @@ const hasSidebar = Astro.locals.starlightRoute.hasSidebar;
     <SiteTitle />
   </div>
   <!-- navbar toggler -->
-  <input id="nav-toggle" type="checkbox" class="hidden" />
-  <label
-    for="nav-toggle"
+  <button
+    type="button"
     class="order-3 cursor-pointer flex items-center lg:hidden dark:text-white lg:order-1 hamburger-menu"
+    aria-controls="nav-menu"
+    aria-expanded="false"
+    aria-label="Toggle navigation menu"
+    data-nav-toggle
   >
     <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
       <title>Menu Open</title>
@@ -40,7 +43,7 @@ const hasSidebar = Astro.locals.starlightRoute.hasSidebar;
         points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
         transform="rotate(45 10 10)"></polygon>
     </svg>
-  </label>
+  </button>
   <!-- /navbar toggler -->
   <ul
     id="nav-menu"
@@ -150,8 +153,10 @@ const hasSidebar = Astro.locals.starlightRoute.hasSidebar;
   // add header bg after scroll
   const nav = document.querySelector(".navbar");
   const sidebar = document.querySelector(".sidebar-nav");
+  const navToggle = document.querySelector<HTMLButtonElement>("[data-nav-toggle]");
+  const navMenu = document.querySelector<HTMLElement>("#nav-menu");
 
-  window.onscroll = function () {
+  const syncScrolledState = () => {
     if (
       document.body.scrollTop > 10 ||
       document.documentElement.scrollTop > 10
@@ -163,6 +168,15 @@ const hasSidebar = Astro.locals.starlightRoute.hasSidebar;
       sidebar?.classList.remove("navbar-scrolled");
     }
   };
+
+  syncScrolledState();
+  window.addEventListener("scroll", syncScrolledState, { passive: true });
+
+  navToggle?.addEventListener("click", () => {
+    const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+    navToggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
+    navMenu?.classList.toggle("is-open", !isOpen);
+  });
 
   // Dropdown Menu Toggler For Mobile
   // ----------------------------------------

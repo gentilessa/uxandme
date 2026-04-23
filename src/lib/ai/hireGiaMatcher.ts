@@ -154,7 +154,7 @@ function fallbackRoleResult(): RoleResult {
     gaps: ["The role requirements are too broad or underspecified to assess credibly."],
     nextPages: [
       { title: "About Gia", url: "/about/" },
-      { title: "BlockSync", url: "/case-studies/blocksync/" },
+      { title: "BlockSync", url: "/case-studies/seequent/blocksync/" },
     ],
     limits:
       "This fit assessment is intentionally cautious and only uses evidence from the published portfolio.",

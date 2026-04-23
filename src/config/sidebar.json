@@ -2,7 +2,39 @@
   "main": [
     {
       "label": "Case Studies",
-      "autogenerate": { "directory": "case-studies" }
+      "items": [
+        {
+          "label": "Fleet",
+          "items": [
+            { "slug": "case-studies/fleet/exosphere" },
+            { "slug": "case-studies/fleet/comet" },
+            { "slug": "case-studies/fleet/exocore" }
+          ]
+        },
+        {
+          "label": "Tradewindow",
+          "items": [
+            { "slug": "case-studies/tradewindow/cube" },
+            { "slug": "case-studies/tradewindow/assure-plus" }
+          ]
+        },
+        {
+          "label": "ABRI",
+          "items": [
+            { "slug": "case-studies/abri/breedlogic" }
+          ]
+        },
+        {
+          "label": "Seequent",
+          "items": [
+            { "slug": "case-studies/seequent/central-viewer" },
+            { "slug": "case-studies/seequent/blocksync" },
+            { "slug": "case-studies/seequent/evo" },
+            { "slug": "case-studies/seequent/crm-lead-management" },
+            { "slug": "case-studies/seequent/north-star" }
+          ]
+        }
+      ]
     },
     {
       "label": "Articles",

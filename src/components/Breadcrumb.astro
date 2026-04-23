@@ -1,9 +1,29 @@
 ---
 const url = Astro.url;
 const pathSegments = url.pathname.split("/").filter((segment) => segment);
+const segmentLabels: Record<string, string> = {
+  abri: "ABRI",
+  blocksync: "BlockSync",
+  breedlogic: "BreedLogic",
+  exocore: "Exocore",
+  exosphere: "Exosphere",
+  fleet: "Fleet",
+  seequent: "Seequent",
+  tradewindow: "Tradewindow",
+};
+
+function formatSegment(segment: string) {
+  const decoded = decodeURIComponent(segment);
+  if (segmentLabels[decoded]) return segmentLabels[decoded];
+
+  return decoded
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
 const breadcrumbItems = pathSegments.map((segment, index) => {
   const href = "/" + pathSegments.slice(0, index + 1).join("/");
-  const text = decodeURIComponent(segment.replace(/-/g, " "));
+  const text = formatSegment(segment);
   return { href, text };
 });
 ---
@@ -31,7 +51,6 @@ const breadcrumbItems = pathSegments.map((segment, index) => {
     }
     li {
       position: relative;
-      text-transform: capitalize;
     }
     li::after {
       content: '';

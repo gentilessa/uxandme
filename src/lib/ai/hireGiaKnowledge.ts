@@ -15,7 +15,7 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     id: "exosphere",
     type: "case-study",
     title: "Exosphere",
-    url: "/case-studies/exosphere/",
+    url: "/case-studies/fleet/exosphere/",
     summary:
       "Turning fragmented exploration data into actionable targeting workflows.",
     tags: [
@@ -38,7 +38,7 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     id: "central-viewer",
     type: "case-study",
     title: "Central Viewer",
-    url: "/case-studies/central-viewer/",
+    url: "/case-studies/seequent/central-viewer/",
     summary:
       "A cloud-first 3D viewer that made geological collaboration easier and faster.",
     tags: [
@@ -59,7 +59,7 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     id: "blocksync",
     type: "case-study",
     title: "BlockSync",
-    url: "/case-studies/blocksync/",
+    url: "/case-studies/seequent/blocksync/",
     summary:
       "Turning spreadsheet-heavy grade control into a cloud-native system of record.",
     tags: [
@@ -81,7 +81,7 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     id: "assure-plus",
     type: "case-study",
     title: "Assure+",
-    url: "/case-studies/assure-plus/",
+    url: "/case-studies/tradewindow/assure-plus/",
     summary:
       "A unified design system across field, admin, and public-facing experiences.",
     tags: [
@@ -101,7 +101,7 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     id: "tradewindow",
     type: "case-study",
     title: "Cube",
-    url: "/case-studies/tradewindow/",
+    url: "/case-studies/tradewindow/cube/",
     summary:
       "Designing for the messy handoffs, dependencies, and onboarding paths of global trade.",
     tags: [
@@ -122,7 +122,7 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     id: "breedlogic",
     type: "case-study",
     title: "BreedLogic",
-    url: "/case-studies/breedlogic/",
+    url: "/case-studies/abri/breedlogic/",
     summary:
       "Designing AI-assisted mate selection for cattle breeders and decision support.",
     tags: [
@@ -142,7 +142,7 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     id: "evo",
     type: "case-study",
     title: "Evo",
-    url: "/case-studies/evo/",
+    url: "/case-studies/seequent/evo/",
     summary:
       "Foundational platform strategy for a next-generation geoscience ecosystem.",
     tags: [
@@ -163,7 +163,7 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     id: "crm",
     type: "case-study",
     title: "CRM lead management",
-    url: "/case-studies/crm-lead-management/",
+    url: "/case-studies/seequent/crm-lead-management/",
     summary:
       "Using UX research and service design to reshape how leads were captured, qualified, and measured globally.",
     tags: [
@@ -184,7 +184,7 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     id: "north-star",
     type: "case-study",
     title: "North Star constellation",
-    url: "/case-studies/north-star/",
+    url: "/case-studies/seequent/north-star/",
     summary:
       "Aligning product, marketing, sales, and customer success around more meaningful customer journey metrics.",
     tags: [

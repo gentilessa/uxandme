@@ -103,13 +103,13 @@ const { hasSidebar } = Astro.locals.starlightRoute;
     }
     @media (max-width: 800px) {
       .header {
-        background-color: var(--sl-color-black);
+        background-color: var(--sl-color-bg-nav);
         padding: 6px var(--sl-nav-pad-x);
       }
     }
 
     .main-frame {
-      padding-top: calc(var(--sl-nav-height) + var(--sl-mobile-toc-height));
+      padding-top: calc(var(--sl-nav-height) + 4px + var(--sl-mobile-toc-height));
     }
 
     .sidebar-pane {
