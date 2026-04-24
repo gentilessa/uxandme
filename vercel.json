@@ -1,0 +1,46 @@
+{
+  "redirects": [
+    { "source": "/404", "destination": "/", "permanent": true },
+    { "source": "/resume", "destination": "/about/", "permanent": true },
+    { "source": "/contact", "destination": "/about/", "permanent": true },
+    { "source": "/home/about-me", "destination": "/about/", "permanent": true },
+    { "source": "/portfolio", "destination": "/case-studies/", "permanent": true },
+    { "source": "/portfolio-archive/blocksync", "destination": "/case-studies/seequent/blocksync/", "permanent": true },
+    { "source": "/case-study-central-viewer", "destination": "/case-studies/seequent/central-viewer/", "permanent": true },
+    { "source": "/interaction-patterns", "destination": "/articles/", "permanent": true },
+
+    { "source": "/10-tips-for-embracing-lean-ux-in-your-team", "destination": "/articles/lean-ux-is-useful-dogma-isnt/", "permanent": true },
+    { "source": "/unlocking-the-power-of-agile-ux-strategies-for-streamlining-design-and-development", "destination": "/articles/agile-and-ux-do-not-clash-nearly-as-much-as-bad-planning-does/", "permanent": true },
+    { "source": "/the-role-of-prototyping-in-ux-research-testing-and-iterating-for-success", "destination": "/articles/prototypes-are-not-polish-they-are-thinking-tools/", "permanent": true },
+    { "source": "/learn-discover-find-and-search-elements-of-usable-design", "destination": "/articles/information-architecture-is-how-complex-products-stay-usable/", "permanent": true },
+    { "source": "/the-power-of-user-interviews-how-to-conduct-effective-ux-research", "destination": "/articles/surveys-wont-tell-you-where-the-product-is-breaking/", "permanent": true },
+
+    { "source": "/category/design/:path*", "destination": "/design-systems/", "permanent": true },
+    { "source": "/category/ux/:path*", "destination": "/articles/", "permanent": true },
+    { "source": "/tag/agile-ux/:path*", "destination": "/articles/agile-and-ux-do-not-clash-nearly-as-much-as-bad-planning-does/", "permanent": true },
+    { "source": "/tag/information-architecture/:path*", "destination": "/articles/information-architecture-is-how-complex-products-stay-usable/", "permanent": true },
+    { "source": "/tag/lean-ux/:path*", "destination": "/articles/lean-ux-is-useful-dogma-isnt/", "permanent": true },
+    { "source": "/tag/user-testing/:path*", "destination": "/articles/user-testing-is-not-a-launch-checkbox/", "permanent": true },
+
+    { "source": "/case-studies/blocksync", "destination": "/case-studies/seequent/blocksync/", "permanent": true },
+    { "source": "/case-studies/central-viewer", "destination": "/case-studies/seequent/central-viewer/", "permanent": true },
+    { "source": "/case-studies/crm-lead-management", "destination": "/case-studies/seequent/crm-lead-management/", "permanent": true },
+    { "source": "/case-studies/evo", "destination": "/case-studies/seequent/evo/", "permanent": true },
+    { "source": "/case-studies/north-star", "destination": "/case-studies/seequent/north-star/", "permanent": true },
+    { "source": "/case-studies/breedlogic", "destination": "/case-studies/abri/breedlogic/", "permanent": true },
+    { "source": "/case-studies/exosphere", "destination": "/case-studies/fleet/exosphere/", "permanent": true },
+    { "source": "/case-studies/assure-plus", "destination": "/case-studies/tradewindow/assure-plus/", "permanent": true },
+    { "source": "/case-studies/tradewindow", "destination": "/case-studies/tradewindow/cube/", "permanent": true },
+
+    { "source": "/author/admin/:path*", "destination": "/articles/", "permanent": true },
+    { "source": "/blog-elementor/:path*", "destination": "/articles/", "permanent": true },
+    { "source": "/tag/psychology-and-ux/:path*", "destination": "/articles/", "permanent": true },
+    { "source": "/tag/web-usability/:path*", "destination": "/articles/", "permanent": true },
+    { "source": "/ai-content-generator", "destination": "/articles/", "permanent": true },
+    { "source": "/smartscript-ai", "destination": "/articles/", "permanent": true },
+    { "source": "/home-slider-elementor", "destination": "/articles/", "permanent": true },
+    { "source": "/resume-creative-elementor", "destination": "/articles/", "permanent": true },
+    { "source": "/minimalism-has-reached-a-certain-point", "destination": "/articles/", "permanent": true },
+    { "source": "/the-main-thing-for-the-designer", "destination": "/articles/", "permanent": true }
+  ]
+}

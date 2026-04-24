@@ -37,8 +37,8 @@ const { href, image, alt, title, description, meta, metaItems = [] } =
 <style>
   .portfolio-card {
     display: block;
-    background: var(--sl-color-bg-inline-code);
-    border-radius: 4px;
+    background: var(--sl-color-black);
+    border-radius: 12px;
     overflow: hidden;
     text-decoration: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -86,5 +86,10 @@ const { href, image, alt, title, description, meta, metaItems = [] } =
     flex-wrap: wrap;
     gap: 0.45rem;
     margin-top: 0.25rem;
+  }
+
+  .portfolio-card__meta-list :global(.note) {
+    --sl-color-bg-badge: color-mix(in srgb, var(--sl-color-accent) 40%, transparent);
+    --sl-color-text-badge: var(--sl-color-accent-high);
   }
 </style>

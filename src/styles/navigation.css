@@ -30,7 +30,7 @@
   @apply relative flex flex-wrap items-center justify-between ;
 }
 .navbar-scrolled{
-  background: var(--sl-color-bg-nav);
+  background: var(--sl-color-body);
 }
 .navbar-brand {
   @apply  text-xl font-semibold flex items-center select-none;
