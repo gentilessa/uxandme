@@ -1,14 +1,14 @@
 ---
 title: |
-  Ready to explore <span class='light-text'>Dockit experience? </span>
-description: Discover tips, resources, and guidance to maximize experience with our documentation.
+  Let’s build something <span class='light-text'>complex, simply.</span>
+description: Currently open to leadership roles in AI, SaaS, and complex product environments.
 enable: true
 fill_button:
   enable: true
-  label: Get Started
-  link: /getting-started/introduction/overview/
+  label: Get in touch
+  link: mailto:gia@uxandme.com
 outline_button:
   enable: true
-  label: View Docs
-  link: /getting-started/introduction/overview/
+  label: View Case Studies
+  link: /case-studies/
 ---
