@@ -6,6 +6,7 @@ import ImageMod from "../ImageMod.astro";
 import HireGiaLauncher from "../user-components/HireGiaLauncher.astro";
 
 const { hasSidebar } = Astro.locals.starlightRoute;
+const is404 = Astro.locals.starlightRoute?.id === "404";
 ---
 
 <div class="page sl-flex">
@@ -68,7 +69,7 @@ const { hasSidebar } = Astro.locals.starlightRoute;
       <slot />
     </div>
   </div>
-  {!hasSidebar && <CTA />}
+  {!hasSidebar && !is404 && <CTA />}
   {!hasSidebar && <Footer />}
   <HireGiaLauncher />
 </div>

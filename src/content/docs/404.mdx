@@ -1,0 +1,99 @@
+---
+title: "404"
+description: "Page not found."
+hero:
+  tagline: "This page didn’t make the cut"
+  search: false
+  popular: false
+---
+
+<div class="error-state not-content">
+  <p class="error-state__eyebrow">Page not found</p>
+
+  <p class="error-state__copy">
+    Whatever used to live here is gone, moved, or was never meant to be public.
+    Better options: go home, browse work, or read articles instead.
+  </p>
+
+  <div class="error-state__actions">
+    <a href="/" class="error-state__action error-state__action--primary">Go Home</a>
+    <a href="/case-studies/" class="error-state__action error-state__action--secondary">Browse Work</a>
+    <a href="/articles/" class="error-state__action error-state__action--secondary">Read Articles</a>
+  </div>
+</div>
+
+<style>{`
+  .error-state {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 0 var(--sl-content-pad-x) 5rem;
+    text-align: center;
+  }
+
+  .error-state__eyebrow {
+    margin: 0 0 0.9rem;
+    color: var(--sl-color-accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .error-state__copy {
+    margin: 0;
+    color: var(--sl-color-gray-2);
+    font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+    line-height: 1.7;
+    text-wrap: balance;
+  }
+
+  .error-state__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9rem;
+    margin-top: 2.2rem;
+  }
+
+  .error-state__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: 0.9rem 1.35rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+  }
+
+  .error-state__action:hover {
+    transform: translateY(-1px);
+  }
+
+  .error-state__action--primary {
+    background: var(--color-primary-gradient);
+    border: 1px solid transparent;
+    color: #fff;
+  }
+
+  .error-state__action--secondary {
+    background: color-mix(in srgb, var(--sl-color-white) 5%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sl-color-white) 12%, transparent);
+    color: var(--sl-color-white);
+  }
+
+  @media (max-width: 720px) {
+    .error-state {
+      padding-bottom: 4rem;
+    }
+
+    .error-state__actions {
+      flex-direction: column;
+    }
+
+    .error-state__action {
+      width: 100%;
+    }
+  }
+`}</style>

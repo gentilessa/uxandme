@@ -27,10 +27,23 @@ const showHeroTools = showSearch || showPopular;
 ---
 
 <div
-  class="hero flex flex-col items-center mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-35"
+  class:list={[
+    "hero flex flex-col items-center mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-35",
+    is404 && "hero--404",
+  ]}
 >
-  {title && <h1 set:html={title} class="mb-8 text-center rounded-2xl" />}
-  {tagline && <p set:html={tagline} class="text-xl text-center" />}
+  {title && (
+    <h1
+      set:html={title}
+      class:list={["mb-8 text-center rounded-2xl", is404 && "hero__title--404"]}
+    />
+  )}
+  {tagline && (
+    <p
+      set:html={tagline}
+      class:list={["text-xl text-center", is404 && "hero__tagline--404"]}
+    />
+  )}
 
   {
     showHeroTools && (
@@ -76,11 +89,30 @@ const showHeroTools = showSearch || showPopular;
 
 <style>
   @layer starlight.core {
-    h1 {
+    .hero h1 {
       font-size: 7rem !important;
       line-height: 6.5rem !important;
       letter-spacing: -4px;
       color: var(--sl-color-white);
+    }
+    .hero p {
+      color: var(--sl-color-gray-2);
+      max-width: 36rem;
+      text-wrap: balance;
+    }
+    .hero--404 {
+      padding-top: 7rem;
+      padding-bottom: 2rem;
+    }
+    .hero--404 .hero__title--404 {
+      margin-bottom: 0.75rem;
+      font-size: clamp(5rem, 14vw, 8rem) !important;
+      line-height: 0.92 !important;
+      letter-spacing: -0.06em;
+    }
+    .hero--404 .hero__tagline--404 {
+      font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+      line-height: 1.45;
     }
     .search-container {
       width: 90%;
@@ -105,10 +137,18 @@ const showHeroTools = showSearch || showPopular;
     }
 
     @media (max-width: 940px) {
-      h1 {
+      .hero h1 {
         font-size: 3.5rem !important;
         line-height: 3.5rem !important;
         letter-spacing: -2px;
+      }
+      .hero--404 {
+        padding-top: 5.5rem;
+        padding-bottom: 1rem;
+      }
+      .hero--404 .hero__title--404 {
+        font-size: clamp(4rem, 22vw, 6rem) !important;
+        line-height: 0.92 !important;
       }
       .search-container {
         width: 100%;
