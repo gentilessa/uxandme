@@ -320,7 +320,7 @@ const fitObservations = [...fitAxes].sort((a, b) => b.value - a.value).slice(0, 
         </div>
       </section>
 
-      {result.mode === "role" && result.gaps?.length && (
+      {result.mode === "role" && (result.gaps?.length ?? 0) > 0 && (
         <section class="assistant-review__panel">
           <div class="assistant-review__section-heading">
             <h2>Where evidence is thinner</h2>
