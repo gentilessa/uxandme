@@ -25,7 +25,7 @@ import HireGiaStudio from "./HireGiaStudio.astro";
 
 <style>
   .hire-gia-sheet {
-    --hire-gia-surface: color-mix(in srgb, var(--color-body) 96%, transparent);
+    --hire-gia-surface: var(--color-body);
     --hire-gia-surface-soft: color-mix(in srgb, var(--color-light) 4%, transparent);
     --hire-gia-text: var(--color-light);
     --hire-gia-muted: var(--color-text);
@@ -45,7 +45,7 @@ import HireGiaStudio from "./HireGiaStudio.astro";
   }
 
   :global([data-theme="light"]) .hire-gia-sheet {
-    --hire-gia-surface: color-mix(in srgb, var(--color-lightmode-body) 99%, transparent);
+    --hire-gia-surface: var(--color-lightmode-body);
     --hire-gia-surface-soft: color-mix(in srgb, var(--color-lightmode-text) 3%, transparent);
     --hire-gia-text: var(--color-lightmode-text);
     --hire-gia-muted: color-mix(in srgb, var(--color-lightmode-text) 68%, transparent);
@@ -97,10 +97,35 @@ import HireGiaStudio from "./HireGiaStudio.astro";
   }
 
   .hire-gia-sheet__body {
+    display: flex;
+    flex-direction: column;
     overflow-y: auto;
-    padding: 1rem;
+    overflow-x: hidden;
+    padding: 1rem 1rem 0;
     min-height: 0;
     overscroll-behavior: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .hire-gia-sheet__body::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  .hire-gia-sheet,
+  .hire-gia-sheet * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .hire-gia-sheet::-webkit-scrollbar,
+  .hire-gia-sheet *::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+    background: transparent;
   }
 
   @media (max-width: 640px) {

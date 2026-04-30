@@ -12,12 +12,34 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     themes: ["enterprise", "systems", "leadership", "ai", "strategy"],
   },
   {
+    id: "exocore",
+    type: "case_study",
+    title: "Exocore",
+    url: "/case-studies/fleet/exocore/",
+    summary:
+      "Designing an AI-assisted data foundation for exploration workflows, turning hidden ingestion into a visible, reviewable, human-in-the-loop product workflow.",
+    tags: [
+      "subsurface-and-infrastructure",
+      "data-platforms",
+      "decision-support",
+      "data-quality-and-trust",
+      "system-integration",
+      "ai-workflows",
+      "complex-workflows",
+      "product-strategy",
+      "data-platform",
+      "ai-assisted-system",
+      "operational-tooling",
+    ],
+    themes: ["ai", "workflow", "systems", "specialist-users", "strategy"],
+  },
+  {
     id: "exosphere",
-    type: "case-study",
+    type: "case_study",
     title: "Exosphere",
     url: "/case-studies/fleet/exosphere/",
     summary:
-      "Turning fragmented exploration data into actionable targeting workflows.",
+      "Turning fragmented exploration data into more connected targeting and interpretation workflows.",
     tags: [
       "subsurface-and-infrastructure",
       "data-platforms",
@@ -36,7 +58,7 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
   },
   {
     id: "central-viewer",
-    type: "case-study",
+    type: "case_study",
     title: "Central Viewer",
     url: "/case-studies/seequent/central-viewer/",
     summary:
@@ -57,7 +79,7 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
   },
   {
     id: "blocksync",
-    type: "case-study",
+    type: "case_study",
     title: "BlockSync",
     url: "/case-studies/seequent/blocksync/",
     summary:
@@ -79,7 +101,7 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
   },
   {
     id: "assure-plus",
-    type: "case-study",
+    type: "case_study",
     title: "Assure+",
     url: "/case-studies/tradewindow/assure-plus/",
     summary:
@@ -98,8 +120,8 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     themes: ["design-systems", "enterprise", "systems", "workflow"],
   },
   {
-    id: "tradewindow",
-    type: "case-study",
+    id: "cube",
+    type: "case_study",
     title: "Cube",
     url: "/case-studies/tradewindow/cube/",
     summary:
@@ -120,11 +142,11 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
   },
   {
     id: "breedlogic",
-    type: "case-study",
+    type: "case_study",
     title: "BreedLogic",
     url: "/case-studies/abri/breedlogic/",
     summary:
-      "Designing AI-assisted mate selection for cattle breeders and decision support.",
+      "Designing AI-assisted mate selection for cattle breeders and decision support in a highly specialised domain.",
     tags: [
       "data-platforms",
       "decision-support",
@@ -135,12 +157,15 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
       "product-strategy",
       "ai-assisted-system",
       "enterprise-saas",
+      "genetics",
+      "breeding",
+      "cattle",
     ],
-    themes: ["ai", "specialist-users", "data-visualization", "workflow"],
+    themes: ["ai", "specialist-users", "data-visualization", "workflow", "genetics"],
   },
   {
     id: "evo",
-    type: "case-study",
+    type: "case_study",
     title: "Evo",
     url: "/case-studies/seequent/evo/",
     summary:
@@ -161,7 +186,7 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
   },
   {
     id: "crm",
-    type: "case-study",
+    type: "case_study",
     title: "CRM lead management",
     url: "/case-studies/seequent/crm-lead-management/",
     summary:
@@ -182,7 +207,7 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
   },
   {
     id: "north-star",
-    type: "case-study",
+    type: "case_study",
     title: "North Star constellation",
     url: "/case-studies/seequent/north-star/",
     summary:
@@ -207,7 +232,7 @@ export const hireGiaKnowledge: KnowledgeItem[] = [
     title: "What design systems actually enable",
     url: "/articles/what-design-systems-actually-enable/",
     summary:
-      "Essay on design systems as product infrastructure and collaboration tools.",
+      "An essay on design systems as product infrastructure, team alignment, and delivery leverage.",
     tags: ["design systems", "components", "documentation", "infrastructure"],
     themes: ["design-systems", "systems", "strategy"],
   },

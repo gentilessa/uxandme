@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import vercel from "@astrojs/vercel";
 import { viewTransitions } from "astro-vtbot/starlight-view-transitions";
 
 import tailwindcss from "@tailwindcss/vite";
@@ -16,6 +17,7 @@ const { title } = site;
 // https://astro.build/config
 export default defineConfig({
   site: "https://uxandme.com",
+  adapter: vercel(),
   image: {
     service: { entrypoint: "astro/assets/services/noop" },
   },
