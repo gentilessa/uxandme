@@ -1,0 +1,115 @@
+---
+import { Badge } from "@astrojs/starlight/components";
+
+interface Props {
+  title: string;
+  href: string;
+  description: string;
+  evidenceType?: "direct" | "adjacent";
+}
+
+const {
+  title,
+  href,
+  description,
+  evidenceType = "direct",
+} = Astro.props as Props;
+
+const linkLabel = href.includes("/articles/")
+  ? "View"
+  : href.includes("/about/")
+    ? "View"
+    : "View case study";
+---
+
+<article class="assistant-evidence-card">
+  <div class="assistant-evidence-card__top">
+    <h3>{title}</h3>
+    <Badge
+      text={evidenceType === "adjacent" ? "Adjacent" : "Direct"}
+      variant="note"
+      size="small"
+      class={`assistant-evidence-card__badge assistant-evidence-card__badge--${evidenceType}`}
+    />
+  </div>
+  <p>{description}</p>
+  <a href={href} class="assistant-evidence-card__link">
+    {linkLabel}
+    <span aria-hidden="true">›</span>
+  </a>
+</article>
+
+<style>
+  .assistant-evidence-card {
+    display: grid;
+    gap: 0.95rem;
+    padding: 1.15rem 1.25rem;
+    border: 1px solid var(--sl-color-hairline);
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--sl-color-bg-nav) 82%, transparent);
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .assistant-evidence-card__top {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 0.85rem;
+    min-width: 0;
+  }
+
+  .assistant-evidence-card h3 {
+    margin: 0;
+    color: var(--sl-color-white);
+    font-size: 1.1rem;
+    line-height: 1.25;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .assistant-evidence-card p {
+    margin: 0;
+    color: var(--sl-color-gray-2);
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+
+  .assistant-evidence-card__badge {
+    flex-shrink: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 0.2rem;
+    padding: 0.16rem 0.48rem;
+    font-family: var(--sl-font-system-mono);
+    font-size: 0.66rem;
+  }
+
+  .assistant-evidence-card__badge--adjacent {
+    --sl-color-bg-badge: color-mix(in srgb, var(--sl-color-purple-low) 42%, transparent);
+    --sl-color-border-badge: color-mix(in srgb, var(--sl-color-purple) 30%, transparent);
+    --sl-color-text-badge: var(--sl-color-purple-high);
+  }
+
+  .assistant-evidence-card__badge--direct {
+    --sl-color-bg-badge: color-mix(in srgb, var(--sl-color-blue-low) 42%, transparent);
+    --sl-color-border-badge: color-mix(in srgb, var(--sl-color-blue) 30%, transparent);
+    --sl-color-text-badge: var(--sl-color-blue-high);
+  }
+
+  .assistant-evidence-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--sl-color-white);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .assistant-evidence-card__link:hover {
+    color: var(--sl-color-accent-high);
+  }
+</style>

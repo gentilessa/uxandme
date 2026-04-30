@@ -1,0 +1,611 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getAssistantQueryById } from "@/lib/ai/hireGiaServer";
+import type { HireGiaResult } from "@/lib/ai/hireGiaTypes";
+import AssistantEvidenceCard from "@/components/user-components/AssistantEvidenceCard.astro";
+import { Badge } from "@astrojs/starlight/components";
+
+export const prerender = false;
+
+const { id } = Astro.params;
+const record = id ? await getAssistantQueryById(id) : null;
+const result = record?.response_payload as HireGiaResult | null;
+
+if (!result) {
+  return Astro.redirect("/about/");
+}
+
+const title = result.headline || result.title;
+const summary = result.detailSummary || result.summary;
+const fitTone =
+  result.mode === "role"
+    ? result.fitLabel === "Strong"
+      ? "is-strong"
+      : result.fitLabel === "Moderate"
+        ? "is-moderate"
+        : "is-selective"
+    : "is-guide";
+
+const heroTitle = result.headline || result.title;
+const rawSummary = result.detailSummary || result.summary;
+const cleanedSummary = rawSummary
+  ? rawSummary
+      .replace(/^This question is answered most clearly in the work itself\.\s*/i, "")
+      .replace(/^This works better when the question is a bit more specific\.\s*/i, "")
+      .replace(new RegExp(`^${heroTitle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\.?\\s*`, "i"), "")
+      .trim()
+  : "";
+function toLeadCopy(value: string) {
+  const sentences = value
+    .split(/(?<=[.!?])\s+/)
+    .map((sentence) => sentence.trim())
+    .filter(Boolean);
+
+  const lead = (sentences.length > 1 ? sentences.slice(0, 2).join(" ") : value).trim();
+  if (lead.length <= 360) return lead;
+
+  return `${lead.slice(0, 357).replace(/\s+\S*$/, "")}…`;
+}
+
+const displaySummary = toLeadCopy(cleanedSummary || rawSummary || "");
+const ctaCopy =
+  result.mode === "role"
+    ? result.fitLabel === "Strong"
+      ? {
+          eyebrow: "Strong fit",
+          body: "This is a strong match. If the role is live, it is worth a direct conversation.",
+        }
+      : result.fitLabel === "Moderate"
+        ? {
+            eyebrow: "Moderate fit",
+            body: "This is relevant, but not a clean yes. A direct conversation will clarify the gaps.",
+          }
+        : {
+          eyebrow: "Selective fit",
+          body: "This is relevant in parts, but it is not broad enough to call it a strong match.",
+        }
+    : {
+        eyebrow: "Next step",
+        body: "Open the full review for the spider graph, supporting evidence, and saved link.",
+      };
+
+function splitAxisLabel(label: string) {
+  const words = label.split(" ");
+  if (words.length <= 1) return [label];
+
+  if (words.length === 2) return [words[0], words[1]];
+
+  const mid = Math.ceil(words.length / 2);
+  return [words.slice(0, mid).join(" "), words.slice(mid).join(" ")];
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function formatInlineMarkdown(value: string) {
+  const safe = escapeHtml(value);
+  return safe
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*(.*?)\*/g, "<em>$1</em>");
+}
+
+function spiderPoints(
+  axes: Array<{ value: number }>,
+  radius: number,
+  center: number,
+  max: number,
+  scale = 1
+) {
+  if (axes.length === 0) return "";
+
+  const angleStep = (Math.PI * 2) / axes.length;
+  return axes
+    .map((axis, index) => {
+      const angle = -Math.PI / 2 + index * angleStep;
+      const distance = radius * scale * (axis.value / max);
+      const x = center + Math.cos(angle) * distance;
+      const y = center + Math.sin(angle) * distance;
+      return `${x},${y}`;
+    })
+    .join(" ");
+}
+
+function fixedAxisPoints(
+  axes: Array<{ score: number | null | undefined }>,
+  radius: number,
+  center: number,
+  max: number,
+  scale = 1
+) {
+  if (axes.length === 0) return "";
+
+  const angleStep = (Math.PI * 2) / axes.length;
+  return axes
+    .flatMap((axis, index) => {
+      if (!isRelevantAxisScore(axis.score)) return [];
+
+      const angle = -Math.PI / 2 + index * angleStep;
+      const score = axis.score as number;
+      const distance = radius * scale * (score / max);
+      const x = center + Math.cos(angle) * distance;
+      const y = center + Math.sin(angle) * distance;
+      return [`${x},${y}`];
+    })
+    .join(" ");
+}
+
+function isRelevantAxisScore(score: number | null | undefined) {
+  return score !== null && score !== undefined && score > 0;
+}
+
+function fitBand(value: number) {
+  if (value >= 78) {
+    return { label: "High", tone: "is-high" };
+  }
+  if (value >= 58) {
+    return { label: "Medium", tone: "is-medium" };
+  }
+  return { label: "Light", tone: "is-light" };
+}
+
+const intentSnapshot = result.intentSnapshot;
+const baselineSnapshot = result.baselineSnapshot;
+const graphAxes = intentSnapshot?.axes || baselineSnapshot?.axes || [];
+const relevantIntentAxes = graphAxes.filter((axis) => isRelevantAxisScore(axis.score));
+const relevantIntentAxisCount = relevantIntentAxes.length;
+const shouldRenderIntentPolygon = relevantIntentAxisCount >= 3;
+const fitSnapshot = result.fitSnapshot;
+const fitAxes = fitSnapshot?.axes || [];
+const fitObservations = [...fitAxes].sort((a, b) => b.value - a.value).slice(0, 6);
+---
+
+<BaseLayout title={title} description={summary}>
+  <main class="assistant-review" data-pagefind-body>
+    <div class="assistant-review__container">
+      <a class="assistant-review__back" href="/">
+        ← Back to portfolio
+      </a>
+
+      <header class="assistant-review__hero">
+        <div class="assistant-review__hero-copy">
+          <p class="assistant-review__eyebrow">Portfolio Assistant</p>
+          <h1>{heroTitle}</h1>
+          <p class="assistant-review__summary" set:html={formatInlineMarkdown(displaySummary)}></p>
+        </div>
+
+        {result.mode === "role" && (
+          <div class={`assistant-review__fit ${fitTone}`}>
+            <span>{result.fitLabel}</span>
+            <small>fit</small>
+          </div>
+        )}
+      </header>
+
+      {graphAxes.length > 0 && (
+        <section class="assistant-review__snapshot-section">
+          <div class="assistant-review__section-heading">
+            <h2>Fit snapshot</h2>
+            <p>Evidence visibility snapshot — based on signals relevant to your query.</p>
+          </div>
+
+          <div class="assistant-review__snapshot-grid">
+            <div class="assistant-review__radar-card">
+              <svg viewBox="0 0 360 360" role="img" aria-label="Fit snapshot spider graph">
+                {Array.from({ length: 4 }).map((_, level) => {
+                  const scale = (level + 1) / 4;
+                  return (
+                    <polygon
+                      points={spiderPoints(
+                        graphAxes.map(() => ({ value: 1 })),
+                        118,
+                        180,
+                        1,
+                        scale,
+                      )}
+                      fill="none"
+                      stroke="color-mix(in srgb, var(--sl-color-white) 10%, transparent)"
+                      stroke-width="1"
+                    />
+                  );
+                })}
+
+                {graphAxes.map((axis, index) => {
+                  const angleStep = (Math.PI * 2) / graphAxes.length;
+                  const angle = -Math.PI / 2 + index * angleStep;
+                  const axisX = 180 + Math.cos(angle) * 118;
+                  const axisY = 180 + Math.sin(angle) * 118;
+                  const textX = 180 + Math.cos(angle) * 150;
+                  const textY = 180 + Math.sin(angle) * 150;
+                  const lines = splitAxisLabel(axis.label);
+                  const isRelevant = isRelevantAxisScore(axis.score);
+                  return (
+                    <>
+                      <line x1="180" y1="180" x2={axisX} y2={axisY} stroke="color-mix(in srgb, var(--sl-color-white) 10%, transparent)" stroke-width="1" />
+                      <text
+                        x={textX}
+                        y={textY}
+                        text-anchor="middle"
+                        fill="var(--sl-color-gray-3)"
+                        font-size="11"
+                        font-family="var(--sl-font)"
+                        opacity={isRelevant ? "1" : "0.35"}
+                      >
+                        {lines.map((line, index) => (
+                          <tspan x={textX} dy={index === 0 ? 0 : 12}>
+                            {line}
+                          </tspan>
+                        ))}
+                      </text>
+                    </>
+                  );
+                })}
+
+                {baselineSnapshot && (
+                  <polygon
+                    points={fixedAxisPoints(baselineSnapshot.axes, 118, 180, 1)}
+                    fill="color-mix(in srgb, var(--sl-color-white) 20%, transparent)"
+                    stroke="color-mix(in srgb, var(--sl-color-white) 39%, transparent)"
+                    stroke-width="3"
+                    opacity="1"
+                  />
+                )}
+
+                {shouldRenderIntentPolygon && (
+                  <polygon
+                    points={fixedAxisPoints(graphAxes, 118, 180, 1)}
+                    fill="color-mix(in srgb, var(--sl-color-accent) 26%, transparent)"
+                    stroke="var(--sl-color-accent)"
+                    stroke-width="2"
+                  />
+                )}
+
+                {relevantIntentAxisCount === 0 && (
+                  <text
+                    x="180"
+                    y="186"
+                    text-anchor="middle"
+                    fill="var(--sl-color-gray-3)"
+                    font-size="13"
+                    font-family="var(--sl-font)"
+                  >
+                    No relevant evidence for this query
+                  </text>
+                )}
+              </svg>
+            </div>
+
+            <aside class="assistant-review__snapshot-notes">
+              <div class="assistant-review__section-heading">
+                <h3>How to read this</h3>
+                <p>The filled shape shows what this query emphasizes. The notes point to the clearest public signals.</p>
+              </div>
+              <div class="assistant-review__snapshot-list">
+                {fitObservations.map((axis) => (
+                  <article class="assistant-review__snapshot-item">
+                    <div class="assistant-review__snapshot-item-top">
+                      <strong>{axis.label}</strong>
+                      <Badge text={fitBand(axis.value).label} variant="note" size="small" class={`assistant-review__fit-badge ${fitBand(axis.value).tone}`} />
+                    </div>
+                    <div class="assistant-review__bar">
+                      <div class="assistant-review__bar-fill" style={`width:${axis.value}%`}></div>
+                    </div>
+                    <p>{axis.note}</p>
+                  </article>
+                ))}
+              </div>
+            </aside>
+          </div>
+        </section>
+      )}
+
+      <section class="assistant-review__stack-section">
+        <div class="assistant-review__section-heading">
+          <h2>{result.mode === "role" ? "Strongest evidence" : "Supporting evidence"}</h2>
+        </div>
+        <div class="assistant-review__evidence-grid">
+          {result.evidence.map((item) => (
+            <AssistantEvidenceCard
+              title={item.title}
+              href={item.url}
+              description={item.description}
+              evidenceType={item.evidenceType}
+            />
+          ))}
+        </div>
+      </section>
+
+      {result.mode === "role" && result.gaps?.length && (
+        <section class="assistant-review__panel">
+          <div class="assistant-review__section-heading">
+            <h2>Where evidence is thinner</h2>
+          </div>
+          <div class="assistant-review__themes">
+            {result.gaps.map((gap) => (
+              <article class="assistant-review__theme-card">
+                <p>{gap}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {result.caveats?.length ? (
+        <section class="assistant-review__stack-section">
+          <div class="assistant-review__section-heading">
+            <h2>Notes</h2>
+          </div>
+          <div class="assistant-review__prose">
+            {result.caveats.map((caveat) => <p>{caveat}</p>)}
+          </div>
+        </section>
+      ) : null}
+
+      <section class="assistant-review__cta">
+        <p class="assistant-review__cta-eyebrow">{ctaCopy.eyebrow}</p>
+        <h2 class="assistant-review__cta-title">Full review</h2>
+        <p class="assistant-review__cta-copy" set:html={formatInlineMarkdown(ctaCopy.body)}></p>
+        <div class="assistant-review__cta-row">
+          <a class="btn btn-primary" href="/about/">Contact Gia directly</a>
+          <a class="assistant-review__ghost" href="/">Ask another question</a>
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .assistant-review {
+    padding-top: calc(var(--sl-nav-height) + 4rem);
+    padding-bottom: 4rem;
+  }
+  .assistant-review__container {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding-inline: var(--sl-content-pad-x);
+    display: grid;
+    gap: 2rem;
+  }
+  .assistant-review__back {
+    color: var(--sl-color-gray-3);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  .assistant-review__hero {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .assistant-review__eyebrow, .assistant-review__section-kicker {
+    margin: 0 0 0.6rem;
+    color: var(--sl-color-accent-high);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .assistant-review__hero h1 {
+    margin: 0;
+    color: var(--sl-color-white);
+    max-width: 100%;
+    margin-bottom: 0.875rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  .assistant-review__summary {
+    margin: 0;
+    max-width: 100%;
+    color: var(--sl-color-gray-2);
+    font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+    line-height: 1.55;
+  }
+  .assistant-review__cta-title {
+    margin: 0;
+    color: var(--sl-color-white);
+    font-size: clamp(1.15rem, 1.85vw, 1.55rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  .assistant-review__cta-copy {
+    margin: 0;
+    max-width: 42rem;
+    color: var(--sl-color-gray-2);
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  .assistant-review__fit {
+    width: 8.5rem;
+    height: 8.5rem;
+    border-radius: 999px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    background: color-mix(in srgb, var(--sl-color-accent) 18%, transparent);
+    border: 1px solid color-mix(in srgb, var(--sl-color-accent) 30%, transparent);
+    color: var(--sl-color-white);
+    justify-self: start;
+  }
+  .assistant-review__fit span { font-size: 1.5rem; font-weight: 700; }
+  .assistant-review__fit small { text-transform: uppercase; letter-spacing: 0.12em; color: var(--sl-color-gray-2); }
+  .assistant-review__fit.is-strong { background: color-mix(in srgb, #18c78f 18%, transparent); border-color: color-mix(in srgb, #18c78f 30%, transparent); }
+  .assistant-review__fit.is-moderate { background: color-mix(in srgb, #f59e0b 18%, transparent); border-color: color-mix(in srgb, #f59e0b 30%, transparent); }
+  .assistant-review__panel, .assistant-review__callout, .assistant-review__cta {
+    border: 1px solid var(--sl-color-hairline);
+    border-radius: 1.4rem;
+    background: color-mix(in srgb, var(--sl-color-bg-nav) 82%, transparent);
+    padding: 1.4rem;
+  }
+  .assistant-review__cta {
+    display: grid;
+    gap: 0.55rem;
+    padding: 1rem;
+  }
+  .assistant-review__callout, .assistant-review__cta-row, .assistant-review__section-heading, .assistant-review__theme-top, .assistant-review__evidence-top, .assistant-review__observation-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .assistant-review__cta-row { align-items: center; flex-wrap: wrap; }
+  .assistant-review__cta-eyebrow {
+    margin: 0;
+    color: var(--sl-color-accent-high);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .assistant-review__ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.9rem;
+    border: 1px solid var(--sl-color-hairline);
+    background: color-mix(in srgb, var(--sl-color-bg-nav) 70%, transparent);
+    color: var(--sl-color-white);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .assistant-review__section-heading { display: grid; gap: 0.2rem; justify-content: start; }
+  .assistant-review__section-heading h2, .assistant-review__evidence-card h3, .assistant-review__reading-item h3, .assistant-review__theme-card h3 {
+    margin: 0;
+    color: var(--sl-color-white);
+  }
+  .assistant-review__section-heading p, .assistant-review__theme-card p, .assistant-review__evidence-card p, .assistant-review__reading-item p, .assistant-review__prose p, .assistant-review__callout p {
+    margin: 0;
+    color: var(--sl-color-gray-2);
+    line-height: 1.7;
+  }
+  .assistant-review__stack-section { display: grid; gap: 1rem; }
+  .assistant-review__theme-card, .assistant-review__evidence-card, .assistant-review__reading-item {
+    border: 1px solid var(--sl-color-hairline);
+    border-radius: 1.1rem;
+    background: color-mix(in srgb, var(--sl-color-bg-nav) 72%, transparent);
+  }
+  .assistant-review__theme-card, .assistant-review__evidence-card { padding: 1rem; }
+  .assistant-review__snapshot-section {
+    display: grid;
+    gap: 0.85rem;
+    margin-top: 0.75rem;
+  }
+  .assistant-review__snapshot-grid {
+    display: grid;
+    border: 1px solid var(--sl-color-hairline);
+    border-radius: 1.1rem;
+    background: color-mix(in srgb, var(--sl-color-bg-nav) 72%, transparent);
+    padding: 2rem 3rem 2rem 1rem;
+    gap: 2.5rem;
+    overflow: hidden;
+  }
+  .assistant-review__radar-card {
+    border: 0;
+    padding: 1rem;
+    overflow: hidden;
+  }
+  .assistant-review__radar-card svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .assistant-review__snapshot-notes {
+    border: 0;
+    padding: 1rem;
+    display: grid;
+    gap: 1rem;
+    background: transparent;
+  }
+  .assistant-review__snapshot-notes h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--sl-color-white);
+  }
+  .assistant-review__snapshot-list {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .assistant-review__snapshot-item {
+    display: grid;
+    gap: 0.4rem;
+  }
+  .assistant-review__snapshot-item-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: baseline;
+  }
+  .assistant-review__snapshot-item-top strong {
+    color: var(--sl-color-white);
+    font-size: 0.98rem;
+  }
+  .assistant-review__snapshot-item-top span {
+    color: var(--sl-color-gray-3);
+    font-variant-numeric: tabular-nums;
+  }
+  .assistant-review__snapshot-item p {
+    margin: 0;
+    color: var(--sl-color-gray-2);
+    line-height: 1.5;
+    font-size: 0.95rem;
+  }
+  .assistant-review__observation { display: grid; gap: 0.35rem; }
+  .assistant-review__bar { width: 100%; height: 0.35rem; border-radius: 999px; background: color-mix(in srgb, var(--sl-color-white) 8%, transparent); overflow: hidden; }
+  .assistant-review__bar-fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--sl-color-accent), var(--sl-color-accent-high)); }
+  .assistant-review__fit-badge {
+    --sl-color-bg-badge: color-mix(in srgb, var(--sl-color-gray-4) 18%, transparent);
+    --sl-color-border-badge: color-mix(in srgb, var(--sl-color-white) 12%, transparent);
+    --sl-color-text-badge: var(--sl-color-white);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-radius: 999px;
+    padding-inline: 0.55rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+  }
+  .assistant-review__fit-badge.is-high {
+    --sl-color-bg-badge: color-mix(in srgb, var(--sl-color-green-low) 60%, transparent);
+    --sl-color-border-badge: color-mix(in srgb, var(--sl-color-green) 28%, transparent);
+    --sl-color-text-badge: var(--sl-color-green-high);
+  }
+  .assistant-review__fit-badge.is-medium {
+    --sl-color-bg-badge: color-mix(in srgb, var(--sl-color-orange-low) 60%, transparent);
+    --sl-color-border-badge: color-mix(in srgb, var(--sl-color-orange) 28%, transparent);
+    --sl-color-text-badge: var(--sl-color-orange-high);
+  }
+  .assistant-review__fit-badge.is-light {
+    --sl-color-bg-badge: color-mix(in srgb, var(--sl-color-gray-4) 30%, transparent);
+    --sl-color-border-badge: color-mix(in srgb, var(--sl-color-gray-3) 28%, transparent);
+    --sl-color-text-badge: var(--sl-color-gray-2);
+  }
+  .assistant-review__themes, .assistant-review__evidence-grid, .assistant-review__reading-list { display: grid; gap: 1rem; }
+  .assistant-review__pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.5rem;
+    padding: 0.18rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .assistant-review__pill.is-direct { background: color-mix(in srgb, var(--sl-color-accent) 14%, transparent); color: var(--sl-color-accent-high); }
+  .assistant-review__pill.is-adjacent { background: color-mix(in srgb, var(--sl-color-gray-4) 22%, transparent); color: var(--sl-color-gray-2); }
+  .assistant-review__evidence-card a, .assistant-review__reading-item { color: inherit; text-decoration: none; }
+  .assistant-review__evidence-card a { margin-top: 0.9rem; display: inline-flex; color: var(--sl-color-accent-high); font-weight: 600; }
+  .assistant-review__reading-item { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.1rem; }
+  .assistant-review__reading-item span { color: var(--sl-color-gray-3); font-size: 1.2rem; }
+  .assistant-review__prose { display: grid; gap: 1rem; }
+  @media (min-width: 60rem) {
+    .assistant-review__hero { grid-template-columns: minmax(0, 1fr) auto; align-items: start; }
+    .assistant-review__snapshot-grid { grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr); align-items: start; }
+    .assistant-review__radar-card { border-right: 1px solid var(--sl-color-hairline); }
+    .assistant-review__themes, .assistant-review__evidence-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
