@@ -120,7 +120,7 @@ const modeContent: Record<
     label: "What would you like to know?",
     placeholder:
       "e.g. What experience does Gia have with design systems, AI-assisted workflows, or complex operational products?",
-    submitLabel: "Get Answer",
+    submitLabel: "Get answer",
     intro:
       "Review Gia’s work without digging blindly through the portfolio. Ask about projects, strengths, experience areas, or paste a job description for an evidence-backed fit read.",
   },
@@ -128,7 +128,7 @@ const modeContent: Record<
     label: "What would you like to know?",
     placeholder:
       "Paste a job description, hiring brief, or product/design challenge for an evidence-backed fit review.",
-    submitLabel: "Review Fit",
+    submitLabel: "Review fit",
     intro:
       "Review Gia’s work without digging blindly through the portfolio. Ask about projects, strengths, experience areas, or paste a job description for an evidence-backed fit read.",
   },

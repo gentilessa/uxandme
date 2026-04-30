@@ -77,11 +77,11 @@ import { Badge } from "@astrojs/starlight/components";
     <span class="hire-gia-response__worth-knowing-copy" data-worth-knowing></span>
   </p>
 
-  <div class="hire-gia-response__footer">
-    <a class="btn btn-primary hire-gia-response__primary" data-full-review-link hidden href="#">
-      Open Full View
+  <div class="hire-gia-studio__actions hire-gia-response__footer">
+    <a class="btn btn-primary hire-gia-studio__submit" data-full-review-link hidden href="#">
+      Open full view
     </a>
-    <button type="button" class="hire-gia-response__secondary" data-try-again>
+    <button type="button" class="hire-gia-studio__clear" data-try-again>
       Clear
     </button>
   </div>
@@ -322,14 +322,19 @@ import { Badge } from "@astrojs/starlight/components";
   .hire-gia-response__stack,
   .hire-gia-response__grid,
   .hire-gia-response__badge-list {
-    display: grid;
     gap: 0.8rem;
     min-width: 0;
     max-width: 100%;
   }
 
+  .hire-gia-response__stack,
+  .hire-gia-response__grid {
+    display: grid;
+  }
+
   .hire-gia-response__badge-list {
-    grid-template-columns: repeat(auto-fit, minmax(0, max-content));
+    display: flex;
+    flex-wrap: wrap;
     gap: 0.6rem;
     justify-content: start;
     overflow: hidden;
@@ -594,13 +599,7 @@ import { Badge } from "@astrojs/starlight/components";
   .hire-gia-response__footer {
     position: sticky;
     bottom: 0;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    gap: 0.75rem;
     margin-top: auto;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
     border-top: 1px solid var(--hire-gia-response-border);
     background: var(--color-lightmode-body);
     min-width: 0;
@@ -612,32 +611,13 @@ import { Badge } from "@astrojs/starlight/components";
     }
   }
 
-  .hire-gia-response__primary,
-  .hire-gia-response__secondary {
-    width: auto;
-    justify-content: center;
+  .hire-gia-response :global(.hire-gia-studio__submit),
+  .hire-gia-response :global(.hire-gia-studio__clear) {
     text-align: center;
-    min-height: 2.875rem;
-    border-radius: 0.85rem;
-    min-width: 0;
   }
 
-  .hire-gia-response__primary {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .hire-gia-response__secondary {
-    min-width: 10rem;
-  }
-
-  .hire-gia-response__secondary {
-    border: 1px solid var(--hire-gia-response-border);
+  .hire-gia-response :global(.hire-gia-studio__actions) {
     background: var(--color-lightmode-body);
-    color: var(--hire-gia-response-title);
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
   }
 
   @media (min-width: 56rem) {
